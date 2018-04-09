@@ -1,0 +1,15 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
+The style file: plain.bst
+Database file #1: references.bib
+Warning--string name "bratislava" is undefined
+--line 57 of file references.bib
+Name 1 in "Ruihua Song, Haifeng Liu, Ji-Rong Wen, and Wei-Ying Ma" has a comma at the end for entry block_importance
+while executing---line 1049 of file plain.bst
+Name 1 in "Cortes C., and Vapnik V." has a comma at the end for entry SVM
+while executing---line 1049 of file plain.bst
+Name 1 in "Cortes C., and Vapnik V." has a comma at the end for entry SVM
+while executing---line 1090 of file plain.bst
+Warning--empty journal in vips
+Name 1 in "Ruihua Song, Haifeng Liu, Ji-Rong Wen, and Wei-Ying Ma" has a comma at the end for entry block_importance
+while executing---line 1090 of file plain.bst
+(There were 4 error messages)

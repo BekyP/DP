@@ -1,0 +1,209 @@
+
+% Language: english, slovak
+% Document type: article (bachelor thesis), report (master thesis)
+%%
+%% CHECK THE PLACE WITH "!!!!"
+%%
+
+%%
+%% !!!! select one for BACHELOR THESIS
+%%
+%\documentclass[a4paper,english,12pt,appendix]{article}
+%\documentclass[a4paper,slovak,12pt,appendix]{article}
+\documentclass[a4paper,slovak,12pt,appendix,twoside]{article}
+
+\let\tmp\oddsidemargin
+\let\oddsidemargin\evensidemargin
+\let\evensidemargin\tmp
+\reversemarginpar
+
+%%
+%% !!!! select one for MASTER THESIS
+%%
+%\documentclass[a4paper,english,12pt,appendix]{report}
+%\documentclass[a4paper,slovak,12pt,appendix]{report}
+\usepackage{indentfirst}
+\usepackage{ifthen}
+
+\newboolean{english}
+\newboolean{bachelor}
+\pagenumbering{gobble}
+%%
+%% !!!! for MASTER THESIS set to FALSE
+%%
+\setboolean{bachelor}{true}
+
+%%
+%% !!!! for SLOVAK VERSION set to FALSE
+%%
+\setboolean{english}{false}
+
+
+
+%%
+%% Formats and Defs
+%%
+\input{FormatsAndDefs.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% !!!! set your own definitions
+
+%-------definitions-----
+\newcommand{\Author}{Patrik Beka} 
+\newcommand{\Title}{
+	Modelovanie ľudskej vizuálnej pozornosti metódami počítačového videnia a umelej inteligencie}
+\newcommand{\Supervisor}{doc. Ing. Vanda Benešová, PhD.}
+\newcommand{\Place}{Ústav počítačového inžinierstva a aplikovanej informatiky, FIIT STU, Bratislava}
+\newcommand{\Year}{2018}
+\newcommand{\Month}{Máj}
+\newcommand{\FIIT}{tmp} %{FIIT-5212-73665}
+\newcommand{\Field}{Inteligentné softvérové systémy}
+\newcommand{\Program}{Inteligentné softvérové systémy}
+
+%%
+%% DON'T TOUCH
+%%
+%% PDF meta-data 
+\hypersetup{%
+pdftitle={\Title},%
+pdfauthor={\Author},%
+pdfkeywords={key words},%
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%
+%% Title Page
+%%
+\input{titlepage.tex}
+
+\input{declaration.tex}
+%%
+%% Anotation
+%%
+%\pagenumbering{roman}\setcounter{page}{2}
+\input{anotation.tex}
+
+%%
+%% Declaration
+%%
+
+%%
+%% Contents
+%%
+%\pagestyle{empty}
+\newpage
+\cleardoublepage
+\pagestyle{plain}
+\pagenumbering{alph}
+\tableofcontents{}
+
+%\input{dictionary.tex}
+%%
+%% Lists
+%%
+ \newpage
+% List of Figures
+ \listoffigures  
+ \newpage
+% List of Tables
+ %\listoftables
+ \cleardoublepage
+ \newpage
+% List of Listings
+ %\lstlistoflistings
+
+
+%%
+%% Clear Page And Set New Page Counter
+%%
+\clearpage
+\ifthenelse {\boolean{bachelor}}
+{
+	\sectionfont{\sectionrule{0pt}{0pt}{-2ex}{0.5pt}}
+}
+{
+	\sectionfont{\sectionrule{0pt}{0pt}{-2ex}{0pt}}
+}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+%%
+%% Introduction
+%%
+\input{introduction.tex}
+
+%%
+%% analysis
+%%
+ \cleardoublepage
+ \newpage
+\input{analysis.tex}
+
+%%
+%% design
+%%
+ \cleardoublepage
+ \newpage
+\input{design.tex}
+ \cleardoublepage
+ \newpage
+%\input{implementation.tex}
+
+%\input{experiments.tex}
+%%
+%% test
+%%
+%\input{results.tex}
+
+%%
+%% Conclusion
+%%
+% TODO zvazit ci nedat do pice
+\input{conclusions.tex}
+
+%%
+%% References
+%%
+ \cleardoublepage
+ \newpage
+\newpage
+\addcontentsline{toc}{section}{\refname}
+\bibliographystyle{plain}
+\bibliography{references}
+
+%%
+%% Appendix
+%%
+\ifthenelse {\boolean{bachelor}}
+{
+	
+}
+{
+	\ifthenelse {\boolean{english}}
+	{
+		\renewcommand{\appendixname}{Appendix}
+		\renewcommand{\appendixtocname}{Appendix}
+	}
+	{
+		\renewcommand{\appendixname}{Príloha}
+		\renewcommand{\appendixtocname}{Prílohy}
+	}
+	\pagenumbering{bychapter}
+}
+ \cleardoublepage
+ \newpage
+\appendix
+\input{appendix.tex}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% !!!! set your own details
+%%
+\begin{comment}
+[x] [Autor Dokumentu], [Nazov Stranky], [URL], [Datum Navstevy]
+\end{comment}
