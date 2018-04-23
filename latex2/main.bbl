@@ -19,34 +19,6 @@ Ali Borji, Hamed~R Tavakoli, Dicky~N Sihite, and Laurent Itti.
 \newblock In {\em Proceedings of the IEEE international conference on computer
   vision}, pages 921--928, 2013.
 
-\bibitem{psych}
-David~H Brainard.
-\newblock The psychophysics toolbox.
-\newblock {\em Spatial vision}, 10:433--436, 1997.
-
-\bibitem{SVM}
-Cortes C. and Vapnik V.
-\newblock Support-vector networks.
-\newblock {\em Machine Learning}, 20(3):273--297, 1995.
-
-\bibitem{vips}
-Deng Cai, Shipeng Yu, Ji-Rong Wen, and Wei-Ying Ma.
-\newblock Vips: A vision-based page segmentation algorithm.
-\newblock 2003.
-
-\bibitem{DOM}
-Soumen Chakrabarti.
-\newblock Integrating the document object model with hyperlinks for enhanced
-  topic distillation and information extraction.
-\newblock In {\em Proceedings of the 10th international conference on World
-  Wide Web}, pages 211--220. ACM, 2001.
-
-\bibitem{bc_thesis}
-Mária Dragúňová.
-\newblock Vyhodnocovanie používateľského zážitku analýzou pohľadu a
-  emócií.
-\newblock Bachelor thesis, Bratislava: FIIT STU, 2016.
-
 \bibitem{itti}
 Renwu Gao, Faisal Shafait, Seiichi Uchida, and Yaokai Feng.
 \newblock A hierarchical visual saliency model for character detection in
@@ -95,13 +67,6 @@ H~Brendan McMahan, Gary Holt, David Sculley, Michael Young, Dietmar Ebner,
 \newblock In {\em Proceedings of the 19th ACM SIGKDD international conference
   on Knowledge discovery and data mining}, pages 1222--1230. ACM, 2013.
 
-\bibitem{PDOC}
-Rupesh~R Mehta, Pabitra Mitra, and Harish Karnick.
-\newblock Extracting semantic structure of web documents using content and
-  visual information.
-\newblock In {\em Special interest tracks and posters of the 14th international
-  conference on World Wide Web}, pages 928--929. ACM, 2005.
-
 \bibitem{polatsek}
 Patrik Polatsek.
 \newblock Saliency maps.
@@ -118,28 +83,11 @@ Sebastian Ruder.
 \newblock An overview of gradient descent optimization algorithms.
 \newblock {\em arXiv preprint arXiv:1609.04747}, 2016.
 
-\bibitem{block_importance}
-Ji-Rong~Wen Ruihua~Song, Haifeng~Liu and Wei-Ying Ma.
-\newblock Learning block importance models for web pages.
-\newblock In {\em Proceedings of the 13th international conference on World
-  Wide Web (WWW '04)}, pages 203--211, New York, USA, 2004.
-
 \bibitem{rnn_speech}
 Hasim Sak, Andrew~W Senior, and Fran{\c{c}}oise Beaufays.
 \newblock Long short-term memory recurrent neural network architectures for
   large scale acoustic modeling.
 \newblock In {\em INTERSPEECH}, pages 338--342, 2014.
-
-\bibitem{singapur_model}
-Chengyao Shen, Xun Huang, and Qi~Zhao.
-\newblock Predicting eye fixations on webpage with an ensemble of early
-  features and high-level representations from deep network.
-\newblock {\em IEEE Transactions on Multimedia}, 17(11):2084--2093, 2015.
-
-\bibitem{saliency}
-Chengyao Shen and Qi~Zhao.
-\newblock {\em Webpage Saliency}, pages 33--46.
-\newblock Springer International Publishing, Cham, 2014.
 
 \bibitem{dropout}
 Nitish Srivastava, Geoffrey~E Hinton, Alex Krizhevsky, Ilya Sutskever, and

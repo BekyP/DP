@@ -1,14 +1,16 @@
 \babel@toc {slovak}{}
 \contentsline {section}{\numberline {1}\IeC {\'U}vod}{1}{section.1}
-\contentsline {section}{\numberline {2}Vizu\IeC {\'a}lna v\IeC {\'y}raznos\IeC {\v t}}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Existuj\IeC {\'u}ce modely vizu\IeC {\'a}lnej pozornosti}{3}{subsection.2.1}
-\contentsline {section}{\numberline {3}Neur\IeC {\'o}nov\IeC {\'e} siete}{4}{section.3}
+\contentsline {section}{\numberline {2}Vizu\IeC {\'a}lna pozornos\IeC {\v t}}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Bottom-up spracovanie sc\IeC {\'e}ny}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Top-down spracovanie sc\IeC {\'e}ny}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Existuj\IeC {\'u}ce modely vizu\IeC {\'a}lnej pozornosti}{3}{subsection.2.3}
+\contentsline {section}{\numberline {3}Neur\IeC {\'o}nov\IeC {\'e} siete}{5}{section.3}
 \contentsline {paragraph}{Aktiva\IeC {\v c}n\IeC {\'e} funkcie}{6}{section*.3}
 \contentsline {paragraph}{U\IeC {\v c}enie sa}{7}{section*.4}
 \contentsline {paragraph}{Gradient descent optimizer}{8}{section*.5}
 \contentsline {paragraph}{Adam optimizer}{9}{section*.6}
 \contentsline {paragraph}{Ftrl optimizer}{9}{section*.7}
-\contentsline {subsubsection}{\numberline {3.0.1}Typy neur\IeC {\'o}nov\IeC {\'y}ch siet\IeC {\'\i }}{9}{subsubsection.3.0.1}
+\contentsline {subsubsection}{\numberline {3.0.1}Typy neur\IeC {\'o}nov\IeC {\'y}ch siet\IeC {\'\i }}{10}{subsubsection.3.0.1}
 \contentsline {subsubsection}{\numberline {3.0.2}Konvolu\IeC {\v c}n\IeC {\'e} neur\IeC {\'o}nov\IeC {\'e} siete}{11}{subsubsection.3.0.2}
 \contentsline {section}{\numberline {4}Probl\IeC {\'e}mov\IeC {\'a} oblas\IeC {\v t}}{13}{section.4}
 \contentsline {subsection}{\numberline {4.1}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{13}{subsection.4.1}
