@@ -1,7 +1,7 @@
 \BOOKMARK [1][-]{section.1}{\332vod}{}% 1
 \BOOKMARK [1][-]{section.2}{Vizu\341lna pozornost}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Bottom-up spracovanie sc\351ny}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Top-down spracovanie sc\351ny}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Bottom-up spracovanie}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Top-down spracovanie}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Existuj\372ce modely vizu\341lnej pozornosti}{section.2}% 5
 \BOOKMARK [1][-]{section.3}{Neur\363nov\351 siete}{}% 6
 \BOOKMARK [2][-]{subsubsection.3.0.1}{Typy neur\363nov\375ch siet\355}{section.3}% 7
@@ -14,8 +14,3 @@
 \BOOKMARK [2][-]{subsection.5.3}{Dataset}{section.5}% 14
 \BOOKMARK [1][-]{section.6}{Zhrnutie}{}% 15
 \BOOKMARK [1][-]{section.6}{Literat\372ra}{}% 16
-\BOOKMARK [1][-]{appendix.A}{Technick\341 dokument\341cia}{}% 17
-\BOOKMARK [2][-]{subsection.A.1}{Hardv\351r}{appendix.A}% 18
-\BOOKMARK [2][-]{subsection.A.2}{Pou\236it\351 kni\236nice}{appendix.A}% 19
-\BOOKMARK [3][-]{subsubsection.A.2.1}{TensorFlow}{subsection.A.2}% 20
-\BOOKMARK [3][-]{subsubsection.A.2.2}{Matplotlib}{subsection.A.2}% 21

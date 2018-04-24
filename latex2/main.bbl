@@ -12,6 +12,12 @@ Mariusz Bojarski, Davide Del~Testa, Daniel Dworakowski, Bernhard Firner, Beat
 \newblock End to end learning for self-driving cars.
 \newblock {\em arXiv preprint arXiv:1604.07316}, 2016.
 
+\bibitem{borji2013state}
+Ali Borji and Laurent Itti.
+\newblock State-of-the-art in visual attention modeling.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  35(1):185--207, 2013.
+
 \bibitem{metriky}
 Ali Borji, Hamed~R Tavakoli, Dicky~N Sihite, and Laurent Itti.
 \newblock Analysis of scores, datasets, and models in visual saliency
@@ -26,6 +32,11 @@ Renwu Gao, Faisal Shafait, Seiichi Uchida, and Yaokai Feng.
 \newblock In {\em International Workshop on Camera-Based Document Analysis and
   Recognition}, pages 18--29. Springer, 2013.
 
+\bibitem{goldstein2008blackwell}
+E~Bruce Goldstein.
+\newblock {\em The Blackwell handbook of sensation and perception}.
+\newblock John Wiley \& Sons, 2008.
+
 \bibitem{rnn_handwriting}
 Alex Graves, Marcus Liwicki, Santiago Fern{\'a}ndez, Roman Bertolami, Horst
   Bunke, and J{\"u}rgen Schmidhuber.
@@ -33,6 +44,11 @@ Alex Graves, Marcus Liwicki, Santiago Fern{\'a}ndez, Roman Bertolami, Horst
   recognition.
 \newblock {\em IEEE transactions on pattern analysis and machine intelligence},
   31(5):855--868, 2009.
+
+\bibitem{gregory1974concepts}
+Richard~Langton Gregory.
+\newblock {\em Concepts and mechanisms of perception.}
+\newblock Charles Scribner's Sons, 1974.
 
 \bibitem{unsupervised}
 Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
@@ -44,6 +60,11 @@ Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
 Laurent Itti.
 \newblock Visual salience.
 \newblock {\em Scholarpedia}, 2(9):3327, 2007.
+
+\bibitem{itti2001computational}
+Laurent Itti and Christof Koch.
+\newblock Computational modelling of visual attention.
+\newblock {\em Nature reviews neuroscience}, 2(3):194, 2001.
 
 \bibitem{image_description}
 Andrej Karpathy and Li~Fei-Fei.

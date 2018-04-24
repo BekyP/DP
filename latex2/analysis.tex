@@ -11,26 +11,30 @@ V tejto časti je postupne popísaná vizuálna výraznosť v časti \ref{salien
 \section{Vizuálna pozornosť}
 \label{saliency}
 	
-Termín vizuálna pozornosť možno definovať ako súbor % TODO vymysliet daco zmysluplnejsie
-všetkých faktorov, ktoré ovplyvňujú naše mechanizmy výberu podstatných častí v scéne, nezáležiac od toho, aké tieto mechanizmy sú. % TODO citacia podla dp
-Tento pojem je často zamieňaný s vizuálnou pútavosťou(výraznosťou?), avšak tieto dva termíny nevyjadrujú úplne to isté. Presnejšou definíciou vizuálnej pútavosti (z angl. visual saliency) je, že sa jedná o značne subjektívnu perceptuálnu vlastnosť, vďaka ktorej niektoré veci vo svete (v scéne) vyčnievajú v porovnaní so svojimi susedmi kvôli ich vlastnostiam ako farba, jas, kontrast či orientácia a preto okamžite upútajú pozornosť.\cite{itti2007visual} 
-% TODO nejake bullshity o spracovaní scény
+Termín vizuálna pozornosť možno definovať ako súbor všetkých faktorov, ktoré ovplyvňujú naše mechanizmy výberu podstatných častí v scéne a jej spracovanie, nezáležiac od toho, aké tieto mechanizmy sú (či už riadené stimulmi, očakávaniami, pamaťou, atď.) \cite{borji2013state}.
 
-\subsection{Bottom-up spracovanie scény}
-Vizuálne stimuly(i?), ktoré upútajú pozornosť automaticky, mimovoľne, sa nazývajú bottom-up stimuly(i?). 
-
-
-\subsection{Top-down spracovanie scény}
-
-
-
-	Tá sa spolu s pútavosťou (výraznosťou) delí na dva typy a to:
-	\begin{itemize}
-		\item pozornosť „zdola nahor“ (z angl. bottom-up) - riadená čisto iba pútavými stimulmi, ktoré sú v podstate známkou toho, že „táto lokácia je značne odlišná od svojho okolia a stojí za pozornosť.“\ Je rýchla a nevedomá.
-		\item pozornosť „zhora nadol“ (z angl. top-down) - riadená tzv. predvídateľnými mechanizmami, ako napríklad hľadaním niečoho konkrétneho na webovej stránke. Je pomalšia, vedomá a ovplyvnená našou pamaťou. 
-		
-	\end{itemize}
+Tento pojem je často zamieňaný s vizuálnou pútavosťou(výraznosťou?), avšak tieto dva termíny nevyjadrujú úplne to isté. Presnejšou definíciou vizuálnej pútavosti (z angl. visual saliency) je, že sa jedná o značne subjektívnu perceptuálnu vlastnosť, vďaka ktorej niektoré veci vo svete (v scéne) vyčnievajú v porovnaní so svojimi susedmi kvôli ich vlastnostiam ako farba, jas, kontrast či orientácia \cite{itti2007visual}. Upútanie pozornosti ovplyvňujú mechanizmy spracovania scény, ktoré možno rozdeliť do na dve skupiny:
+\begin{itemize}
+	\item spracovanie „zdola nahor“ (z angl. bottom-up) %- riadená čisto iba pútavými stimulmi, ktoré sú v podstate známkou toho, že „táto lokácia je značne odlišná od svojho okolia a stojí za pozornosť.“\ Je rýchla a nevedomá.
+	\item spracovanie „zhora nadol“ (z angl. top-down) %- riadená tzv. predvídateľnými mechanizmami, ako napríklad hľadaním niečoho konkrétneho na webovej stránke. Je pomalšia, vedomá a ovplyvnená našou pamaťou. 
 	
+\end{itemize}
+
+
+\subsection{Bottom-up spracovanie}
+Vizuálne stimuly, ktoré upútajú pozornosť automaticky, mimovoľne, sa nazývajú bottom-up stimuly (alebo kontextovo riadené). Práve tieto riadia našu pozornosť a v podstate sú akousi známkou (ukazovateľom), že táto lokácia (alebo objekt v nej) je značne odlišná od svojho okolia a presne preto stojí za pozornosť. Ich príkladom môžu byť značky pri pozemných komunikáciách, bezpečnostné prvky vo vozidlách, ale aj správne umiestnené titulky v novinách, blogoch, či dizajnérmi nesprávne umiestnená reklama na webových stránkach zbytočne odtrhujúca našu pozornosť od podstatných vecí. 
+
+Hlavnou charakteristikou tohto spracovania je nevedomosť (obvykle bez predošlých informácií o pozorovanej scéne) a rýchlosť - priemerné spracovanie jedného objektu v scéne je na úrovni od 20 do 50 milisekúnd\cite{itti2001computational}.
+
+
+\subsection{Top-down spracovanie}
+Tento typ spracovania vizuálnych signálov sa oproti vyššie uvedenému líši viacerými vecami. Tou prvou je, že sa riadi tzv. predvídateľnými mechanizmami a prináša so sebou bližšie nešpecifikovanú vedomosť o pozorovanej scéne - pozorovateľ má isté informácie ako predošlé skúsenosti, spomienky, alebo napríklad hľadá v scéne nejaký konkrétny objekt. Z tohto dôvodu sa nazýva aj spracovaním založeným na vedomostiach (z angl. knowledge-based processing\cite{goldstein2008blackwell}) alebo údajoch (a angl. data-driven processing\cite{gregory1974concepts})
+
+Druhým veľkým rozdielom oproti bottom-up spracovaniu je jeho rýchlosť, priemerný čas spracovania vizuálneho signálu sa pohybuje na úrovni 200 milisekúnd\cite{itti2001computational} a viac, čo je výrazne pomalšie.
+
+% TODO dake shity dopisat este
+
+% TODO presunut asi inam
 \subsection{Existujúce modely vizuálnej pozornosti}
 \label{itti}
 Existujúce modely vizuálnej pozornosti\cite{polatsek} možno rozdeliť nasledovne:
