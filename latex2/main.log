@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.10)  29 APR 2018 14:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.10)  29 APR 2018 20:59
 entering extended mode
 **./main.tex
 (main.tex
@@ -1096,20 +1096,19 @@ File: figures/theano-data-visualization.png Graphic file (type png)
 <use figures/theano-data-visualization.png>
 Package pdftex.def Info: figures/theano-data-visualization.png  used on input l
 ine 292.
-(pdftex.def)             Requested size: 409.12125pt x 258.9629pt.
-
-Overfull \hbox (19.12125pt too wide) in paragraph at lines 292--295
- [] 
- []
-
+(pdftex.def)             Requested size: 357.9928pt x 226.59995pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 298--298
 [][][]\T1/ptm/m/n/10 (+20) http://www.wildml.com/2015/09/speeding-up-your-neura
 l-network-with-theano-and-the-
  []
 
-[16 <./figures/theano-data-visualization.png>] [17]) [18] (design.tex
-<figures/graph-run.jpg, id=366, 1620.0525pt x 1192.455pt>
+[16 <./figures/theano-data-visualization.png>] [17]
+Underfull \vbox (badness 2529) has occurred while \output is active []
+
+ [18]
+[19]) [20] (design.tex
+<figures/graph-run.jpg, id=379, 1620.0525pt x 1192.455pt>
 File: figures/graph-run.jpg Graphic file (type jpg)
 <use figures/graph-run.jpg>
 Package pdftex.def Info: figures/graph-run.jpg  used on input line 23.
@@ -1122,17 +1121,17 @@ Overfull \hbox (258.00954pt too wide) in paragraph at lines 23--26
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19
+ [21
 
 ])
-[20 <./figures/graph-run.jpg>] (conclusions.tex) [21
+[22 <./figures/graph-run.jpg>] (conclusions.tex) [23
 
-] [22
+] [24
 
-] (main.bbl [23]
-[24])
+] (main.bbl [25]
+[26])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
- [25]
+ [27]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
  (main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
@@ -1142,11 +1141,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 200.
  ) 
 Here is how much of TeX's memory you used:
- 16715 strings out of 493301
- 256513 string characters out of 3129629
+ 16729 strings out of 493301
+ 256679 string characters out of 3129629
  366687 words of memory out of 3000000
- 19609 multiletter control sequences out of 15000+200000
- 76494 words of font info for 195 fonts, out of 3000000 for 9000
+ 19616 multiletter control sequences out of 15000+200000
+ 76719 words of font info for 197 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,8n,92p,1435b,560s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-maths
@@ -1166,9 +1165,9 @@ eX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Users/bekap/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/bekap/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/bekap/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (37 pages, 865666 bytes).
+Output written on main.pdf (39 pages, 870276 bytes).
 PDF statistics:
- 465 PDF objects out of 1000 (max. 8388607)
- 107 named destinations out of 1000 (max. 500000)
+ 479 PDF objects out of 1000 (max. 8388607)
+ 111 named destinations out of 1000 (max. 500000)
  32484 words of extra memory for PDF output out of 35830 (max. 10000000)
 

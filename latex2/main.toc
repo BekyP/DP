@@ -14,12 +14,12 @@
 \contentsline {subsubsection}{\numberline {3.4.2}Microsoft CNTK}{15}{subsubsection.3.4.2}
 \contentsline {subsubsection}{\numberline {3.4.3}Theano}{16}{subsubsection.3.4.3}
 \contentsline {subsubsection}{\numberline {3.4.4}Keras}{17}{subsubsection.3.4.4}
-\contentsline {subsubsection}{\numberline {3.4.5}Spark MLlib}{17}{subsubsection.3.4.5}
-\contentsline {section}{\numberline {4}Existuj\IeC {\'u}ce rie\IeC {\v s}enia}{17}{section.4}
-\contentsline {section}{\numberline {5}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{17}{section.5}
-\contentsline {section}{\numberline {6}N\IeC {\'a}vrh}{19}{section.6}
-\contentsline {subsection}{\numberline {6.1}Prvotn\IeC {\'e} experimenty}{19}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{19}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Dataset}{20}{subsection.6.3}
-\contentsline {section}{\numberline {7}Zhrnutie}{21}{section.7}
-\contentsline {section}{Literat\'ura}{23}{section.7}
+\contentsline {subsubsection}{\numberline {3.4.5}Spark MLlib}{18}{subsubsection.3.4.5}
+\contentsline {section}{\numberline {4}Existuj\IeC {\'u}ce rie\IeC {\v s}enia}{19}{section.4}
+\contentsline {section}{\numberline {5}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{19}{section.5}
+\contentsline {section}{\numberline {6}N\IeC {\'a}vrh}{21}{section.6}
+\contentsline {subsection}{\numberline {6.1}Prvotn\IeC {\'e} experimenty}{21}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{21}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Dataset}{22}{subsection.6.3}
+\contentsline {section}{\numberline {7}Zhrnutie}{23}{section.7}
+\contentsline {section}{Literat\'ura}{25}{section.7}

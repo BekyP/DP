@@ -284,12 +284,12 @@ Medzi nevýhody možno zaradiť:
 
 \subsubsection{Theano}
 
-Theano\footnote{https://github.com/Theano/Theano} je veľmi silná knižnica umožňujúca definovanie, optimalizáciu a evaluáciu numerických operácií nad multidimenzionálnymi poliami s obrovskou efektivitou. Podobne ako TensorFlow, k abstrakcii výpočtov používa grafy, ako možno vidieť na príklade na obrázku \ref{theano_image}.
+Theano\footnote{https://github.com/Theano/Theano} je veľmi silná knižnica umožňujúca definovanie, optimalizáciu a evaluáciu numerických operácií nad multidimenzionálnymi poliami s obrovskou efektivitou. Podobne ako TensorFlow, k abstrakcii výpočtov používa grafy ako možno vidieť na príklade na obrázku \ref{theano_image}.
 
 % theano-data-visualization.png
 
 \begin{figure}[H]
-	\begin{center}\includegraphics[scale=0.4]{theano-data-visualization.png}
+	\begin{center}\includegraphics[scale=0.35]{theano-data-visualization.png}
 		\caption[Príklad grafovej abstrakcie výpočtov použitím framework-u Theano]{
 			Príklad grafovej abstrakcie výpočtov použitím framework-u Theano\footnotemark
 		}\label{theano_image}
@@ -313,7 +313,39 @@ Za najväčšie nevýhody sú pokladané:
 
 \subsubsection{Keras}\label{keras}
 
+Ďalší open-source framework pre prácu s neurónovými sieťami, avšak na rozdiel od predošlých troch nie je vypracovaný ako koncové riešenie pre strojové učenie. Namiesto toho slúži ako rozhranie a poskytuje vyššiu úroveň abstrakcie pre jednoduchšie používanie ostatných framework-ov, z ktorých momentálne pre použitie ako backend podporuje TensorFlow a Theano. Myšlienka stojaca za celým projektom je: \textit{"Byť schopný pretaviť myšlienku na výsledok s čo najmenším zdržaním je kľúčom k dobrému výskum"\footnote{https://keras.io/}}, čo bude aj jedným z dôvodov prečo je práca s ním jednoduchšia.
+
+Keras je v súčasnosti možné používať iba v programovacom jazyku Python.
+
+Jeho hlavnými výhodami sú:
+\begin{itemize}
+	\item jednoduchosť naučenia, používateľsky veľmi prívetivé
+	\item ľahká rozšíriteľnosť
+	\item bezproblémový beh aj na CPU aj na GPU
+	\item bezproblémové fungovanie aj s Theano-m a s TensorFlow-om
+\end{itemize}
+
+Za jedinú nevýhodu može byť považovaná nemožnosť použitia ako nezávislý framework - vždy je potrebný nejaký ďalší backend.
+
 \subsubsection{Spark MLlib}
+
+Škálovateľná knižnica pre strojové učenie, široko využívaná najmä v distribuovaných systémoch hlavne kvôli svojej efektivite. Veľmi jednoducho je ju môžné pripojiť do Hadoop workflow-u, poskytuje množstvo algoritmov pre strojové učenie optimalizovaných pre výpočty v už spomínaných distribuovaných systémoch na dátach vo veľkom meradle\footnote{https://spark.apache.org/mllib/}.
+
+Momentálne poskytuje podporu pre jazyky Python, Java, Scala a R.
+
+Najväčšími výhodami sú:
+\begin{itemize}
+	\item vysoká rýchlosť na dátach vo veľkom meradle
+	\item dostupnosť v jazykoch, ktoré podobnými framework-ami nie sú často podporované
+\end{itemize}
+
+Za nevýhody možno pokladať:
+\begin{itemize}
+	\item strmá krivka učenia
+	\item dostupnosť v jazykoch, ktoré podobnými framework-ami nie sú často podporované
+\end{itemize}
+
+Nevýhodou v porovnaní s vyššie uvedenými framework-ami môže byť nižšie množstvo implementovaných algoritmov, avšak vývoj rozhodne nezaháľa a pridávanej funcionality je stále viac a viac.
 
 \section{Existujúce riešenia}
 
