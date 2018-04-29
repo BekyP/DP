@@ -4,13 +4,21 @@
 \BOOKMARK [2][-]{subsection.2.2}{Top-down spracovanie}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Existuj\372ce modely vizu\341lnej pozornosti}{section.2}% 5
 \BOOKMARK [1][-]{section.3}{Neur\363nov\351 siete}{}% 6
-\BOOKMARK [2][-]{subsubsection.3.0.1}{Typy neur\363nov\375ch siet\355}{section.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.0.2}{Konvolucn\351 neur\363nov\351 siete}{subsubsection.3.0.1}% 8
-\BOOKMARK [1][-]{section.4}{Probl\351mov\341 oblast}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Metriky pou\236\355van\351 na ohodnotenie modelov vizu\341lnej pozornosti}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{N\341vrh}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{Prvotn\351 experimenty}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.2}{N\341vrh neur\363novej siete}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.3}{Dataset}{section.5}% 14
-\BOOKMARK [1][-]{section.6}{Zhrnutie}{}% 15
-\BOOKMARK [1][-]{section.6}{Literat\372ra}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Aktivacn\351 funkcie}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Ucenie sa neur\363novej siete}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Typy neur\363nov\375ch siet\355}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Konvolucn\351 neur\363nov\351 siete}{subsection.3.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Framework-y pre pr\341cu s neur\363nov\375mi sietami}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.4.1}{TensorFlow}{subsection.3.4}% 12
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft CNTK}{subsection.3.4}% 13
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Theano}{subsection.3.4}% 14
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Keras}{subsection.3.4}% 15
+\BOOKMARK [3][-]{subsubsection.3.4.5}{Spark MLlib}{subsection.3.4}% 16
+\BOOKMARK [1][-]{section.4}{Existuj\372ce rie\235enia}{}% 17
+\BOOKMARK [1][-]{section.5}{Metriky pou\236\355van\351 na ohodnotenie modelov vizu\341lnej pozornosti}{}% 18
+\BOOKMARK [1][-]{section.6}{N\341vrh}{}% 19
+\BOOKMARK [2][-]{subsection.6.1}{Prvotn\351 experimenty}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.2}{N\341vrh neur\363novej siete}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.3}{Dataset}{section.6}% 22
+\BOOKMARK [1][-]{section.7}{Zhrnutie}{}% 23
+\BOOKMARK [1][-]{section.7}{Literat\372ra}{}% 24

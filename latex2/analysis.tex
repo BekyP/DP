@@ -101,9 +101,11 @@ Jedným z najznámejších modelov vizuálnej pozornosti je Itti-ho hierarchick�
 	\(\phi\) - funkcia
 	\newline
 	
-	Neurónová sieť sa sa môže skladať z viacerých vrstiev, na ktorých sú umiestnené neuróny. Prvá vrstva sa nazýva vstupná, posledná výstupná. Medzi nimi môže byť ľubovoľný počet skrytých vrstiev rôzneho typu. Každá vrstva (s výnimkou výstupnej) by mala ešte navyše obsahovať aktivačnú funkciu - matematické vyjadrenie použité k aproximácii vplyvu na neurón. V našom prípade sa jedná o neurón umelý a funkciu, ktorá definuje výstup neurónu pre vstup alebo sadu vstupov. Aktivačných funkcií existuje niekoľko typov, každá vhodná na iný typ úloh. Niektoré z nich sú popísané nižšie. 
+Neurónová sieť sa sa môže skladať z viacerých vrstiev, na ktorých sú umiestnené neuróny. Prvá vrstva sa nazýva vstupná, posledná výstupná. Medzi nimi môže byť ľubovoľný počet skrytých vrstiev rôzneho typu. Každá vrstva (s výnimkou výstupnej) by mala ešte navyše obsahovať aktivačnú funkciu (kapitola \ref{activation_functions}). V našom prípade sa jedná o neurón umelý a funkciu, ktorá definuje výstup neurónu pre vstup alebo sadu vstupov.
 	
-	\paragraph{Aktivačné funkcie}
+\subsection{Aktivačné funkcie}\label{activation_functions}
+
+Aktivačná funkcia predstavuje matematické vyjadrenie použité k aproximácii vplyvu na neurón, zjednušene by bolo možné povedať, že pre sériu vstupov definuje výstupy. Aktivačných funkcií existuje niekoľko typov, každá vhodná na iný typ úloh. Ako príklad je možné uviesť nasledujúce: 
 	\begin{itemize}
 		\item {\textbf{Softmax}}
 		
@@ -152,14 +154,16 @@ Jedným z najznámejších modelov vizuálnej pozornosti je Itti-ho hierarchick�
 		\end{equation}
 	\end{itemize}
 	
-	\paragraph{Učenie sa}
+\subsection{Učenie sa neurónovej siete}
 	
-	Základným prvkom toho, aby bola neurónová sieť schopná riešiť úlohy je učenie sa. Existujú viaceré typy učenia sa neurónovej siete, za zmienku stojí napríklad učenie sa s učiteľom (z angl. supervised learning) a učenie sa bez učiteľa (z angl. unsupervised learning\cite{unsupervised}). Hlavným rozdielom medzi nimi je, že učenie s učiteľom musí prebiehať na predpripravenom datasete, ktorý musí obsahovať nejaké testovacie vstupné dáta (pre ktoré chceme vypočítať výstupnú funkciu) a takzvané štítky (z angl. labels), ktoré sú v podstate naše očakaváne výstupy. Učenie sa bez učeiteľa naproti tomu odvodzuje funkciu k popisu skrytej štruktúry z neoštítkovaných dát, teda bez štítkov, ktoré nám určujú očakaváne výstupy. Nie je tu teda žiadna chyba ani signál k ohodnoteniu potenciálneho riešenia. 
+Základným prvkom toho, aby bola neurónová sieť schopná riešiť úlohy je učenie sa. Existujú viaceré typy učenia sa neurónovej siete, za zmienku stojí napríklad učenie sa s učiteľom (z angl. supervised learning) a učenie sa bez učiteľa (z angl. unsupervised learning\cite{unsupervised}). Hlavným rozdielom medzi nimi je, že učenie s učiteľom musí prebiehať na predpripravenom datasete, ktorý musí obsahovať nejaké testovacie vstupné dáta (pre ktoré chceme vypočítať výstupnú funkciu) a takzvané štítky (z angl. labels), ktoré sú v podstate naše očakaváne výstupy. Učenie sa bez učeiteľa naproti tomu odvodzuje funkciu k popisu skrytej štruktúry z neoštítkovaných dát, teda bez štítkov, ktoré nám určujú očakaváne výstupy. Nie je tu teda žiadna chyba ani signál k ohodnoteniu potenciálneho riešenia. 
 	
 	
-	Príkladom učenia s učiteľom môže byť napríklad jednoduchá neurónová sieť, ktorá má riešiť funkciu XOR\cite{neuron}, kedy potrebujeme reprezentovať vstupné dáta ako dvojicu núl a jednotiek. Štítkami sú v tomto prípade očakávané výstupy, takže napríklad pre vstup (dvojicu) [0,1] je štítkom 1. Takto pripravený dataset pre učenie sa by mal byť veľmi rozsiahly aby sa dosiahla maximálna presnosť. Ďalej je potrebné použiť niektorý z algoritmov učenia. Široko používaným je na takýto typ úloh algoritmus učenia spätného šírenia (z angl. backpropagation). Tento algoritmus sa snaží minimalizovať chybu pri učení a to tak, že najprv sa vypočíta chyba na poslednej (výstupnej) vrstve. Tá sa potom šíri späť k vstupnej vrstve a aktualizujú sa váhy jednotlivých neurónov.  V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy ako Gradient descent optimizer\cite{gradient_descent} alebo Adam optimizer\cite{adam}, popísané nižšie. Tieto algoritmy sú určené k nájdeniu minima funkcie medzi váhami.  	
+Príkladom učenia s učiteľom môže byť napríklad jednoduchá neurónová sieť, ktorá má riešiť funkciu XOR\cite{neuron}, kedy potrebujeme reprezentovať vstupné dáta ako dvojicu núl a jednotiek. Štítkami sú v tomto prípade očakávané výstupy, takže napríklad pre vstup (dvojicu) [0,1] je štítkom 1. Takto pripravený dataset pre učenie sa by mal byť veľmi rozsiahly aby sa dosiahla maximálna presnosť. Ďalej je potrebné použiť niektorý z algoritmov učenia. Široko používaným je na takýto typ úloh algoritmus učenia spätného šírenia (z angl. backpropagation). Tento algoritmus sa snaží minimalizovať chybu pri učení a to tak, že najprv sa vypočíta chyba na poslednej (výstupnej) vrstve. Tá sa potom šíri späť k vstupnej vrstve a aktualizujú sa váhy jednotlivých neurónov.  V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, ktorých cieľom je nájdenie minima funkcie medzi váhami. Medzi základné optimizéry patria:
+
+\begin{itemize}
+	\item \textbf{Gradient descent optimizer \cite{gradient_descent}:}
 	
-	\paragraph{Gradient descent optimizer}
 	Je to iteratívny algoritmus používaný k nájdeniu lokálneho minima funkcie, kedy podniká kroky k nájdeniu záporného gradientu\footnote{ zmena veličiny v závislosti od inej premennej} funkcie v aktuálnom bode. To je využívané pri určovaní rýchlosti učenia sa neurónovej siete. 
 	
 	Existujú 3 hlavné varianty gradient descent optimizéru, ktoré počítajú sklon (gradient) funkcie. Delia sa hlavne podľa množstva dát určenému k spracovaniu, kedy sa robí kompromis medzi presnosťou aktualizácie parametra a časom, ktorý je potrebný na vykonanie tejto aktualizácie. Týmito typmi sú:
@@ -174,18 +178,21 @@ Jedným z najznámejších modelov vizuálnej pozornosti je Itti-ho hierarchick�
 		
 		Je kompromisom medzi predošlými dvomi typmi. Aktualizácia prebieha pre malú dávku (batch) z datasetu o veľkosti \textit{n} vzoriek.
 	\end{itemize} 
-	\paragraph{Adam optimizer}
+	\item \textbf{Adam optimizer \cite{adam}:}
+	
 	V podstate vychádza priamo zo Stochaistického gradient descent optimizéru, resp. jeho modifikácie RMSProp algoritmu\cite{rms}. Rozdiel oproti Gradient descent optimizéru je ale v tom, že je schopný variabilne určovať rýchlosť učenia neurónovej siete.
 	
-	\paragraph{Ftrl optimizer}
+	\item \textbf{Ftrl optimizer:}
+	
 	Vychádza z algoritmu učenia FTRL-Proximal\cite{ftrl}, celým názvom Nasleduj regularizovaného vodcu (z angl. Follow The (Proximal) Regularized Leader). Tento algoritmus je bez regularizácie v podstate identický s gradient descentom, avšak používa alternatívnu reprezentáciu koeficientov váh a tak môže byť regularizácia implementovaná efektívnejšie.
-	\newline
+\end{itemize}
+
+Po fáze učenia sa nasleduje validácia, pri ktorej sieť nemá prístup k štítkom. Na záver sa prejde k samotnému testovaniu neurónovej siete, kedy sa do nej posúvajú dáta rovnako bez toho, aby sieť mala prístup k štítkom. Na základe jej predikcie a štítkom k testovacím dátam sa určí jej presnosť. Na učenie, testovanie a validáciu by nemali byť použité tie isté dáta. Pomer dát k jednotlivým fázam by mal byť 80-10-10\cite{80-10-10}, čiže 80\% dát je určených na učenie sa, 10\% na validáciu a 10\% na samotné otestovanie predikcií modelu siete. 
+
+Aj keď neurónové siete dokážu efektívne riešiť veľké množstvo úloh, problémom stále zostáva mať k dispozícii dostatok dát k učeniu neurónovej siete ešte pred riešením úloh. Taktiež je potrebné mať dostatok výpočtovej sily, aby sa problém neriešil pridlhý čas, a dostatok pamäte, keďže neurónové siete jej potrebujú značné množstvo. 	
+	 
 	
-	Po fáze učenia sa nasleduje validácia, pri ktorej sieť nemá prístup k štítkom. Na záver sa prejde k samotnému testovaniu neurónovej siete, kedy sa do nej posúvajú dáta rovnako bez toho, aby sieť mala prístup k štítkom. Na základe jej predikcie a štítkom k testovacím dátam sa určí jej presnosť. Na učenie, testovanie a validáciu by nemali byť použité tie isté dáta. Pomer dát k jednotlivým fázam by mal byť 80-10-10\cite{80-10-10}, čiže 80\% dát je určených na učenie sa, 10\% na validáciu a 10\% na samotné otestovanie predikcií modelu siete. 
-	
-	Aj keď neurónové siete dokážu efektívne riešiť veľké množstvo úloh, problémom stále zostáva mať k dispozícii dostatok dát k učeniu neurónovej siete ešte pred riešením úloh. Taktiež je potrebné mať dostatok výpočtovej sily, aby sa problém neriešil pridlhý čas, a dostatok pamäte, keďže neurónové siete jej potrebujú značné množstvo. 
-	
-\subsubsection{Typy neurónových sietí}
+\subsection{Typy neurónových sietí}
 
 	Neurónové siete majú niekoľko typov, ktoré  sa rozlišujú hlavne podľa spôsobu prepojenia neurónov, ale aj podľa typu úloh, na ktoré sú určené, či podľa počtu vrstiev neurónov alebo štýlu učenia. %doplnit zdroj
 	
@@ -224,10 +231,93 @@ Jedným z najznámejších modelov vizuálnej pozornosti je Itti-ho hierarchick�
 	
 	Z mnohých pokusov o autonómnu jazdu stoja za zmienku hlavne tie od Tesly a Google. Prototyp autonómneho systému vozidla od Google-u Dave-2\cite{google_car} využíva model neurónovej siete s 9 vrstvami, jednu normalizačnú, 5 konvolučných a 3 plne prepojené vrstvy. Kamerami spracovaný obraz okolia s frekvenciou 10 snímkov za sekundu (tak nízky počet preto, aby sa predišlo veľkému množstvu príliš podobných obrázkov) je po jednom snímku rozdelený do YUV\footnote{farebný priestor používaný vo video aplikáciách} úrovní a posunutý do neurónovej siete.   
  
+\subsection{Framework-y pre prácu s neurónovými sieťami}
+V dnešnej dobe moderného internetu a dostupnosti technológií máme možnosť výberu z dostatočného množstva framework-ov pre potreby riešenia najrôznejších problémov neurónovými sieťami. Pri výbere môžeme brať do úvahy napríklad preferencie operačného systému (Windows, Linux, ...), programovacieho jazyka (Python, C++, Java, ...), ale aj benefity distribuovaného riešenia a omnoho viac. V nasledujúcich podkapitolách sú preto popísané niektoré z najpoužívanejších technológií pre implementovanie neurónových sietí. 
 
-\section{Problémová oblasť}
+%TODO mozno prihodit ukazky zdrojakov
+\subsubsection{TensorFlow}
+TensorFlow\footnote{https://www.tensorflow.org/} je open-source softvérová knižnica, ktorá pre numerické výpočty používa graf dátového toku, kde uzly grafu reprezentujú matematické operácie a hrany multidimenzionálne dátové polia, tzv. tenzory. Graf je možné skonštruovať použitím jazykov s podporou frontend-u (C++, Python, ...). 
 
-\subsection{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
+Flexibilná architektúra umožňuje vykonávať výpočty na CPU alebo GPU (nepomerne rýchlejšie) na serveroch, desktopových počítačoch či dokonca aj mobilných zariadeniach. Pôvodne bol TensorFlow vyvinutý výzkumníkmi a inžiniermi v Google-i pre strojové učenie a hlboké učenie, avšak jeho využitie je oveľa širšie. Momentálne používa TensorFlow veľké množstvo programov, napríklad Google vyhľadávač, prekladač alebo YouTube. 
+
+Momentálne podporuje jazyky C++, Python, Java, Go, Swift.
+
+Medzi hlavné výhody patrí:
+\begin{itemize}
+	\item podpora pre jednoducho naučiteľné jazyky (Python)
+	\item použtie výpočtovej grafovej abstrakcie
+	\item vizualizácie pomocou TensorBoard-u\footnote{https://www.tensorflow.org/programmers\_guide/summaries\_and\_tensorboard} (interaktívne grafy pre priebeh učenia, pre model siete, ...)
+	\item dostatočne nízko-úrovňový pre plnú kontrolu a implementáciu vlastnej (novej nie len preddefinovanej) funkcionality (v porovnaní napríklad s framework-om Keras(kapitola \ref{keras}))
+\end{itemize}
+
+Ako nevýhody možno uviesť:
+\begin{itemize}
+	\item nedostatok predtrénovaných modelov
+	\item pri použití s určitými jazykmi (Python, Java, ...) je pomalý, nakoľko sa nejedná najrýchlejšie jazyky
+\end{itemize}
+
+\subsubsection{Microsoft CNTK}
+Označuje knižnicu Microsoft Cognitive Toolkit\footnote{https://docs.microsoft.com/en-us/cognitive-toolkit/}, ktorá zlepšuje modularizáciu a údržbu separácie výpočtových sietí, zároveň postkytuje algoritmy učenia a popisy modelov. Má sa jednať o odpoveď na TensorFlow, poskytovaná funkcionalita je veľmi podobná, avšak je o niečo rýchlejší. Princíp a celá architektúra sú zachytené na diagrame na obrázku \ref{cntk_image}. 
+
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.3]{microsoft-cntk-architecture.png}
+		\caption[Architektúra fungovania Microsoft CNTK]{
+			Diagram zobrazujúci architektúru fungovania Microsoft CNTK\footnotemark
+		}\label{cntk_image}
+	\end{center}
+\end{figure}
+\footnotetext{https://dzone.com/articles/progressive-tools10-best-frameworks-and-libraries}
+
+Momentálne podporuje jazyky C++, C\#, Python, Java.
+
+Výhodami tohto framework-u sú:
+\begin{itemize}
+	\item flexibilita
+	\item umožňuje distribuovaný tréning
+\end{itemize}
+
+Medzi nevýhody možno zaradiť:
+\begin{itemize}
+	\item implementácia v novom jazyku, Network Description Language (NDL)
+	\item nedostatok možností a nástrojov pre vizualizácie
+\end{itemize}
+
+\subsubsection{Theano}
+
+Theano\footnote{https://github.com/Theano/Theano} je veľmi silná knižnica umožňujúca definovanie, optimalizáciu a evaluáciu numerických operácií nad multidimenzionálnymi poliami s obrovskou efektivitou. Podobne ako TensorFlow, k abstrakcii výpočtov používa grafy, ako možno vidieť na príklade na obrázku \ref{theano_image}.
+
+% theano-data-visualization.png
+
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.4]{theano-data-visualization.png}
+		\caption[Príklad grafovej abstrakcie výpočtov použitím framework-u Theano]{
+			Príklad grafovej abstrakcie výpočtov použitím framework-u Theano\footnotemark
+		}\label{theano_image}
+	\end{center}
+\end{figure}
+\footnotetext{http://www.wildml.com/2015/09/speeding-up-your-neural-network-with-theano-and-the-gpu/}
+
+Momentálne podporuje iba programovací jazyk Python a v poslednej dobe vývoj tohto framework-u dosť upadá.
+
+Medzi hlavné výhody patrí:
+\begin{itemize}
+	\item veľmi dobrá optimalizácia pre CPU a GPU (najmä vďaka použitiu nízko-úrovňovej funkcionality naprogramovanie v jazyku C)
+	\item vysoko efektívna knižnica pre numerické úlohy
+\end{itemize}
+
+Za najväčšie nevýhody sú pokladané:
+\begin{itemize}
+	\item Theano samo o sebe je v porovnaní s ostatnými knižnicami príliš nízko-úrovňové
+	\item potreba použitia s inými knižnicami s vyšším stupňom abstrakcie (napríklad Keras) 
+\end{itemize}
+
+\subsubsection{Keras}\label{keras}
+
+\subsubsection{Spark MLlib}
+
+\section{Existujúce riešenia}
+
+\section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
 \label{metric}
 Tradične sa tieto modely evaluujú vzhľadom na pohyb očí, resp. samotné fixácie. K tomu slúži značný počet rôzne fungujúcich metrík\cite{metriky}, najpoužívanejšie sú:
 

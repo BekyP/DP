@@ -5,18 +5,21 @@
 \contentsline {subsection}{\numberline {2.2}Top-down spracovanie}{4}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Existuj\IeC {\'u}ce modely vizu\IeC {\'a}lnej pozornosti}{4}{subsection.2.3}
 \contentsline {section}{\numberline {3}Neur\IeC {\'o}nov\IeC {\'e} siete}{5}{section.3}
-\contentsline {paragraph}{Aktiva\IeC {\v c}n\IeC {\'e} funkcie}{6}{section*.3}
-\contentsline {paragraph}{U\IeC {\v c}enie sa}{8}{section*.4}
-\contentsline {paragraph}{Gradient descent optimizer}{9}{section*.5}
-\contentsline {paragraph}{Adam optimizer}{9}{section*.6}
-\contentsline {paragraph}{Ftrl optimizer}{10}{section*.7}
-\contentsline {subsubsection}{\numberline {3.0.1}Typy neur\IeC {\'o}nov\IeC {\'y}ch siet\IeC {\'\i }}{10}{subsubsection.3.0.1}
-\contentsline {subsubsection}{\numberline {3.0.2}Konvolu\IeC {\v c}n\IeC {\'e} neur\IeC {\'o}nov\IeC {\'e} siete}{12}{subsubsection.3.0.2}
-\contentsline {section}{\numberline {4}Probl\IeC {\'e}mov\IeC {\'a} oblas\IeC {\v t}}{14}{section.4}
-\contentsline {subsection}{\numberline {4.1}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{14}{subsection.4.1}
-\contentsline {section}{\numberline {5}N\IeC {\'a}vrh}{17}{section.5}
-\contentsline {subsection}{\numberline {5.1}Prvotn\IeC {\'e} experimenty}{17}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{17}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Dataset}{19}{subsection.5.3}
-\contentsline {section}{\numberline {6}Zhrnutie}{21}{section.6}
-\contentsline {section}{Literat\'ura}{23}{section.6}
+\contentsline {subsection}{\numberline {3.1}Aktiva\IeC {\v c}n\IeC {\'e} funkcie}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}U\IeC {\v c}enie sa neur\IeC {\'o}novej siete}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Typy neur\IeC {\'o}nov\IeC {\'y}ch siet\IeC {\'\i }}{10}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Konvolu\IeC {\v c}n\IeC {\'e} neur\IeC {\'o}nov\IeC {\'e} siete}{12}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}Framework-y pre pr\IeC {\'a}cu s neur\IeC {\'o}nov\IeC {\'y}mi sie\IeC {\v t}ami}{14}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}TensorFlow}{14}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Microsoft CNTK}{15}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Theano}{16}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Keras}{17}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}Spark MLlib}{17}{subsubsection.3.4.5}
+\contentsline {section}{\numberline {4}Existuj\IeC {\'u}ce rie\IeC {\v s}enia}{17}{section.4}
+\contentsline {section}{\numberline {5}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{17}{section.5}
+\contentsline {section}{\numberline {6}N\IeC {\'a}vrh}{19}{section.6}
+\contentsline {subsection}{\numberline {6.1}Prvotn\IeC {\'e} experimenty}{19}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{19}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Dataset}{20}{subsection.6.3}
+\contentsline {section}{\numberline {7}Zhrnutie}{21}{section.7}
+\contentsline {section}{Literat\'ura}{23}{section.7}

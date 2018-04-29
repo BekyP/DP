@@ -110,12 +110,6 @@ Hasim Sak, Andrew~W Senior, and Fran{\c{c}}oise Beaufays.
   large scale acoustic modeling.
 \newblock In {\em INTERSPEECH}, pages 338--342, 2014.
 
-\bibitem{dropout}
-Nitish Srivastava, Geoffrey~E Hinton, Alex Krizhevsky, Ilya Sutskever, and
-  Ruslan Salakhutdinov.
-\newblock Dropout: a simple way to prevent neural networks from overfitting.
-\newblock {\em Journal of Machine Learning Research}, 15(1):1929--1958, 2014.
-
 \bibitem{feedforward}
 Daniel Svozil, Vladimir Kvasnicka, and Jiri Pospichal.
 \newblock Introduction to multi-layer feed-forward neural networks.
