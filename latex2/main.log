@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.10)  29 APR 2018 20:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.10)  30 APR 2018 21:38
 entering extended mode
 **./main.tex
 (main.tex
@@ -998,75 +998,71 @@ Overfull \hbox (3.76416pt too wide) in paragraph at lines 33--34
 uje na úrovni 200 milisekúnd[[]]
  []
 
-<figures/itti_model.jpeg, id=205, 633.36626pt x 542.025pt>
-File: figures/itti_model.jpeg Graphic file (type jpg)
-<use figures/itti_model.jpeg>
-Package pdftex.def Info: figures/itti_model.jpeg  used on input line 54.
-(pdftex.def)             Requested size: 253.34201pt x 216.80615pt.
-[4] ("C:\Users\bekap\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ucs\uni-34.def
-"
+("C:\Users\bekap\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ucs\uni-34.def"
 File: uni-34.def 2013/05/13 UCS: Unicode data U+2200..U+22FF
 )
-Underfull \hbox (badness 10000) in paragraph at lines 67--83
+Underfull \hbox (badness 10000) in paragraph at lines 47--63
 
  []
 
-[5 <./figures/itti_model.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 93--103
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 73--83
 
  []
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 106.
+(hyperref)                removing `\textasciicaron' on input line 86.
 
-[6]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 112.
+(Font)              <10> on input line 92.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 112.
+(Font)              <7> on input line 92.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 112.
- [7]
+(Font)              <5> on input line 92.
+[5] [6]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 157.
+(hyperref)                removing `\textasciicaron' on input line 137.
 
-[8] [9]
-<figures/simple_nn.jpg, id=273, 525.965pt x 403.5075pt>
+[7] [8]
+<figures/simple_nn.jpg, id=258, 525.965pt x 403.5075pt>
 File: figures/simple_nn.jpg Graphic file (type jpg)
 <use figures/simple_nn.jpg>
-Package pdftex.def Info: figures/simple_nn.jpg  used on input line 202.
+Package pdftex.def Info: figures/simple_nn.jpg  used on input line 182.
 (pdftex.def)             Requested size: 236.68205pt x 181.57669pt.
- [10]
+
+Underfull \vbox (badness 1231) has occurred while \output is active []
+
+ [9]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 211.
+(hyperref)                removing `\textasciicaron' on input line 191.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11 <./figures/simple_nn.jpg>]
-<figures/maxpool.jpeg, id=295, 789.95125pt x 369.38pt>
+ [10 <./figures/simple_nn.jpg>]
+<figures/maxpool.jpeg, id=280, 789.95125pt x 369.38pt>
 File: figures/maxpool.jpeg Graphic file (type jpg)
 <use figures/maxpool.jpeg>
-Package pdftex.def Info: figures/maxpool.jpeg  used on input line 220.
+Package pdftex.def Info: figures/maxpool.jpeg  used on input line 200.
 (pdftex.def)             Requested size: 300.18459pt x 140.36584pt.
-<figures/cnn.png, id=297, 1027.84pt x 280.04625pt>
+<figures/cnn.png, id=282, 1027.84pt x 280.04625pt>
 File: figures/cnn.png Graphic file (type png)
 <use figures/cnn.png>
-Package pdftex.def Info: figures/cnn.png  used on input line 225.
+Package pdftex.def Info: figures/cnn.png  used on input line 205.
 (pdftex.def)             Requested size: 390.58325pt x 106.41867pt.
 
-Overfull \hbox (0.58325pt too wide) in paragraph at lines 225--225
+Overfull \hbox (0.58325pt too wide) in paragraph at lines 205--205
  [] 
  []
 
-[12 <./figures/maxpool.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+[11 <./figures/maxpool.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 209--209
 [][][]\T1/ptm/m/n/10 (+18) https://cloud.google.com/blog/big-data/2016/08/how-a
 -japanese-cucumber-farmer-is-using-
  []
@@ -1074,41 +1070,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 229--229
 
 Package hyperref Warning: Composite letter `\textasciicaron+t'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 234.
+(hyperref)                removing `\textasciicaron' on input line 214.
 
-[13 <./figures/cnn.png>] [14]
-<figures/microsoft-cntk-architecture.png, id=332, 1405.25pt x 723.70375pt>
+[12 <./figures/cnn.png>] [13]
+<figures/microsoft-cntk-architecture.png, id=317, 1405.25pt x 723.70375pt>
 File: figures/microsoft-cntk-architecture.png Graphic file (type png)
 <use figures/microsoft-cntk-architecture.png>
 Package pdftex.def Info: figures/microsoft-cntk-architecture.png  used on input
- line 263.
+ line 243.
 (pdftex.def)             Requested size: 421.57826pt x 217.1128pt.
 
-Overfull \hbox (31.57826pt too wide) in paragraph at lines 263--266
+Overfull \hbox (31.57826pt too wide) in paragraph at lines 243--246
  [] 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 266.
-[15 <./figures/microsoft-cntk-architecture.png>]
-<figures/theano-data-visualization.png, id=343, 1022.82124pt x 647.41875pt>
+(Font)              <10.95> on input line 246.
+[14 <./figures/microsoft-cntk-architecture.png>]
+<figures/theano-data-visualization.png, id=328, 1022.82124pt x 647.41875pt>
 File: figures/theano-data-visualization.png Graphic file (type png)
 <use figures/theano-data-visualization.png>
 Package pdftex.def Info: figures/theano-data-visualization.png  used on input l
-ine 292.
+ine 272.
 (pdftex.def)             Requested size: 357.9928pt x 226.59995pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--298
+Underfull \hbox (badness 10000) in paragraph at lines 278--278
 [][][]\T1/ptm/m/n/10 (+20) http://www.wildml.com/2015/09/speeding-up-your-neura
 l-network-with-theano-and-the-
  []
 
-[16 <./figures/theano-data-visualization.png>] [17]
-Underfull \vbox (badness 2529) has occurred while \output is active []
-
- [18]
-[19]) [20] (design.tex
-<figures/graph-run.jpg, id=379, 1620.0525pt x 1192.455pt>
+[15 <./figures/theano-data-visualization.png>] [16] [17]
+<figures/itti_model.jpeg, id=352, 633.36626pt x 542.025pt>
+File: figures/itti_model.jpeg Graphic file (type jpg)
+<use figures/itti_model.jpeg>
+Package pdftex.def Info: figures/itti_model.jpeg  used on input line 346.
+(pdftex.def)             Requested size: 316.68236pt x 271.01183pt.
+ [18 <./figures/itti_model.jpeg>] [19]) [20] (design.tex
+<figures/graph-run.jpg, id=374, 1620.0525pt x 1192.455pt>
 File: figures/graph-run.jpg Graphic file (type jpg)
 <use figures/graph-run.jpg>
 Package pdftex.def Info: figures/graph-run.jpg  used on input line 23.
@@ -1137,23 +1135,23 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D85B461BF722638770AF2A65B370D95A;1694.
+(rerunfilecheck)             Checksum: BE083A5A6B0E31076D03D8013230EAE9;1632.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 200.
  ) 
 Here is how much of TeX's memory you used:
- 16729 strings out of 493301
- 256679 string characters out of 3129629
- 366687 words of memory out of 3000000
- 19616 multiletter control sequences out of 15000+200000
+ 16727 strings out of 493301
+ 256659 string characters out of 3129629
+ 366688 words of memory out of 3000000
+ 19615 multiletter control sequences out of 15000+200000
  76719 words of font info for 197 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,8n,92p,1435b,560s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-maths
 y.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
-athit.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/
-lm-mathex.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
-/lm/lm-rm.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
-/base/8r.enc}<C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+athit.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/bas
+e/8r.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
+m-mathex.enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
+lm/lm-rm.enc}<C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/lm/lmex10.pfb><C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/lm/lmmi12.pfb><C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
 pe1/public/lm/lmmi6.pfb><C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts
@@ -1165,9 +1163,9 @@ eX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Users/bekap/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/bekap/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/bekap/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (39 pages, 870276 bytes).
+Output written on main.pdf (39 pages, 869456 bytes).
 PDF statistics:
- 479 PDF objects out of 1000 (max. 8388607)
- 111 named destinations out of 1000 (max. 500000)
- 32484 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 474 PDF objects out of 1000 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
+ 32476 words of extra memory for PDF output out of 35830 (max. 10000000)
 
