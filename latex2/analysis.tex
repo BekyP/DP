@@ -324,8 +324,9 @@ Za nevýhody možno pokladať:
 Nevýhodou v porovnaní s vyššie uvedenými framework-ami môže byť nižšie množstvo implementovaných algoritmov, avšak vývoj rozhodne nezaháľa a pridávanej funcionality je stále viac a viac.
 
 \subsection{Existujúce modely vizuálnej pozornosti}
-\label{itti}
-Existujúce modely vizuálnej pozornosti\cite{polatsek} možno rozdeliť nasledovne:
+
+Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných máp výraznosti rozdeliť na bottom-up modely (kapitola \ref{bottom-up_modely}) a top-down modely (kapitola \ref{top-down_modely}). Ďalším zaujímavým rozdelením však je rozdelenie podľa použitých princípov a technológií \cite{polatsek}, na modely:
+
 \begin{itemize}
 	\item hierarchické - využívajú hierarchické rozkladanie príznakov
 	\item Bayesove - využívajú kombináciu výraznosti s predchádzajúcimi znalosťami
@@ -335,14 +336,27 @@ Existujúce modely vizuálnej pozornosti\cite{polatsek} možno rozdeliť nasledo
 	\item vzorovo klasifikačné - využívajú strojové učenie zo vzorov s výraznými črtami
 \end{itemize}
 
-Jedným z najznámejších modelov vizuálnej pozornosti je Itti-ho hierarchický model\cite{itti}. Je to biologicky inšpirovaný bottom-up model, ktorý využíva hierarchické rozloženie vlastnosí a ich kombináciu do výslednej mapy výraznosti (z angl. saliency map). Ako je vidieť na obrázku nižšie, z obrázka sa vytvoria 3 typy máp a to podľa farby, intenzity a orientácie, ktorých kombináciou sa dosiahne už spomenutá mapa výraznosti. 
+\subsubsection{Bottom-up modely}
+\label{bottom-up_modely}
+Nakoľko práve bottom-up pozornosť bola prvá skúmaná, existuje k jej predikcii obrovské množstvo najrozličnejších modelov. Z tých najzaujímavejších stoja za spomenutie nasledovné:
+
+\begin{itemize} %TODO preformulovat nech to nie je napisane ako keby to pisal uplny retard
+	\item \textbf{Itti-ho hierarchický model \cite{itti}} - je jedným z najznámejších modelov vizuálnej pozornosti, i keď je jedným zo starších modelov dodnes je široko používaný a citovaný v mnohých článkoch. Je to biologicky inšpirovaný bottom-up model, ktorý využíva hierarchické rozloženie vlastnosí a ich kombináciu do výslednej mapy výraznosti (z angl. saliency map). Ako je vidieť na obrázku \ref{itti_image}, zo vstupného obrázka sa vytvoria 3 typy máp a to podľa farby, intenzity a orientácie, ktorých kombináciou sa dosiahne už spomenutá mapa výraznosti. 
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.5]{itti_model.jpeg}
+		\includegraphics[scale=0.4]{itti_model.jpeg}
 	\end{center}
-	\caption[Itti-ho hierarchický model vizuálnej pozornosti]{Itti-ho hierarchický model vizuálnej pozornosti\cite{itti}}
+	\caption[Itti-ho hierarchický model vizuálnej pozornosti]{Itti-ho hierarchický model vizuálnej pozornosti\cite{itti}\label{itti_image}}
 \end{figure}
+
+\item \textbf{Metóda hierarchickej výraznosti}
+
+\item \textbf{Model pre určovanie salientných oblastí webových stránok}
+
+\end{itemize}
+\subsubsection{Top-down modely}
+\label{top-down_modely}
 
 \section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
 \label{metric}
