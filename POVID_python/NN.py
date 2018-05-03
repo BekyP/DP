@@ -9,8 +9,8 @@ def print_shape(tensor):
 # creates model of NN, data = input image, keep_prob = value on dropout layer
 def neural_network_model(data, keep_prob):
     with tf.name_scope('convolution_layer_1'):
-        w_conv = tf.Variable(tf.truncated_normal([5, 5, 3, 64], stddev=0.1))  # 1e-4
-        b_conv = tf.Variable(tf.zeros(shape=[64]))
+        w_conv = tf.Variable(tf.truncated_normal([5, 5, 3, 32], stddev=0.1))  # 1e-4
+        b_conv = tf.Variable(tf.zeros(shape=[32]))
 
         x_image = tf.reshape(data, [-1, 64, 64, 3])
         conv = tf.nn.sigmoid(tf.nn.conv2d(x_image, w_conv, strides=[1, 1, 1, 1], padding='SAME') + b_conv)
@@ -21,7 +21,7 @@ def neural_network_model(data, keep_prob):
     print_shape(pool)
 
     with tf.name_scope('normalization_layer'):
-        norm = tf.reshape(pool, [-1, 32 * 32 * 64])
+        norm = tf.reshape(pool, [-1, 32 * 32 * 32])
     print_shape(norm)
 
     with tf.name_scope('fully_connected_layer_1'):
