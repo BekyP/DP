@@ -32,6 +32,13 @@ Renwu Gao, Faisal Shafait, Seiichi Uchida, and Yaokai Feng.
 \newblock In {\em International Workshop on Camera-Based Document Analysis and
   Recognition}, pages 18--29. Springer, 2013.
 
+\bibitem{gao2013hierarchical}
+Renwu Gao, Faisal Shafait, Seiichi Uchida, and Yaokai Feng.
+\newblock A hierarchical visual saliency model for character detection in
+  natural scenes.
+\newblock In {\em International Workshop on Camera-Based Document Analysis and
+  Recognition}, pages 18--29. Springer, 2013.
+
 \bibitem{goldstein2008blackwell}
 E~Bruce Goldstein.
 \newblock {\em The Blackwell handbook of sensation and perception}.
@@ -81,6 +88,12 @@ Diederik Kingma and Jimmy Ba.
 Fei-Fei Li, Andrej Karpathy, and J~Johnson.
 \newblock Cs231n: Convolutional neural networks for visual recognition, 2015.
 
+\bibitem{liu2016improving}
+Huiying Liu, Min Xu, Jinqiao Wang, Tianrong Rao, and Ian Burnett.
+\newblock Improving visual saliency computing with emotion intensity.
+\newblock {\em IEEE transactions on neural networks and learning systems},
+  27(6):1201--1213, 2016.
+
 \bibitem{ftrl}
 H~Brendan McMahan, Gary Holt, David Sculley, Michael Young, Dietmar Ebner,
   Julian Grady, Lan Nie, Todd Phillips, Eugene Davydov, Daniel Golovin, et~al.
@@ -109,6 +122,11 @@ Hasim Sak, Andrew~W Senior, and Fran{\c{c}}oise Beaufays.
 \newblock Long short-term memory recurrent neural network architectures for
   large scale acoustic modeling.
 \newblock In {\em INTERSPEECH}, pages 338--342, 2014.
+
+\bibitem{Saliency}
+Chengyao Shen and Qi~Zhao.
+\newblock {\em Webpage Saliency}, pages 33--46.
+\newblock Springer International Publishing, Cham, 2014.
 
 \bibitem{feedforward}
 Daniel Svozil, Vladimir Kvasnicka, and Jiri Pospichal.

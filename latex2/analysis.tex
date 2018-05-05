@@ -299,6 +299,7 @@ Jeho hlavnými výhodami sú:
 	\item ľahká rozšíriteľnosť
 	\item bezproblémový beh aj na CPU aj na GPU
 	\item bezproblémové fungovanie aj s Theano-m a s TensorFlow-om
+	\item rýchle prototypovanie
 \end{itemize}
 
 Za jedinú nevýhodu može byť považovaná nemožnosť použitia ako nezávislý framework - vždy je potrebný nejaký ďalší backend.
@@ -323,7 +324,7 @@ Za nevýhody možno pokladať:
 
 Nevýhodou v porovnaní s vyššie uvedenými framework-ami môže byť nižšie množstvo implementovaných algoritmov, avšak vývoj rozhodne nezaháľa a pridávanej funcionality je stále viac a viac.
 
-\subsection{Existujúce modely vizuálnej pozornosti}
+\section{Existujúce modely vizuálnej pozornosti}
 
 Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných máp výraznosti rozdeliť na bottom-up modely (kapitola \ref{bottom-up_modely}) a top-down modely (kapitola \ref{top-down_modely}). Ďalším zaujímavým rozdelením však je rozdelenie podľa použitých princípov a technológií \cite{polatsek}, na modely:
 
@@ -336,12 +337,13 @@ Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných m
 	\item vzorovo klasifikačné - využívajú strojové učenie zo vzorov s výraznými črtami
 \end{itemize}
 
-\subsubsection{Bottom-up modely}
+\subsection{Bottom-up modely}
 \label{bottom-up_modely}
-Nakoľko práve bottom-up pozornosť bola prvá skúmaná, existuje k jej predikcii obrovské množstvo najrozličnejších modelov. Z tých najzaujímavejších stoja za spomenutie nasledovné:
+Nakoľko práve bottom-up pozornosť bola prvá skúmaná, existuje k jej predikcii obrovské množstvo najrozličnejších modelov. Niekoľko z nich je popísaných v nasledujúcich podkapitolách. Porovnaním týchto rôznych typov by sa dalo povedať, že ako najlepšie a najpresnejšie sa javia nové moderné postupy strojového učenia. Ich nevýhodou však je potreba dostatočne veľkého datasetu, na ktorom by mohli byť natrénované ako aj značne dlhé trénovanie a predikcie v porovnaní s tými, ktoré používajú rôzne matematické postupy alebo extrakcie čŕt a príznakov, kde fáza trénovania nie je nutná.
 
-\begin{itemize} %TODO preformulovat nech to nie je napisane ako keby to pisal uplny retard
-	\item \textbf{Itti-ho hierarchický model \cite{itti}} - je jedným z najznámejších modelov vizuálnej pozornosti, i keď je jedným zo starších modelov dodnes je široko používaný a citovaný v mnohých článkoch. Je to biologicky inšpirovaný bottom-up model, ktorý využíva hierarchické rozloženie vlastnosí a ich kombináciu do výslednej mapy výraznosti (z angl. saliency map). Ako je vidieť na obrázku \ref{itti_image}, zo vstupného obrázka sa vytvoria 3 typy máp a to podľa farby, intenzity a orientácie, ktorých kombináciou sa dosiahne už spomenutá mapa výraznosti. 
+\subsubsection{Itti-ho model}
+
+Itti-ho model\cite{itti} je jedným z najznámejších modelov vizuálnej pozornosti, i keď patrí medzi tie staršie, dodnes je široko používaný a citovaný v mnohých článkoch. Je to biologicky inšpirovaný bottom-up model, ktorý využíva hierarchické rozloženie vlastnosí a ich kombináciu do výslednej mapy výraznosti (z angl. saliency map). Ako je vidieť na obrázku \ref{itti_image}, zo vstupného obrázka sa vytvoria 3 typy máp a to podľa farby, intenzity a orientácie, ktorých kombináciou sa dosiahne už spomenutá mapa výraznosti. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -350,13 +352,86 @@ Nakoľko práve bottom-up pozornosť bola prvá skúmaná, existuje k jej predik
 	\caption[Itti-ho hierarchický model vizuálnej pozornosti]{Itti-ho hierarchický model vizuálnej pozornosti\cite{itti}\label{itti_image}}
 \end{figure}
 
-\item \textbf{Metóda hierarchickej výraznosti}
+\subsubsection{Metóda hierarchickej výraznosti}
 
-\item \textbf{Model pre určovanie salientných oblastí webových stránok}
+Pri použítí metódy hierarchickej výraznosti (z angl. hierarchical-saliency method\cite{gao2013hierarchical}) sa v podstate jedná o detekciu charakteristík v prirodzenej scéne. Tento postup je istým vylepšením predchádzajúceho Ittiho modelu a prakticky pozostáva z nasledujúcich dvoch krokov:
 
+\begin{itemize}
+	\item \textit{prvý krok} - extrakcia globálne výrazných oblastí (z angl. globally salient
+	regions):
+		\begin{enumerate}
+			\item výpočet mapy výraznosti \textit{S} zo vstupného obrázka \textit{I}
+			\item evaluácia oblastí záujmu (z angl. regions of interest, ROIs), automatická
+			klasifikácia všetkých pixelov do dvoch kategórií k získaniu masky M:
+			\begin{itemize}
+				\item[-] globálne výrazné oblasti (\textit{1})
+				\item[-] zvyšok (\textit{0})
+			\end{itemize}
+			\item vynásobenie masky \textit{M} so vstupným obrázkom \textit{I} k získaniu filtrovaného
+			obrázka \textit{I'}
+		\end{enumerate}
+	\item \textit{druhý krok} - evaluácia lokálne výrazných častí vo vnútri globálne výrazných
+	oblastí. Použije sa vyfiltrovaný obrázok \textit{I'} z predchádzajúcich krokov k získaniu novej mapy výraznosti \textit{S'}, ktorá je finálnou mapou.
 \end{itemize}
-\subsubsection{Top-down modely}
+	
+\subsubsection{Model pre určovanie salientných oblastí webových stránok}
+
+Veľmi zaujímavým riešením pre predikciu a určovanie salientných oblastí scény v doméne webových stránok je model od Chengyao Shen a Qi Zhao\cite{Saliency} využívajúci metódy strojového učenia. Model je postavený na použití metódy MKL (Multiple Kernel Learning - kombinuje viacero jadier SVM (Support Vector Machine) miesto jedného), ktorá bola 
+trénovaná na princípe binárneho regresného problému. Rozdiel oproti predošlým popisovaným modelom je však v tom, že predikovaná nebola priamo výsledná mapa výraznosti ale iba vektor pohľadov (fixácií) na vstupné obrázky na základe ktorého bola potom spomínaná mapa vypočítaná. Autori po vyhodnotení výsledkov zistili že ako najviac salientné oblasti sa v scéne javia v prvom rade ľudská tvár, oči a celkovo vrchná časť ľudského tela. Zaujímavým vylepšením ich modelu však bolo to, že tieto zistenia zapracovali formou predtrénovania MKL na tieto vysoko salientné oblasti. 
+
+
+\subsection{Top-down modely}
+semanticky kontext sceny
 \label{top-down_modely}
+
+\subsubsection{Zameranie na emočný obsah}
+% TODO mozno nahodit viac takych
+Niekoľko riešení sa v posledných rokoch pokúsilo o predikovanie top-down pozornosti na základe emočného obsahu v pozorovanej scéne, z nich stojí za zmienku napríklad model od Liu a spol. \cite{liu2016improving}. Zamerali sa na spomínaný emočný obsah v rôznych oblastiach (blokoch) obrázka, kde do úvahy brali:
+\begin{itemize}
+	\item emočné objekty, napr. hady a krv (evokujú silný strach)
+	\item výrazy tváre
+	\item všeobecný emočný obsah
+\end{itemize}
+
+Hlavné problémy, ktoré riešili, by sa dali zhrnúť do dvoch otázok:
+\begin{itemize}
+	\item Ako získať a ohodnotiť intenzitu emócií pre obrázok?
+	\item Aký typ emócie by mal byť dominantným pre jednotlivé obrázky?
+\end{itemize}
+
+Ich narhované riešenie malo niekoľko častí. Prvou je extrakcia bottom-up faktorov vo forme nízko-úrovňových 
+máp výraznosti založených na črtách a mapy priestorovej polohy s dôrazom na centrum pre výpočet odhadu hustoty pohľadu (z angl. gaze density estimation). K tomuto boli použité klasické hierarchické modely pre určovanie pozornosti (napr. Itti-ho model).
+
+Druhou časťou je detekcia emócií, k čomu bol použitý emočný detektor založený na učení s použitím viacerých inštancií učenia (z angl. multiple instance learning (MIL
+%TODO jebnut zrejme k neuronkam
+\iffalse
+
+
+MIL\cite{minhas2012multiple} je variácia učenia s učiteľom. Miesto obdržania inštancií, ktoré sú individuálne oštítkované obdrží model set oštítkovaných vreciek (z angl. bag), z ktorého každé obsahuje niekoľko inštancií. V prípade jednoduchej binárnej klasifikácie je celé vrecko označené ako negatívna vzorka, ak všetky inštancie vo vnútri sú negatívne. Pokiaľ ale obsahuje aspoň jednu pozitívnu, je označené ako pozitívna vzorka. Pri zložitejších triedach si ako príklad môžeme uviesť predikciu nejakej cieľovej triedy pre obrázok na základe vizuálneho obsahu. Cieľová trieda bude \textit{"pláž"} pre obrázok, ktorý obsahuje  \textit{"piesok"} a \textit{"vodu"}. V terminológii MIL je teda obrázok popísaný ako vrecko, matematicky reprezentované nasledovne:
+\begin{equation}
+	X = \{X_1, ..., X_N\}
+\end{equation}
+
+$X_{i}$ reprezentuje vektor čŕt (inštanciu) extrahové z prislúchajúceho i-teho regiónu obrázku a \textit{N} je celkový počet regiónov (inštancií) v obrázku. Vrecko je označené pozitívne  (\textit{"pláž"})  v prípade, že obsahuje oba regióny (inštancie) \textit{"piesok"} a \textit{"voda"}.
+
+\fi 
+\footnote{variácia učenia s učiteľom. Miesto obdržania inštancií, ktoré sú individuálne oštítkované obdrží model set oštítkovaných vreciek (z angl. bag), z ktorého každé obsahuje niekoľko inštancií. V prípade jednoduchej binárnej klasifikácie je celé vrecko označené ako negatívna vzorka, ak všetky inštancie vo vnútri sú negatívne. Pokiaľ ale obsahuje aspoň jednu pozitívnu, je označené ako pozitívna vzorka.)})) zo slabo oštítkovaných dát. Tými boli obrázky označené emočným typom\footnote{jedna z 8 skupín, do ktorých boli rozdelené emócie. Príkladom týchto skúpín sú napr. hnev, láska, smútok, prekvapenie, atď.}, ktorý bol určený po vypočítaní pravdepodobnosti vyskýtu jednotlivých typov pre každú časť obrázka. Touto matematickou operáciou sa autorom podarilo úspešne vyriešiť problém určenia dominantného typu emócie pre obrázok.  Ďalej bol pre zlepšenie extrakcie emócií použitý mechanizmus založený na SVM, ktoré bolo použité na detekciu ľudských tvárí a odhadnutie intenzity výrazu. Výstupom z tejto časti je emočná mapa ohodnocujúca intenzitu emócií určená pre ďalšie spracovanie.
+
+Treťou časťou bolo spracovanie výstupom z predošlých dvoch lineárnym SVM, ktoré vo výsledku z bottom-up a emočných faktorov vygeneruje výslednú mapu hustoty pohľadu (z angl. gaze density map). Vyššie popísaný postup je zobrazený na diagrame na obrázku \ref{liu_image}.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.43]{liu_emotion_model.png}
+		\caption[Diagram modelu k predikcii máp výraznosti založených na emočnom obsahu]{Diagram modelu od Liu a spol. k predikcii máp výraznosti založených na emočnom obsahu\cite{liu2016improving}\label{liu_image}}
+	\end{center}
+\end{figure}
+
+\subsubsection{Autoencoder}
+
+\subsubsection{CRF}
+
+\subsubsection{Saliency Attentive Model}
+Dilatovaná konvolučná sieť s LSTM 
 
 \section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
 \label{metric}

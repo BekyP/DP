@@ -14,13 +14,20 @@
 \contentsline {subsubsection}{\numberline {3.4.3}Theano}{15}{subsubsection.3.4.3}
 \contentsline {subsubsection}{\numberline {3.4.4}Keras}{16}{subsubsection.3.4.4}
 \contentsline {subsubsection}{\numberline {3.4.5}Spark MLlib}{17}{subsubsection.3.4.5}
-\contentsline {subsection}{\numberline {3.5}Existuj\IeC {\'u}ce modely vizu\IeC {\'a}lnej pozornosti}{17}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Bottom-up modely}{18}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Top-down modely}{19}{subsubsection.3.5.2}
-\contentsline {section}{\numberline {4}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{19}{section.4}
-\contentsline {section}{\numberline {5}N\IeC {\'a}vrh}{21}{section.5}
-\contentsline {subsection}{\numberline {5.1}Prvotn\IeC {\'e} experimenty}{21}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{21}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Dataset}{22}{subsection.5.3}
-\contentsline {section}{\numberline {6}Zhrnutie}{23}{section.6}
-\contentsline {section}{Literat\'ura}{25}{section.6}
+\contentsline {section}{\numberline {4}Existuj\IeC {\'u}ce modely vizu\IeC {\'a}lnej pozornosti}{17}{section.4}
+\contentsline {subsection}{\numberline {4.1}Bottom-up modely}{18}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Itti-ho model}{18}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Met\IeC {\'o}da hierarchickej v\IeC {\'y}raznosti}{19}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}Model pre ur\IeC {\v c}ovanie salientn\IeC {\'y}ch oblast\IeC {\'\i } webov\IeC {\'y}ch str\IeC {\'a}nok}{20}{subsubsection.4.1.3}
+\contentsline {subsection}{\numberline {4.2}Top-down modely}{20}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Zameranie na emo\IeC {\v c}n\IeC {\'y} obsah}{20}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Autoencoder}{22}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}CRF}{22}{subsubsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.4}Saliency Attentive Model}{22}{subsubsection.4.2.4}
+\contentsline {section}{\numberline {5}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{22}{section.5}
+\contentsline {section}{\numberline {6}N\IeC {\'a}vrh}{25}{section.6}
+\contentsline {subsection}{\numberline {6.1}Prvotn\IeC {\'e} experimenty}{25}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{25}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Dataset}{26}{subsection.6.3}
+\contentsline {section}{\numberline {7}Zhrnutie}{27}{section.7}
+\contentsline {section}{Literat\'ura}{29}{section.7}
