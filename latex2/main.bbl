@@ -25,6 +25,18 @@ Ali Borji, Hamed~R Tavakoli, Dicky~N Sihite, and Laurent Itti.
 \newblock In {\em Proceedings of the IEEE international conference on computer
   vision}, pages 921--928, 2013.
 
+\bibitem{cornia2016deep}
+Marcella Cornia, Lorenzo Baraldi, Giuseppe Serra, and Rita Cucchiara.
+\newblock A deep multi-level network for saliency prediction.
+\newblock In {\em Pattern Recognition (ICPR), 2016 23rd International
+  Conference on}, pages 3488--3493. IEEE, 2016.
+
+\bibitem{cornia2016predicting}
+Marcella Cornia, Lorenzo Baraldi, Giuseppe Serra, and Rita Cucchiara.
+\newblock Predicting human eye fixations via an lstm-based saliency attentive
+  model.
+\newblock {\em arXiv preprint arXiv:1611.09571}, 2016.
+
 \bibitem{itti}
 Renwu Gao, Faisal Shafait, Seiichi Uchida, and Yaokai Feng.
 \newblock A hierarchical visual saliency model for character detection in
@@ -111,6 +123,12 @@ David~MW Powers.
 \newblock Roc-concert: Roc-based measurement of consistency and certainty.
 \newblock In {\em Engineering and Technology (S-CET), 2012 Spring Congress on},
   pages 1--4. IEEE, 2012.
+
+\bibitem{ramanishka2017top}
+Vasili Ramanishka, Abir Das, Jianming Zhang, and Kate Saenko.
+\newblock Top-down visual saliency guided by captions.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, volume~1, page~7, 2017.
 
 \bibitem{gradient_descent}
 Sebastian Ruder.

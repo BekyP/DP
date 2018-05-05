@@ -21,13 +21,12 @@
 \contentsline {subsubsection}{\numberline {4.1.3}Model pre ur\IeC {\v c}ovanie salientn\IeC {\'y}ch oblast\IeC {\'\i } webov\IeC {\'y}ch str\IeC {\'a}nok}{20}{subsubsection.4.1.3}
 \contentsline {subsection}{\numberline {4.2}Top-down modely}{20}{subsection.4.2}
 \contentsline {subsubsection}{\numberline {4.2.1}Zameranie na emo\IeC {\v c}n\IeC {\'y} obsah}{20}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Autoencoder}{22}{subsubsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.3}CRF}{22}{subsubsection.4.2.3}
-\contentsline {subsubsection}{\numberline {4.2.4}Saliency Attentive Model}{22}{subsubsection.4.2.4}
-\contentsline {section}{\numberline {5}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{22}{section.5}
-\contentsline {section}{\numberline {6}N\IeC {\'a}vrh}{25}{section.6}
-\contentsline {subsection}{\numberline {6.1}Prvotn\IeC {\'e} experimenty}{25}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{25}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Dataset}{26}{subsection.6.3}
-\contentsline {section}{\numberline {7}Zhrnutie}{27}{section.7}
-\contentsline {section}{Literat\'ura}{29}{section.7}
+\contentsline {subsubsection}{\numberline {4.2.2}SAM}{22}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Top-down pozornos\IeC {\v t} veden\IeC {\'a} titulkami}{24}{subsubsection.4.2.3}
+\contentsline {section}{\numberline {5}Metriky pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} na ohodnotenie modelov vizu\IeC {\'a}lnej pozornosti}{26}{section.5}
+\contentsline {section}{\numberline {6}N\IeC {\'a}vrh}{29}{section.6}
+\contentsline {subsection}{\numberline {6.1}Prvotn\IeC {\'e} experimenty}{29}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}N\IeC {\'a}vrh neur\IeC {\'o}novej siete}{29}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Dataset}{30}{subsection.6.3}
+\contentsline {section}{\numberline {7}Zhrnutie}{31}{section.7}
+\contentsline {section}{Literat\'ura}{33}{section.7}

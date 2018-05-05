@@ -426,12 +426,60 @@ Treťou časťou bolo spracovanie výstupom z predošlých dvoch lineárnym SVM,
 	\end{center}
 \end{figure}
 
-\subsubsection{Autoencoder}
+% TODO maybe \subsubsection{CRF}
 
-\subsubsection{CRF}
+\subsubsection{SAM}
+SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší z modelov schopných aj predikcie top-down pozornosti. Založený je na architektúre nazvanej ML-Net (Multi-Level Network\cite{cornia2016deep}), ktorá miesto klasických konvolučných vrstiev využíva dilatované konvolučné vrstvy, ktoré limitujú efekt zmenšovania. Táto architekúra použitá pre spracovanie vstupného obrázka je nasledovaná konvolučnými LSTM vrstvami, ich naučené výstupy potom spracováva už klasická konvolučná vrstva, výstupom ktorej je mapa výraznosti. Popisovaný postup je zobrazený na obrázku \ref{dilated_model_image}.
 
-\subsubsection{Saliency Attentive Model}
-Dilatovaná konvolučná sieť s LSTM 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.41]{dilated_NN.png}
+		\caption[Diagram konvolučnej LSTM siete]{Diagram modelu využívajúceho dilatované konvolučné vrstvy v kombinácii s LSTM vrstvami \cite{cornia2016predicting}\label{dilated_model_image}}
+	\end{center}
+\end{figure}
+
+Vďaka architektúre zobrazenej na obrázku vyššie je možné nezávisle na sebe trénovať dilatovanú konvolučnú sieť (alebo použiť predtrénovanú, či o niečo inú) a konvolučnú LSTM sieť. Veľkou výhodou dilatovanej konvolučnej siete je stratégia zväčšenia výstupného rozlíšenia obrázka, zatiaľ čo sa zachováva mierka, na ktorej operujú konvolučné filtre a počet parametrov. To je rozdiel oproti klasickej konvolučnej sieti, kedy je vstupný obrázok po extrakcii čŕt obvykle zmenšený, čo môže značne zhoršiť presnosť predikcie máp výraznosti.
+
+Spomínané LSTM vrstvy (podrobnejšie zobrazené aj na obrázku \ref{dilated_model_image}) využívajú kombináciu aktivačných funkcií \textit{softmax}, \textit{tanh} a \textit{sigmoid}, kedy pri spracúvaní sekvenčne aktualizujú svoj interný stav. Ako vstup dostanú vektor extrahovaných čŕt z dilatovaných konvolučných vrstiev (\textit{X}), ktoré spracúvajú vstupné obrázk,y a generovanú mapu výraznosti z predošlej LSTM vrstvy (s výnimkou prvej). Táto generovaná mapa je ešte upravená mechanizmami pozornosti, ktoré sa selektívne zameriavajú na rôzne časti obrázku. Vo výsledku je potom vektor extrahovaných čŕt (\textit{X}) a upravená generovaná mapa (\textit{$X_t$}) z predošlej vrstvy ešte ďalej spracovávaná aktovačnými funkciami \textit{tanh}.
+
+Výstup z týchto vrstiev je ďalej upravený štandardnými konvolučnými vrstvami do výsledných máp výraznosti.
+
+Ďalšou zaujímavou vecou na tomto riešení je zvolenie funkcie chyby (z angl. loss function). Autori nepoužili žiadny z tradičnejších typov, ale použili lineárnu kombináciu troch rôznych evaluačných metrík (popísané v kapitole \ref{metric}), v tvare:
+
+\begin{equation}
+	L (y, y^{den}, y^{fix}) = \alpha L1(y, y^{fix}) + \beta L2(y, y^{den}) + \gamma L3(y, y^{den})
+\end{equation}
+
+Pre vyššie uvedené platí:
+
+$y$ - predikovaná mapa výraznosti
+
+$y^{den}$ - pravdepodobnostná distribúcia (z angl. groundtruth density distribution)
+
+$y^{fix}$ - binárna mapa fixácií
+
+$\alpha, \beta, \gamma $ - tri skalárne hodnoty určené k vybalancovaniu troch funkcií chyby
+
+$L1, L2, L3$ - tri funkcie pre výpočet evaluačných metrík, za radom Normalizovaná cesta výraznosti (NSS, z angl. Normalized Scanpath Saliency), Lineárny Korelačný Koeficient (CC), Kullback-Leiblerova divergencia (KL-Div), všetky bližšie popísané v kapitole \ref{metric}
+
+\subsubsection{Top-down pozornosť vedená titulkami}
+Jedným z príkladov top-down pozornosti je úloha nájdenia nejakého konkrétneho objektu v scéne, čím sa inšpirovali výskumníci z Bostonskej univerzity. Predstavili model\footnote{http://ai.bu.edu/caption-guided-saliency/} \cite{ramanishka2017top} schopný predikcie máp výraznosti na základe kľúčových slov v zadanej vete a príslušnom obrázku alebo videu, príklad možno vidieť na obrázku \ref{top_down_captions_image}.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{top_down_captions.png}
+		\caption[Predikcia salientných oblastí na základe kľúčových slov vo vete]{Predikcia salientných oblastí na základe kľúčových slov vo vete, hore po \textbf{a} predikcia pre obrázok, dolu po \textbf{b} predikcia pre video\cite{ramanishka2017top}\label{top_down_captions_image}}
+	\end{center}
+\end{figure}
+
+Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl. Caption-Guided Visual Saliency), ktorý produkuje mapy výraznosti pre nepohyblivé obrázky alebo video. Ako základný model použili LSTM encoder-decoder, ktorý predikuje aj dočasné (z videa) aj priestorové (z obrázkov) salientné mapy na základe kľúčových slov vo vete (vstupné titulky, popis) a mapuje ich na vstupné obrázky (alebo video). Vstupné titulky sú spracovávané LSTM vrstvami. Na obrázku \ref{top_down_captions_model_image} je možné vidieť načrtnutý model riešenia. Ako prvá vstupná vrstva funguje konvolučná neurónová sieť reprezentujúca encoder pre video, ktorá "zakóduje" \ reprezentáciu obrázkov aj s aktiváciami všetkých vizuálnych konceptov detekovaných vo videu. Tieto informácie posunie ďalej ako vektor pre LSTM vrstvy reprezentujúce decoder - ten rozhoduje o tom, ktoré časti použije pomocou LSTM výstupných brán k predikcii mapy výraznosti pre kľúčové slovo v čase \textit{t}. Autori ďalej zvolili veľmi šikovné riešenie pre predikciu máp len pre obrázky - jednoducho výstup produkovaný poslednou konvolučnou vrstvou zmenili na tzv. "dočasnú" sekvenciu (vektor): $V = (v_1, . . . , v_m)$. Tá je vytvorená sekvenčne scan-ovaním obrázka riadok po riadku z ľavého horného rohu do pravého dolného rohu. Prvá LSTM vrstva potom tento upravený vektor spracuje a posunie ďalej k dekódovaniu na kľúčové slová vo vete.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.52]{top_down_captions_NN.png}
+		\caption[Model neurónovej siete pre predikciu na základe kľúčových slov]{Diagram modelu neurónovej siete, zhora vstup vľavo vo forme videa, vpravo titulky k nemu. V strede LSTM vrtvy neurónovej siete, dolu výstupná mapa výraznosti pre kľúčové slová. \cite{ramanishka2017top}\label{top_down_captions_model_image}}
+	\end{center}
+\end{figure}
 
 \section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
 \label{metric}
@@ -465,6 +513,13 @@ Tradične sa tieto modely evaluujú vzhľadom na pohyb očí, resp. samotné fix
 	\begin{equation}
 	CC (s, h) = \frac{cov(s, h)}{\sigma_{s} \sigma _{h}}
 	\end{equation}
+	
+	\item KL-Div - Kullback-Leiblerova divergencia, všeobecné teoretické merianie rozdielu medzi dvoma pravdepodobnostými distribúciami. V oblasti predikcií vizuálnej pozornosti sa často nazýva aj AUC-Judd. Ako vstup berie mapu výraznosti \textit{P} a mapu fixácií (z angl.  ground  truth  fixation map) \textit{$Q^{D}$}, evaluuje stratu informáciie keď je \textit{P} použité k aproximácii \textit{$Q^{D}$}.
+	
+	\begin{equation}
+		KL (P, Q^D) =  \sum_{i} Q_{i}^{D} log \left ( \epsilon + \frac{Q_{i}^{D}}{\epsilon + P_i} \right )
+	\end{equation}
+	
 \end{itemize}
  
  
