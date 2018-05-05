@@ -5,27 +5,31 @@
 \BOOKMARK [1][-]{section.3}{Neur\363nov\351 siete}{}% 5
 \BOOKMARK [2][-]{subsection.3.1}{Aktivacn\351 funkcie}{section.3}% 6
 \BOOKMARK [2][-]{subsection.3.2}{Ucenie sa neur\363novej siete}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.3}{Typy neur\363nov\375ch siet\355}{section.3}% 8
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Konvolucn\351 neur\363nov\351 siete}{subsection.3.3}% 9
-\BOOKMARK [2][-]{subsection.3.4}{Framework-y pre pr\341cu s neur\363nov\375mi sietami}{section.3}% 10
-\BOOKMARK [3][-]{subsubsection.3.4.1}{TensorFlow}{subsection.3.4}% 11
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft CNTK}{subsection.3.4}% 12
-\BOOKMARK [3][-]{subsubsection.3.4.3}{Theano}{subsection.3.4}% 13
-\BOOKMARK [3][-]{subsubsection.3.4.4}{Keras}{subsection.3.4}% 14
-\BOOKMARK [3][-]{subsubsection.3.4.5}{Spark MLlib}{subsection.3.4}% 15
-\BOOKMARK [1][-]{section.4}{Existuj\372ce modely vizu\341lnej pozornosti}{}% 16
-\BOOKMARK [2][-]{subsection.4.1}{Bottom-up modely}{section.4}% 17
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Itti-ho model}{subsection.4.1}% 18
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Met\363da hierarchickej v\375raznosti}{subsection.4.1}% 19
-\BOOKMARK [3][-]{subsubsection.4.1.3}{Model pre urcovanie salientn\375ch oblast\355 webov\375ch str\341nok}{subsection.4.1}% 20
-\BOOKMARK [2][-]{subsection.4.2}{Top-down modely}{section.4}% 21
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Zameranie na emocn\375 obsah}{subsection.4.2}% 22
-\BOOKMARK [3][-]{subsubsection.4.2.2}{SAM}{subsection.4.2}% 23
-\BOOKMARK [3][-]{subsubsection.4.2.3}{Top-down pozornost veden\341 titulkami}{subsection.4.2}% 24
-\BOOKMARK [1][-]{section.5}{Metriky pou\236\355van\351 na ohodnotenie modelov vizu\341lnej pozornosti}{}% 25
-\BOOKMARK [1][-]{section.6}{N\341vrh}{}% 26
-\BOOKMARK [2][-]{subsection.6.1}{Prvotn\351 experimenty}{section.6}% 27
-\BOOKMARK [2][-]{subsection.6.2}{N\341vrh neur\363novej siete}{section.6}% 28
-\BOOKMARK [2][-]{subsection.6.3}{Dataset}{section.6}% 29
-\BOOKMARK [1][-]{section.7}{Zhrnutie}{}% 30
-\BOOKMARK [1][-]{section.7}{Literat\372ra}{}% 31
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Ucenie sa s ucitelom}{subsection.3.2}% 8
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Ucenie sa bez ucitela}{subsection.3.2}% 9
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Ucenie posilnovan\355m}{subsection.3.2}% 10
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Optimizacn\351 algoritmy}{subsection.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.3}{Typy neur\363nov\375ch siet\355}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Konvolucn\351 neur\363nov\351 siete}{subsection.3.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Framework-y pre pr\341cu s neur\363nov\375mi sietami}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.4.1}{TensorFlow}{subsection.3.4}% 15
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Microsoft CNTK}{subsection.3.4}% 16
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Theano}{subsection.3.4}% 17
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Keras}{subsection.3.4}% 18
+\BOOKMARK [3][-]{subsubsection.3.4.5}{Spark MLlib}{subsection.3.4}% 19
+\BOOKMARK [1][-]{section.4}{Existuj\372ce modely vizu\341lnej pozornosti}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{Bottom-up modely}{section.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Itti-ho model}{subsection.4.1}% 22
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Met\363da hierarchickej v\375raznosti}{subsection.4.1}% 23
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Model pre urcovanie salientn\375ch oblast\355 webov\375ch str\341nok}{subsection.4.1}% 24
+\BOOKMARK [2][-]{subsection.4.2}{Top-down modely}{section.4}% 25
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Zameranie na emocn\375 obsah}{subsection.4.2}% 26
+\BOOKMARK [3][-]{subsubsection.4.2.2}{SAM}{subsection.4.2}% 27
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Top-down pozornost veden\341 titulkami}{subsection.4.2}% 28
+\BOOKMARK [1][-]{section.5}{Metriky pou\236\355van\351 na ohodnotenie modelov vizu\341lnej pozornosti}{}% 29
+\BOOKMARK [1][-]{section.6}{N\341vrh}{}% 30
+\BOOKMARK [2][-]{subsection.6.1}{Prvotn\351 experimenty}{section.6}% 31
+\BOOKMARK [2][-]{subsection.6.2}{N\341vrh neur\363novej siete}{section.6}% 32
+\BOOKMARK [2][-]{subsection.6.3}{Dataset}{section.6}% 33
+\BOOKMARK [1][-]{section.7}{Zhrnutie}{}% 34
+\BOOKMARK [1][-]{section.7}{Literat\372ra}{}% 35
