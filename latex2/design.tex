@@ -1,18 +1,11 @@
 \newpage
-\ifthenelse {\boolean{bachelor}}
-{
-	%\section{Design}
-	\section{Návrh}
-}
-{
-	%\chapter{Design}
-	\chapter{Návrh}
-}
 
-\subsection{Prvotné experimenty}
+\section{Návrh}
+
+Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}) vykonávaných v rámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/}.
 
 \subsection{Návrh neurónovej siete}
-\label{navrh}
+\label{nn_popis}
 \iffalse
 K predikcii pohľadov na webové stránky je vhodné použiť konvolučnú neurónovú sieť, keďže webstránky sú vo forme obrázkov. Neurónová sieť bude predikovať priamo výslednú teplotnú mapu pohľadov (mapu výraznosti). Sieť by mala pozostávať z konvolučnej a združovacej vrstvy (vrstiev) pre spracovanie obrázku, nasledovaných normalizačnou vrstvou, plne prepojenou vrstvou a vrstvou výpadku (z angl. dropout layer). Za nimi nasleduje už len výstupná vrstva. Ako aktivačnú funkciu sme vybrali sigmoid, nakoľko sa bude predikovať mapa výraznosti, t. j. v podstate pravdepodobnosť pohľadu. 
 \fi 
@@ -32,9 +25,12 @@ Na konvolučnej vrstve sa použije konvolučný filter o veľkosti 5x5, ktorým 
 Aktivačná funkcia sigmoid bude použitá iba na prvej konvolučnej vrstve a na plne prepojenej vrstve. K trénovaniu sa použije FTRL optimizér spolu s náhodným generátorom dát, ktorý bude z datasetu určenému pre fázu trénovania náhodne vyberať dáta na učenie. Tým sa zabezpečí simulácia náhodnosti vstupných dát a teda sa sieť bude schopná lepšie učiť. 
 \fi 
 
+\subsection{Prvotné experimenty}
+\label{first_experiments}
+
 \subsection{Dataset}
 \label{dataset}
-	
+
 
 \iffalse
 \begin{equation}
