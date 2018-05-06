@@ -1,2 +1,13 @@
 .idea*
 __pycache__
+.idea
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.lof
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.toc
