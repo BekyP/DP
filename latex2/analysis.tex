@@ -1,12 +1,5 @@
 \newpage
 
-%TODO asi dat do pice
-\iffalse
-\section{Analýza}
-
-V tejto časti je postupne popísaná vizuálna výraznosť v časti \ref{saliency}, časť \ref{itti} sa venuje modelom vizuálnej pozornosti k jej určeniu. Ďalej sú v časti \ref{nn} popísané neurónové siete, ich aktivačné funkcie, spôsoby učenia a ich typy, z ktorých bližšie sú popísané konvolučné neurónové siete. Záverečná časť \ref{machine_learning} sa venuje práve riešeniam problému určenia pútavých častí grafických rozhraní web stránok pomocou strojového učenia. 
-\fi
-
 \section{Vizuálna pozornosť}
 \label{saliency}
 	
@@ -187,8 +180,6 @@ V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, kto
 	
 	Vychádza z algoritmu učenia FTRL-Proximal\cite{ftrl}, celým názvom Nasleduj regularizovaného vodcu (z angl. Follow The (Proximal) Regularized Leader). Tento algoritmus je bez regularizácie v podstate identický s gradient descentom, avšak používa alternatívnu reprezentáciu koeficientov váh a tak môže byť regularizácia implementovaná efektívnejšie.
 \end{itemize}
-% TODO preformulovat a nejak zmysluplne nadviazat
-Po fáze učenia sa nasleduje validácia, pri ktorej sieť nemá prístup k štítkom. Na záver sa prejde k samotnému testovaniu neurónovej siete, kedy sa do nej posúvajú dáta rovnako bez toho, aby sieť mala prístup k štítkom. Na základe jej predikcie a štítkom k testovacím dátam sa určí jej presnosť. Na učenie, testovanie a validáciu by nemali byť použité tie isté dáta. Pomer dát k jednotlivým fázam by mal byť 80-10-10\cite{80-10-10}, čiže 80\% dát je určených na učenie sa, 10\% na validáciu a 10\% na samotné otestovanie predikcií modelu siete. 
 
 Aj keď neurónové siete dokážu efektívne riešiť veľké množstvo úloh, problémom stále zostáva mať k dispozícii dostatok dát k učeniu neurónovej siete ešte pred riešením úloh. Taktiež je potrebné mať dostatok výpočtovej sily, aby sa problém neriešil pridlhý čas, a dostatok pamäte, keďže neurónové siete jej potrebujú značné množstvo. 	
 	 
@@ -258,7 +249,6 @@ Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www
 \subsection{Framework-y pre prácu s neurónovými sieťami}
 V dnešnej dobe moderného internetu a dostupnosti technológií máme možnosť výberu z dostatočného množstva framework-ov pre potreby riešenia najrôznejších problémov neurónovými sieťami. Pri výbere môžeme brať do úvahy napríklad preferencie operačného systému (Windows, Linux, ...), programovacieho jazyka (Python, C++, Java, ...), ale aj benefity distribuovaného riešenia a omnoho viac. V nasledujúcich podkapitolách sú preto popísané niektoré z najpoužívanejších technológií pre implementovanie neurónových sietí. 
 
-%TODO mozno prihodit ukazky zdrojakov
 \subsubsection{TensorFlow}
 TensorFlow\footnote{https://www.tensorflow.org/} je open-source softvérová knižnica, ktorá pre numerické výpočty používa graf dátového toku, kde uzly grafu reprezentujú matematické operácie a hrany multidimenzionálne dátové polia, tzv. tenzory. Graf je možné skonštruovať použitím jazykov s podporou frontend-u (C++, Python, ...). 
 
@@ -436,7 +426,6 @@ Predikcia top-down pozornosti je značne zložitejšia, nakoľko sa do úvahy be
 
 \subsubsection{Zameranie na emočný obsah}
 \label{emotion_content}
-% TODO mozno nahodit viac takych
 Niekoľko riešení sa v posledných rokoch pokúsilo o predikovanie top-down pozornosti na základe emočného obsahu v pozorovanej scéne, z nich stojí za zmienku napríklad model od Liu a spol. \cite{liu2016improving}. Zamerali sa na spomínaný emočný obsah v rôznych oblastiach (blokoch) obrázka, kde do úvahy brali:
 \begin{itemize}
 	\item emočné objekty, napr. hady a krv (evokujú silný strach)
@@ -453,20 +442,7 @@ Hlavné problémy, ktoré riešili, by sa dali zhrnúť do dvoch otázok:
 Ich narhované riešenie malo niekoľko častí. Prvou je extrakcia bottom-up faktorov vo forme nízko-úrovňových 
 máp výraznosti založených na črtách a mapy priestorovej polohy s dôrazom na centrum pre výpočet odhadu hustoty pohľadu (z angl. gaze density estimation). K tomuto boli použité klasické hierarchické modely pre určovanie pozornosti (napr. Itti-ho model).
 
-Druhou časťou je detekcia emócií, k čomu bol použitý emočný detektor založený na učení s použitím viacerých inštancií učenia (z angl. multiple instance learning (MIL
-%TODO jebnut zrejme k neuronkam
-\iffalse
-
-
-MIL\cite{minhas2012multiple} je variácia učenia s učiteľom. Miesto obdržania inštancií, ktoré sú individuálne oštítkované obdrží model set oštítkovaných vreciek (z angl. bag), z ktorého každé obsahuje niekoľko inštancií. V prípade jednoduchej binárnej klasifikácie je celé vrecko označené ako negatívna vzorka, ak všetky inštancie vo vnútri sú negatívne. Pokiaľ ale obsahuje aspoň jednu pozitívnu, je označené ako pozitívna vzorka. Pri zložitejších triedach si ako príklad môžeme uviesť predikciu nejakej cieľovej triedy pre obrázok na základe vizuálneho obsahu. Cieľová trieda bude \textit{"pláž"} pre obrázok, ktorý obsahuje  \textit{"piesok"} a \textit{"vodu"}. V terminológii MIL je teda obrázok popísaný ako vrecko, matematicky reprezentované nasledovne:
-\begin{equation}
-	X = \{X_1, ..., X_N\}
-\end{equation}
-
-$X_{i}$ reprezentuje vektor čŕt (inštanciu) extrahové z prislúchajúceho i-teho regiónu obrázku a \textit{N} je celkový počet regiónov (inštancií) v obrázku. Vrecko je označené pozitívne  (\textit{"pláž"})  v prípade, že obsahuje oba regióny (inštancie) \textit{"piesok"} a \textit{"voda"}.
-
-\fi 
-\footnote{variácia učenia s učiteľom. Miesto obdržania inštancií, ktoré sú individuálne oštítkované obdrží model set oštítkovaných vreciek (z angl. bag), z ktorého každé obsahuje niekoľko inštancií. V prípade jednoduchej binárnej klasifikácie je celé vrecko označené ako negatívna vzorka, ak všetky inštancie vo vnútri sú negatívne. Pokiaľ ale obsahuje aspoň jednu pozitívnu, je označené ako pozitívna vzorka.)})) zo slabo oštítkovaných dát. Tými boli obrázky označené emočným typom\footnote{jedna z 8 skupín, do ktorých boli rozdelené emócie. Príkladom týchto skúpín sú napr. hnev, láska, smútok, prekvapenie, atď.}, ktorý bol určený po vypočítaní pravdepodobnosti vyskýtu jednotlivých typov pre každú časť obrázka. Touto matematickou operáciou sa autorom podarilo úspešne vyriešiť problém určenia dominantného typu emócie pre obrázok.  Ďalej bol pre zlepšenie extrakcie emócií použitý mechanizmus založený na SVM, ktoré bolo použité na detekciu ľudských tvárí a odhadnutie intenzity výrazu. Výstupom z tejto časti je emočná mapa ohodnocujúca intenzitu emócií určená pre ďalšie spracovanie.
+Druhou časťou je detekcia emócií, k čomu bol použitý emočný detektor založený na učení s použitím učenia viacerých inštancií (z angl. multiple instance learning, MIL) zo slabo oštítkovaných dát. Tými boli obrázky označené emočným typom\footnote{jedna z 8 skupín, do ktorých boli rozdelené emócie. Príkladom týchto skúpín sú napr. hnev, láska, smútok, prekvapenie, atď.}, ktorý bol určený po vypočítaní pravdepodobnosti vyskýtu jednotlivých typov pre každú časť obrázka. Touto matematickou operáciou sa autorom podarilo úspešne vyriešiť problém určenia dominantného typu emócie pre obrázok.  Ďalej bol pre zlepšenie extrakcie emócií použitý mechanizmus založený na SVM, ktoré bolo použité na detekciu ľudských tvárí a odhadnutie intenzity výrazu. Výstupom z tejto časti je emočná mapa ohodnocujúca intenzitu emócií určená pre ďalšie spracovanie.
 
 Treťou časťou bolo spracovanie výstupom z predošlých dvoch lineárnym SVM, ktoré vo výsledku z bottom-up a emočných faktorov vygeneruje výslednú mapu hustoty pohľadu (z angl. gaze density map). Vyššie popísaný postup je zobrazený na diagrame na obrázku \ref{liu_image}.
 
@@ -476,6 +452,8 @@ Treťou časťou bolo spracovanie výstupom z predošlých dvoch lineárnym SVM,
 		\caption[Diagram modelu k predikcii máp výraznosti založených na emočnom obsahu]{Diagram modelu od Liu a spol. k predikcii máp výraznosti založených na emočnom obsahu\cite{liu2016improving}\label{liu_image}}
 	\end{center}
 \end{figure}
+
+Za veľkú výhodu tohto riešenia by sa dala pokladať kombinácia bottom-up a top-down (emočných) faktorov do výslednej mapy, vďaka čomu sa viac priblíži k reálnej pozornosti. Ako vieme tú neovplyvňujú čisto len jedny alebo druhé faktory, ale vždy je to ich kombinácia. Ako mierna nevýhoda by sa mohlo javiť rozdelenie emócií iba na 8 typov a určenie ako dominantný typ len jeden z nich, pričom ostatné sa ďalej neberú do úvahy.  
 
 % TODO maybe \subsubsection{CRF}
 
@@ -511,7 +489,9 @@ $y^{fix}$ - binárna mapa fixácií
 
 $\alpha, \beta, \gamma $ - tri skalárne hodnoty určené k vybalancovaniu troch funkcií chyby
 
-$L1, L2, L3$ - tri funkcie pre výpočet evaluačných metrík, za radom Normalizovaná cesta výraznosti (NSS, z angl. Normalized Scanpath Saliency), Lineárny Korelačný Koeficient (CC), Kullback-Leiblerova divergencia (KL-Div), všetky bližšie popísané v kapitole \ref{metric}
+$L1, L2, L3$ - tri funkcie pre výpočet evaluačných metrík, za radom Normalizovaná cesta výraznosti (NSS, z angl. Normalized Scanpath Saliency), Lineárny Korelačný Koeficient (CC), Kullback-Leiblerova divergencia (KL-Div), všetky bližšie popísané v kapitole \ref{metric}.
+
+Za veľkú výhodu tohto riešenia pokladáme možnosť predikcie aj bottom-up aj top-down pozornosti, v závislosti od datasetu, na ktorom je model natrénovaný. Taktiež možnosť nezávislej výmeny submodelov (dilatovaná konvolučná sieť,  konvolučná LSTM sieť) sa javí ako veľmi výhodná, keďže uľahčuje protypovanie bez nutnosti nového natrénovania celého modelu. Za miernu nevýhodu možno považovať značnú komplexitu modelu a s tým spojené nároky na hardvér, rovnako ako aj na čas nutný na natrénovanie od 0, v prípade, že nechceme použiť predtrénované modely. 
 
 \subsubsection{Top-down pozornosť vedená titulkami}
 \label{caption_model}
@@ -533,9 +513,12 @@ Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl
 	\end{center}
 \end{figure}
 
+Popisované riešenie je ukážkovým modelom pre predikciu pozornosti počas hľadania objektov v scéne. Veľkou výhodou je použitie LSTM vrstiev pre zachytenie predošlého kontextu ako aj možnosť predikcie pre video aj obrázky iba s minimálnymi zmenami.
+
 \section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
 \label{metric}
-Tradične sa tieto modely evaluujú vzhľadom na pohyb očí, resp. samotné fixácie. K tomu slúži značný počet rôzne fungujúcich metrík\cite{metriky}, najpoužívanejšie sú:
+
+Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to buď vzhľadom na pohyb očí (resp. fixácie) alebo vzhľadom na originálnu mapu výraznosti. K tomu slúži veľké množstvo metrík\cite{metriky}, medzi tie najčastejšie používané patria:
 
 \begin{itemize}
 	
