@@ -11,3 +11,6 @@ __pycache__
 *.synctex.gz
 *.synctex(busy)
 *.toc
+*.lol
+*.pyg
+*.lot
