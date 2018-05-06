@@ -20,21 +20,39 @@ Aktivačná funkcia sigmoid je použitá najmä preto, že mapa výraznosti je p
 		}\label{my_tensorboard_cnn}
 	\end{center}
 \end{figure}
-\iffalse
-Na konvolučnej vrstve sa použije konvolučný filter o veľkosti 5x5, ktorým sa prejde vstupný obrázok. Výstupom z nej budú mapy (obrázky) po aplikovaní filtra. Tieto dáta budú spracovávané vo vrstve združovania s použitím operácie MAX, okna (filtra) s veľkosťou 2x2 a posunom s veľkosťou 2. Výstup všetkých filtrov je zlúčený do jednej širokej vrstvy a to normalizačnej. Z nej nasledujú prepojenia do plne prepojenej vrstvy, za ktorou nasleduje vrstva výpadku\cite{dropout}. Tá prakticky obsahuje hodnotu (od 0 do 1) určujúcu koľko neurónov bude dočasne „odstránených“ z modelu spolu so všetkými spojeniami, ako vstupnými tak aj výstupnými. To by malo zabrániť pretrénovaniu siete. Za vrstvou výpadku nasleduje už len výstupná vrstva, ktorá je nakoniec ešte aj transformovaná do 2D matice reprezentujúcej predikovanú mapu výraznosti. 
-
-Aktivačná funkcia sigmoid bude použitá iba na prvej konvolučnej vrstve a na plne prepojenej vrstve. K trénovaniu sa použije FTRL optimizér spolu s náhodným generátorom dát, ktorý bude z datasetu určenému pre fázu trénovania náhodne vyberať dáta na učenie. Tým sa zabezpečí simulácia náhodnosti vstupných dát a teda sa sieť bude schopná lepšie učiť. 
-\fi 
 
 \subsection{Prvotné experimenty}
 \label{first_experiments}
+Pre prvotné experimenty sme sa rozhodli zvoliť problém predikcie vizuálnej pozornosti v častiach obrázkov, konkrétne v tzv. regiónoch záujmy (z angl. regions of interest, ROIs), ktoré sme zvolili v okolí fixácií na obrázky. Z veľkého množstva problémov, s ktorými sme sa potýkali, bol jedným z najväčších práve dataset, keďže bolo nutné ho vhodne zvoliť a predpripraviť (extrakcia regionóv záujmu pre obrázky, mapy výraznosti, správne oštítkovanie, ...)
 
 \subsubsection{Dataset}
 \label{dataset}
+Dataset použitý k trénovaniu navrhnutej neurónovej siete tvorili spomínané regióny zájmu extrahované z niekoľkých voľne dostupných dataset-ov vizuálnej pozornosti (CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, ...). Keďže vo viacerých z nich chýbali úplné informácie k výpočtu máp výraznosti, rozhodli sme sa ich extrahovať rovnako ako pri obrázkoch scény z obrázkov máp výraznosti. Vizualizáciu popisovanej extrakcie v okolí fixácií možno vidieť na obrázku \ref{roi_image}. Nevyhovujúce časti datasetov (ako napr. abstraktné umienie, fraktály, cartoon obrázky, ...) boli odfiltrované.
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.13]{img.png}
+		\includegraphics[scale=0.13]{map.png}
+		\caption[Vizualizácia extrakcie regiónov záujmu]{
+			Vizualizácia extrakcie regiónov záujmu, vľavo obrázok, vpravo mapa výraznosti k nemu
+		}\label{roi_image}
+	\end{center}
+\end{figure}
 
-\iffalse
-\begin{equation}
-content...
-\end{equation}
-\fi
+Mapy výraznosti boli extrahované ako grayscale obrázky, kde hodnota pixelu prakticky určuje intenzitu. Získané dáta boli ďalej pre neurónovú sieť normalizované.
+\newline
+
+\subsubsection{Výsledky}
+
+Navrhovanú sieť sme trénovali na priravenom datasete (nakoniec obsahoval zhruba 500 000 vzoriek), ktorý bol rozdelený štandardne v pomere 80:10:10 (80 - trénovanie, 10 - validácia, 10 - testovanie). Validácia prebiehala po každej iterácii a trénovanie končilo v momente keď sa chyba na validačných dátach začala výrazne odlišovať oproti najnižšej dosiahnutej (pomaly dochádzalo k pretrénovaniu). V závere mala sieť chybu predikcie na testovacích dátach na úrovni \textit{0.29}, chyba bola počítaná ako priemer chýb v každom bode obrázka. Na obrázku \ref{results_image} možno vidieť porovanie predikovaných máp výraznosti s originálnymi a so vstupnými obrázkami. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{predicted_saliency.png}
+		\caption[Porovnanie prvotných výsledkov]{
+			Porovnanie predikcií (dolu) s originálnymi mapami výraznosti (v strede) voči vstupným obrázkom (hore)
+		}\label{results_image}
+	\end{center}
+\end{figure}
+
+Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sme si na začiatku neuvedomili. Väčšina metrík evaluuje mapu výraznosti voči binárnej matici reprezentujúcej fixácie na obrázok. Vzhľadom na to, že našim vstupom boli regióny záujmy v okolí fixácií, vo väčšine prípadov tieto binárne matice obsahovali len jednu fixáciu. Vďaka tomu mali metriky (AUC, sAUC, NSS) nezmyselne vysoké hodnoty. Z tohto dôvodu ich teda považujeme za nerelevantné a jediná metrika, podľa ktorej sa môžeme riadiť, je korelačný koeficient, keďže ten evaluuje predikovanú mapu voči tej pôvodnej. Jeho hodnoty na testovacích dátach sa v priemere pohybovali na hranici 0.563.

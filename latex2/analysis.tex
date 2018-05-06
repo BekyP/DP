@@ -132,7 +132,7 @@ Aktivačná funkcia predstavuje matematické vyjadrenie použité k aproximácii
 	
 \subsection{Učenie sa neurónovej siete}
 	
-Základným prvkom toho, aby bola neurónová sieť schopná riešiť úlohy je učenie sa. Existujú viaceré typy učenia sa neurónovej siete, základnými sú učenie sa s učiteľom (z angl. supervised learning), učenie sa bez učiteľa (z angl. unsupervised learning\cite{unsupervised}) a učenie sa posilňovaním\cite{mnih2013playing}. 
+Základným prvkom toho, aby bola neurónová sieť schopná riešiť úlohy je učenie sa. Existujú viaceré typy učenia sa neurónovej siete, základnými sú učenie sa s učiteľom (z angl. supervised learning), učenie sa bez učiteľa (z angl. unsupervised learning\cite{unsupervised}) a učenie sa posilňovaním (z angl. reinforcement leatning\cite{mnih2013playing}). 
 
 \subsubsection{Učenie sa s učiteľom}
 Učenie s učiteľom prebieha na predpripravenom datasete, ktorý musí obsahovať nejaké testovacie vstupné dáta (pre ktoré chceme vypočítať výstupnú funkciu) a takzvané štítky (z angl. labels), ktoré sú v podstate naše očakaváne výstupy. Najčastejším príkladom tohto typu učenia je algoritmus spätného šírenia chyby (z angl. backpropagation\cite{nielsen2015neural}).
@@ -217,7 +217,7 @@ Zložitejším typom  neurónových sietí sú rekurentné neurónové siete. U�
 Vyššie uvedená funcionalita dovoľuje zachytiť aj dynamické časovo obmedzené správanie a používať kontext z minulosti, teda použiť niečo ako „pamäť“. Rekurentné siete majú veľké množstvo typov, od jednoduchších LSTM až po zložitejšie obojsmerné (z angl. bi-directional).
 
 \paragraph{LSTM} 
-LSTM - skratka pre anglické pomenovanie Long short-term memory, čo v preklade znamená dlhá krátkodobá pamäť. Tento typ rekurentných sietí sa ukázal extrémne efektívny pri úlohách, kde je nutné pamätať si určitú informáciu (kratšieho charakteru) dlhý čas. Za to môžeme vďačiť LSTM jednotke, ktorej štandardná architektúra je zobrazená na obrázku \ref{lstm_unit_image}.
+LSTM\cite{gers1999learning} - skratka pre anglické pomenovanie Long short-term memory, čo v preklade znamená dlhá krátkodobá pamäť. Tento typ rekurentných sietí sa ukázal extrémne efektívny pri úlohách, kde je nutné pamätať si určitú informáciu (kratšieho charakteru) dlhý čas. Za to môžeme vďačiť LSTM jednotke, ktorej štandardná architektúra je zobrazená na obrázku \ref{lstm_unit_image}.
 
 \begin{figure}[H]
 	\begin{center}\includegraphics[scale=0.25]{lstm_unit.png}\end{center}
