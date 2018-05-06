@@ -1,12 +1,14 @@
 \babel@toc {slovak}{}
 \contentsline {figure}{\numberline {1}{\ignorespaces Jednoduch\IeC {\'a} neur\IeC {\'o}nov\IeC {\'a} sie\IeC {\v t}}}{10}{figure.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces Vrstva zdru\IeC {\v z}ovania - pr\IeC {\'\i }klad vzorkovania}}{12}{figure.2}
-\contentsline {figure}{\numberline {3}{\ignorespaces Konvolu\IeC {\v c}n\IeC {\'a} neur\IeC {\'o}nov\IeC {\'a} sie\IeC {\v t}}}{12}{figure.3}
-\contentsline {figure}{\numberline {4}{\ignorespaces Architekt\IeC {\'u}ra fungovania Microsoft CNTK}}{15}{figure.4}
-\contentsline {figure}{\numberline {5}{\ignorespaces Pr\IeC {\'\i }klad grafovej abstrakcie v\IeC {\'y}po\IeC {\v c}tov pou\IeC {\v z}it\IeC {\'\i }m framework-u Theano}}{16}{figure.5}
-\contentsline {figure}{\numberline {6}{\ignorespaces Itti-ho hierarchick\IeC {\'y} model vizu\IeC {\'a}lnej pozornosti}}{20}{figure.6}
-\contentsline {figure}{\numberline {7}{\ignorespaces Diagram modelu k predikcii m\IeC {\'a}p v\IeC {\'y}raznosti zalo\IeC {\v z}en\IeC {\'y}ch na emo\IeC {\v c}nom obsahu}}{23}{figure.7}
-\contentsline {figure}{\numberline {8}{\ignorespaces Diagram konvolu\IeC {\v c}nej LSTM siete}}{23}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Predikcia salientn\IeC {\'y}ch oblast\IeC {\'\i } na z\IeC {\'a}klade k\IeC {\v l}\IeC {\'u}\IeC {\v c}ov\IeC {\'y}ch slov vo vete}}{25}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Model neur\IeC {\'o}novej siete pre predikciu na z\IeC {\'a}klade k\IeC {\v l}\IeC {\'u}\IeC {\v c}ov\IeC {\'y}ch slov}}{26}{figure.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces N\IeC {\'a}vrh neur\IeC {\'o}novej siete}}{30}{figure.11}
+\contentsline {figure}{\numberline {2}{\ignorespaces Jednoduch\IeC {\'a} rekurentn\IeC {\'a} neur\IeC {\'o}nov\IeC {\'a} sie\IeC {\v t}}}{11}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Zobrazenie LSTM jednotky}}{12}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Vrstva zdru\IeC {\v z}ovania - pr\IeC {\'\i }klad vzorkovania}}{14}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Konvolu\IeC {\v c}n\IeC {\'a} neur\IeC {\'o}nov\IeC {\'a} sie\IeC {\v t}}}{14}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Architekt\IeC {\'u}ra fungovania Microsoft CNTK}}{17}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Pr\IeC {\'\i }klad grafovej abstrakcie v\IeC {\'y}po\IeC {\v c}tov pou\IeC {\v z}it\IeC {\'\i }m framework-u Theano}}{18}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Itti-ho hierarchick\IeC {\'y} model vizu\IeC {\'a}lnej pozornosti}}{22}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Diagram modelu k predikcii m\IeC {\'a}p v\IeC {\'y}raznosti zalo\IeC {\v z}en\IeC {\'y}ch na emo\IeC {\v c}nom obsahu}}{25}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Diagram konvolu\IeC {\v c}nej LSTM siete}}{26}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Predikcia salientn\IeC {\'y}ch oblast\IeC {\'\i } na z\IeC {\'a}klade k\IeC {\v l}\IeC {\'u}\IeC {\v c}ov\IeC {\'y}ch slov vo vete}}{28}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Model neur\IeC {\'o}novej siete pre predikciu na z\IeC {\'a}klade k\IeC {\v l}\IeC {\'u}\IeC {\v c}ov\IeC {\'y}ch slov}}{29}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces N\IeC {\'a}vrh neur\IeC {\'o}novej siete}}{33}{figure.13}

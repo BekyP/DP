@@ -187,7 +187,7 @@ V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, kto
 	
 	Vychádza z algoritmu učenia FTRL-Proximal\cite{ftrl}, celým názvom Nasleduj regularizovaného vodcu (z angl. Follow The (Proximal) Regularized Leader). Tento algoritmus je bez regularizácie v podstate identický s gradient descentom, avšak používa alternatívnu reprezentáciu koeficientov váh a tak môže byť regularizácia implementovaná efektívnejšie.
 \end{itemize}
-
+% TODO preformulovat a nejak zmysluplne nadviazat
 Po fáze učenia sa nasleduje validácia, pri ktorej sieť nemá prístup k štítkom. Na záver sa prejde k samotnému testovaniu neurónovej siete, kedy sa do nej posúvajú dáta rovnako bez toho, aby sieť mala prístup k štítkom. Na základe jej predikcie a štítkom k testovacím dátam sa určí jej presnosť. Na učenie, testovanie a validáciu by nemali byť použité tie isté dáta. Pomer dát k jednotlivým fázam by mal byť 80-10-10\cite{80-10-10}, čiže 80\% dát je určených na učenie sa, 10\% na validáciu a 10\% na samotné otestovanie predikcií modelu siete. 
 
 Aj keď neurónové siete dokážu efektívne riešiť veľké množstvo úloh, problémom stále zostáva mať k dispozícii dostatok dát k učeniu neurónovej siete ešte pred riešením úloh. Taktiež je potrebné mať dostatok výpočtovej sily, aby sa problém neriešil pridlhý čas, a dostatok pamäte, keďže neurónové siete jej potrebujú značné množstvo. 	
@@ -195,27 +195,50 @@ Aj keď neurónové siete dokážu efektívne riešiť veľké množstvo úloh, 
 	
 \subsection{Typy neurónových sietí}
 
-	Neurónové siete majú niekoľko typov, ktoré  sa rozlišujú hlavne podľa spôsobu prepojenia neurónov, ale aj podľa typu úloh, na ktoré sú určené, či podľa počtu vrstiev neurónov alebo štýlu učenia. %doplnit zdroj
+Neurónové siete majú niekoľko typov, ktoré  sa rozlišujú hlavne podľa spôsobu prepojenia neurónov, ale aj podľa typu úloh, na ktoré sú určené, či podľa počtu vrstiev neurónov alebo štýlu učenia. %doplnit zdroj
 	
 	
-	Najjednoduchší typ možno zobraziť ako jednu vstupnú vrstvu, jednu skrytú a jednu výstupnú, neuróny sú tu poprepájané z n-tej vrstvy do n+1 vrstvy, ako je možné vidieť na obrázku \ref{simple_nn}. Tento typ sa nazýva dopredná neurónová sieť (z angl. feedforward neural network) a môže mať aj viac ako len jednu skrytú vrstvu. Používa sa hlavne ak sa jedná  o predikciu nelineárnej funkcie (napríklad carbon-13 NMR chemické posuny alkánov\cite{feedforward}). 
+Najjednoduchší typ možno zobraziť ako jednu vstupnú vrstvu, jednu skrytú a jednu výstupnú, neuróny sú tu poprepájané z n-tej vrstvy do n+1 vrstvy, ako je možné vidieť na obrázku \ref{simple_nn}. Tento typ sa nazýva dopredná neurónová sieť (z angl. feedforward neural network) a môže mať aj viac ako len jednu skrytú vrstvu. Používa sa hlavne ak sa jedná  o predikciu nelineárnej funkcie (napríklad carbon-13 NMR chemické posuny alkánov\cite{feedforward}). 
 	\begin{figure}[H]
 		\begin{center}\includegraphics[scale=0.45]{simple_nn.jpg}\end{center}
 		\caption[Jednoduchá neurónová sieť]{Príklad jednoduchej neurónovej siete}\label{simple_nn}
 	\end{figure}
+
+\subsubsection{Rekurentné neurónové siete}
+Zložitejším typom  neurónových sietí sú rekurentné neurónové siete. Už z názvu vyplýva, že jednou z vecí, ktoré umožňujú, je rekurenciu. Vďaka nej prepojenia neurónov už nie sú jednosmerné len z jednej vrstvy na druhú, ale umožňuje prepojiť neuróny akokoľvek a tak vytvárať napríklad slučky či cykly (ukážka na obrázku \ref{rnn_image}).
+
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.7]{rnn_model.png}\end{center}
+	\caption[Jednoduchá rekurentná neurónová sieť]{Príklad jednoduchej rekurentnej neurónovej siete\label{rnn_image}\footnotemark}
 	
-	Zložitejším typom sú rekurentné neurónové siete. Už z názvu vyplýva, že jednou z vecí, ktoré umožňujú, je rekurenciu. Vďaka nej prepojenia neurónov už nie sú jednosmerné len z jednej vrstvy na druhú, ale umožňuje prepojiť neuróny akokoľvek a tak vytvárať napríklad slučky či cykly. To dovoľuje zachytiť aj dynamické časovo obmedzené správanie a používať kontext z minulosti (avšak len niekoľko krokov dozadu), teda použiť niečo ako krátkodobú „pamäť“. Na rozdiel od doprednej neurónovej siete je možné spracovať aj ľubovoľnú sekvenciu vstupov. V praxi to znamená, že keď chceme napríklad predikovať ďalšie slovo vo vete, je dobré vedieť, ktoré slová boli pred ním. Tento typ sietí sa používa napríklad pri rozpoznávaní reči\cite{rnn_speech} alebo písma\cite{rnn_handwriting}, či generovaní popisu k obrázkom\cite{image_description}, kedy však funguje v kombinácii s konvolučnou neurónovou sieťou (z angl. convolutional neural network). Tá je použitá na klasifikáciu obrázkov a rozoznávanie objektov, rekurentná sieť je použitá iba na výsledné generovanie jednoduchého popisu. 
-	%TODO asi podobne riesenie ako google drawing treba zistit
-	%TODO treba dopisat radial base typ
-	Konvolučná neurónová sieť je ďalším typom neurónovej siete, ktorá sa používa pri práci s obrázkami (rozpoznávanie objektov, atď.). Podrobnejšie je tento typ popísaný nižšie, nakoľko je to typ, s~ktorým budeme pracovať aj neskôr. 
+\end{figure}
+\footnotetext{http://www.mattmoocar.me/blog/RNNCountryLyrics/}
+
+Vyššie uvedená funcionalita dovoľuje zachytiť aj dynamické časovo obmedzené správanie a používať kontext z minulosti, teda použiť niečo ako „pamäť“. Rekurentné siete majú veľké množstvo typov, od jednoduchších LSTM až po zložitejšie obojsmerné (z angl. bi-directional).
+
+\paragraph{LSTM} 
+LSTM - skratka pre anglické pomenovanie Long short-term memory, čo v preklade znamená dlhá krátkodobá pamäť. Tento typ rekurentných sietí sa ukázal extrémne efektívny pri úlohách, kde je nutné pamätať si určitú informáciu (kratšieho charakteru) dlhý čas. Za to môžeme vďačiť LSTM jednotke, ktorej štandardná architektúra je zobrazená na obrázku \ref{lstm_unit_image}.
+
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.25]{lstm_unit.png}\end{center}
+	\caption[Zobrazenie LSTM jednotky]{Ukážka štruktúry LSTM jednotky\label{lstm_unit_image}}
 	
-	\subsubsection{Konvolučné neurónové siete}
-	\
-	\
-	\
-	\
-	\
-	Základ tejto siete tvorí vstupná konvolučná vrstva\footnote{http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/} s konvolučným filtrom, ten býva väčšinou malý (3x3, 5x5). Vstup tejto vrstvy musí byť v tvare \textit{m} x \textit{m} x \textit{r}, kde \textit{m} je šírka a výška obrázku, \textit{r} je počet farebných kanálov. Napríklad pre RGB obrázok je r=3 (červená, zelená, modrá). Konvolučným filtrom sa prejde celý obrázok a výstupom z tejto vrstvy je niekoľko filtrov. Tie sa potom spracúvajú v ďalšie vrstve združovania (z angl. pooling layer\cite{cs231n}), ktorá tieto filtre rozvzorkuje. To prebieha nezávisle na každom získanom filtry z konvolučnej vrstvy. Rozvzorkovanie v podstate znamená, že sa zmení veľkosť filtrov použítim operácie MAX. Najbežnejšou formou spomínanej vrstvy je verzia s oknom (filtrom) o veľkosti 2x2 aplikovaným s krokom veľkosti 2. Toto sa dá jednoducho vysvetliť ako prejdenie každého výstupu z konvolučnej vrstvy oknom uvedenej veľkosti postupne po 2 políčkach na šírku aj výšku, pričom z každej štvorice v okne sa získa MAX operáciou maximum, s ktorým sa pracuje ďalej. Na  obrázku\footnote{http://cs231n.github.io/convolutional-networks/} \ref{fig:cnn} je vidieť výsledok popisovaného postupu na jednoduchom príklade.
+\end{figure}
+
+Na rozdiel od klasickejších rekurentných sietí, kde jednotka obsahuje jednu vrstvu neurónov, LSTM jednotka (bunka) obsahuje až štyri, každá špecializovaná na niečo iné. Na obrázku vyššie reprezentuje prvá horizontálna čiara v jednotke jej stav. Informácia tadiaľto prakticky len "tečie", s malými lineárnymi zmenami ako pridanie alebo odobratie. Tieto akcie sú opatrne regulované tzv. bránami.
+
+Spodná horizontálna čiara reprezentuje postupné vstupy do štyroch vrstviev zobrazených na obrázku ako štvorce s aktivačnými funkciami ($\sigma$ - sigmoid, tanh). Vrstvy so sigmoid-om fungujú ako tzv. "strážcovia", vzhľadom na ich výstup v intervale \ <0,1> \ určujú aké veľké množstvo informácie má byť pustené ďalej (0 - nič, 1 - všetko). Týmto prakticky kontrolujú a udržujú stav celej bunky. Prvá sigmoid vrstva sa nazýva "zabúdacia brána" (z angl. forget gate layer) a určuje, aké množstvo informácií z aktuálneho stavu bunky bude zahodených. Druhá sigmoid vrstva sa nazýva "vstupná brána" (z angl. input gate layer) a určuje, ktoré hodnoty budú aktualizované. Tretia tanh vrstva vytvorí vektor hodnôt, ktoré je možné pridať k stavu bunky. Výstup z týchto dvoch vrstiev je skombinovaný k aktualizovaniu stavu bunky. Posledná sigmoid vrstva prakticky určuje aké hodnoty budú výstupom z celej jednotky. Výstup je založený na upravenom stave bunky, avšak vyfiltrovaný na základe hodnôt z poslednej sigmoid vrstvy.
+
+Keďže rekurentné siete na rozdiel od dopredných môžu na vstupe spracovať aj ľubovoľnú sekvenciu (vektor) predstavujú s možnosťou "pamäte" značný posun. V praxi sa používajú napríklad pri úlohách so spracúvaním jazyka. Keby sme chceli napríklad predikovať nasledujúce slovo vo vete, je veľmi užitočné vedieť aké slová boli pred ním aby predikcia dávala zmysel. Práve v tejto oblasti sa LSTM siete ukázali veľmi efektívne. Využívajú sa ďalej napríklad aj pri rozpoznávaní reči\cite{rnn_speech} alebo písma\cite{rnn_handwriting}, či generovaní popisu k obrázkom\cite{image_description}, kedy však funguje v kombinácii s konvolučnou neurónovou sieťou (z angl. convolutional neural network).Tá je ďalším typom sietí a v tomto prípade bola použitá na klasifikáciu obrázkov a rozpoznávanie objektov, LSTM sieť bola použitá iba na generovanie výsledného jednoduchého popisu.
+
+
+\subsubsection{Konvolučné neurónové siete}
+\
+\
+\
+\
+\
+Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/} s konvolučným filtrom, ten býva väčšinou malý (3x3, 5x5). Vstup tejto vrstvy musí byť v tvare \textit{m} x \textit{m} x \textit{r}, kde \textit{m} je šírka a výška obrázku, \textit{r} je počet farebných kanálov. Napríklad pre RGB obrázok je r=3 (červená, zelená, modrá). Konvolučným filtrom sa prejde celý obrázok a výstupom z tejto vrstvy je niekoľko filtrov. Tie sa potom spracúvajú v ďalšie vrstve združovania (z angl. pooling layer\cite{cs231n}), ktorá tieto filtre rozvzorkuje. To prebieha nezávisle na každom získanom filtry z konvolučnej vrstvy. Rozvzorkovanie v podstate znamená, že sa zmení veľkosť filtrov použítim operácie MAX. Najbežnejšou formou spomínanej vrstvy je verzia s oknom (filtrom) o veľkosti 2x2 aplikovaným s krokom veľkosti 2. Toto sa dá jednoducho vysvetliť ako prejdenie každého výstupu z konvolučnej vrstvy oknom uvedenej veľkosti postupne po 2 políčkach na šírku aj výšku, pričom z každej štvorice v okne sa získa MAX operáciou maximum, s ktorým sa pracuje ďalej. Na  obrázku\footnote{http://cs231n.github.io/convolutional-networks/} \ref{fig:cnn} je vidieť výsledok popisovaného postupu na jednoduchom príklade.
 	
 	\begin{figure}[H]
 		\begin{center}\includegraphics[scale=0.38]{maxpool.jpeg}\end{center}

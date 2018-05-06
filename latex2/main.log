@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.10)  5 MAY 2018 21:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.10)  6 MAY 2018 10:56
 entering extended mode
 **./main.tex
 (main.tex
@@ -1048,131 +1048,146 @@ Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                removing `\textasciicaron' on input line 162.
 
 [8] [9]
-<figures/simple_nn.jpg, id=330, 525.965pt x 403.5075pt>
+<figures/simple_nn.jpg, id=339, 525.965pt x 403.5075pt>
 File: figures/simple_nn.jpg Graphic file (type jpg)
 <use figures/simple_nn.jpg>
 Package pdftex.def Info: figures/simple_nn.jpg  used on input line 203.
 (pdftex.def)             Requested size: 236.68205pt x 181.57669pt.
  [10 <./figures/simple_nn.jpg>]
+<figures/rnn_model.png, id=346, 301.125pt x 239.39438pt>
+File: figures/rnn_model.png Graphic file (type png)
+<use figures/rnn_model.png>
+Package pdftex.def Info: figures/rnn_model.png  used on input line 211.
+(pdftex.def)             Requested size: 210.78606pt x 167.5749pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 212.
+<figures/lstm_unit.png, id=349, 1599.9775pt x 711.65875pt>
+File: figures/lstm_unit.png Graphic file (type png)
+<use figures/lstm_unit.png>
+Package pdftex.def Info: figures/lstm_unit.png  used on input line 223.
+(pdftex.def)             Requested size: 399.9934pt x 177.91425pt.
+
+Overfull \hbox (9.9934pt too wide) in paragraph at lines 223--223
+ [] 
+ []
+
+[11 <./figures/rnn_model.png>] [12 <./figures/lstm_unit.png>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 212.
+(hyperref)                removing `\textasciicaron' on input line 235.
 
-<figures/maxpool.jpeg, id=343, 789.95125pt x 369.38pt>
+<figures/maxpool.jpeg, id=370, 789.95125pt x 369.38pt>
 File: figures/maxpool.jpeg Graphic file (type jpg)
 <use figures/maxpool.jpeg>
-Package pdftex.def Info: figures/maxpool.jpeg  used on input line 221.
+Package pdftex.def Info: figures/maxpool.jpeg  used on input line 244.
 (pdftex.def)             Requested size: 300.18459pt x 140.36584pt.
-[11]
-<figures/cnn.png, id=356, 1027.84pt x 280.04625pt>
+[13]
+<figures/cnn.png, id=382, 1027.84pt x 280.04625pt>
 File: figures/cnn.png Graphic file (type png)
 <use figures/cnn.png>
-Package pdftex.def Info: figures/cnn.png  used on input line 226.
+Package pdftex.def Info: figures/cnn.png  used on input line 249.
 (pdftex.def)             Requested size: 390.58325pt x 106.41867pt.
 
-Overfull \hbox (0.58325pt too wide) in paragraph at lines 226--226
+Overfull \hbox (0.58325pt too wide) in paragraph at lines 249--249
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 230--230
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
 [][][]\T1/ptm/m/n/10 (+18) https://cloud.google.com/blog/big-data/2016/08/how-a
 -japanese-cucumber-farmer-is-using-
  []
 
-[12 <./figures/maxpool.jpeg> <./figures/cnn.png>]
+[14 <./figures/maxpool.jpeg> <./figures/cnn.png>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+t'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 235.
+(hyperref)                removing `\textasciicaron' on input line 258.
 
-[13]
-<figures/microsoft-cntk-architecture.png, id=382, 1405.25pt x 723.70375pt>
+[15]
+<figures/microsoft-cntk-architecture.png, id=407, 1405.25pt x 723.70375pt>
 File: figures/microsoft-cntk-architecture.png Graphic file (type png)
 <use figures/microsoft-cntk-architecture.png>
 Package pdftex.def Info: figures/microsoft-cntk-architecture.png  used on input
- line 264.
+ line 287.
 (pdftex.def)             Requested size: 421.57826pt x 217.1128pt.
 
-Overfull \hbox (31.57826pt too wide) in paragraph at lines 264--267
+Overfull \hbox (31.57826pt too wide) in paragraph at lines 287--290
  [] 
  []
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 267.
-[14]
-<figures/theano-data-visualization.png, id=392, 1022.82124pt x 647.41875pt>
+[16]
+<figures/theano-data-visualization.png, id=417, 1022.82124pt x 647.41875pt>
 File: figures/theano-data-visualization.png Graphic file (type png)
 <use figures/theano-data-visualization.png>
 Package pdftex.def Info: figures/theano-data-visualization.png  used on input l
-ine 293.
+ine 316.
 (pdftex.def)             Requested size: 357.9928pt x 226.59995pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--299
+Underfull \hbox (badness 10000) in paragraph at lines 322--322
 [][][]\T1/ptm/m/n/10 (+20) http://www.wildml.com/2015/09/speeding-up-your-neura
 l-network-with-theano-and-the-
  []
 
-[15 <./figures/microsoft-cntk-architecture.png>] [16 <./figures/theano-data-vis
-ualization.png>] [17] [18]
-<figures/itti_model.jpeg, id=426, 633.36626pt x 542.025pt>
+[17 <./figures/microsoft-cntk-architecture.png>] [18 <./figures/theano-data-vis
+ualization.png>] [19] [20]
+<figures/itti_model.jpeg, id=451, 633.36626pt x 542.025pt>
 File: figures/itti_model.jpeg Graphic file (type jpg)
 <use figures/itti_model.jpeg>
-Package pdftex.def Info: figures/itti_model.jpeg  used on input line 375.
+Package pdftex.def Info: figures/itti_model.jpeg  used on input line 398.
 (pdftex.def)             Requested size: 253.34201pt x 216.80615pt.
- [19]
-Overfull \hbox (20.12677pt too wide) in paragraph at lines 382--383
+ [21]
+Overfull \hbox (20.12677pt too wide) in paragraph at lines 405--406
 []\T1/ptm/m/n/12 (-20) Pri po-u-ºítí me-tódy hie-rar-chic-kej vý-raz-nosti (z a
 ngl. hierarchical-saliency method[[]])
  []
 
-[20 <./figures/itti_model.jpeg>]
+[22 <./figures/itti_model.jpeg>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 402.
+(hyperref)                removing `\textasciicaron' on input line 425.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 414.
+(hyperref)                removing `\textasciicaron' on input line 437.
 
-[21]
-<figures/liu_emotion_model.png, id=455, 891.33pt x 340.27126pt>
+[23]
+<figures/liu_emotion_model.png, id=481, 891.33pt x 340.27126pt>
 File: figures/liu_emotion_model.png Graphic file (type png)
 <use figures/liu_emotion_model.png>
-Package pdftex.def Info: figures/liu_emotion_model.png  used on input line 452.
+Package pdftex.def Info: figures/liu_emotion_model.png  used on input line 475.
 
 (pdftex.def)             Requested size: 383.26443pt x 146.31378pt.
- [22]
-<figures/dilated_NN.png, id=467, 951.555pt x 390.70969pt>
+ [24]
+<figures/dilated_NN.png, id=493, 951.555pt x 390.70969pt>
 File: figures/dilated_NN.png Graphic file (type png)
 <use figures/dilated_NN.png>
-Package pdftex.def Info: figures/dilated_NN.png  used on input line 464.
+Package pdftex.def Info: figures/dilated_NN.png  used on input line 487.
 (pdftex.def)             Requested size: 390.14008pt x 160.192pt.
- [23 <./figures/liu_emotion_model.png> <./figures/dilated_NN.png>]
+ [25 <./figures/liu_emotion_model.png>] [26 <./figures/dilated_NN.png>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+t'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 493.
+(hyperref)                removing `\textasciicaron' on input line 516.
 
-[24]
-<figures/top_down_captions.png, id=490, 338.76563pt x 463.7325pt>
+<figures/top_down_captions.png, id=514, 338.76563pt x 463.7325pt>
 File: figures/top_down_captions.png Graphic file (type png)
 <use figures/top_down_captions.png>
-Package pdftex.def Info: figures/top_down_captions.png  used on input line 499.
+Package pdftex.def Info: figures/top_down_captions.png  used on input line 522.
 
 (pdftex.def)             Requested size: 237.13431pt x 324.61052pt.
- [25 <./figures/top_down_captions.png>]
-<figures/top_down_captions_NN.png, id=502, 734.745pt x 285.31593pt>
+[27] [28 <./figures/top_down_captions.png>]
+<figures/top_down_captions_NN.png, id=531, 734.745pt x 285.31593pt>
 File: figures/top_down_captions_NN.png Graphic file (type png)
 <use figures/top_down_captions_NN.png>
 Package pdftex.def Info: figures/top_down_captions_NN.png  used on input line 5
-08.
+31.
 (pdftex.def)             Requested size: 382.0696pt x 148.36513pt.
- [26 <./figures/top_down_captions_NN.png>] [27]) [28] (design.tex
-<figures/graph-run.jpg, id=525, 1620.0525pt x 1192.455pt>
+ [29 <./figures/top_down_captions_NN.png>] [30]) [31] (design.tex
+<figures/graph-run.jpg, id=555, 1620.0525pt x 1192.455pt>
 File: figures/graph-run.jpg Graphic file (type jpg)
 <use figures/graph-run.jpg>
 Package pdftex.def Info: figures/graph-run.jpg  used on input line 23.
@@ -1182,32 +1197,32 @@ Overfull \hbox (258.00954pt too wide) in paragraph at lines 23--26
  [] 
  []
 
-[29
+[32
 
-]) [30 <./figures/graph-run.jpg>] (conclusions.tex) [31
+]) [33 <./figures/graph-run.jpg>] (conclusions.tex) [34
 
-] (main.bbl [32
+] (main.bbl [35
 
 ]
-[33] [34])
+[36] [37])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
- [35]
+ [38]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
  (main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 715F62C1E17225E7772E5DEA612AD951;2635.
+(rerunfilecheck)             Checksum: F4ADF6EDB8DB8280593F7034A7248CC9;2731.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 200.
  ) 
 Here is how much of TeX's memory you used:
- 16870 strings out of 493301
- 259245 string characters out of 3129629
- 368364 words of memory out of 3000000
- 19686 multiletter control sequences out of 15000+200000
- 80843 words of font info for 214 fonts, out of 3000000 for 9000
+ 16900 strings out of 493301
+ 259705 string characters out of 3129629
+ 369479 words of memory out of 3000000
+ 19700 multiletter control sequences out of 15000+200000
+ 81198 words of font info for 218 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,8n,92p,1569b,596s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,8n,92p,1569b,600s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
 }{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy
 .enc}{C:/Users/bekap/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ma
@@ -1226,9 +1241,9 @@ iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/bekap/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/bekap/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/bekap/AppData/Loc
 al/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (43 pages, 2016443 bytes).
+Output written on main.pdf (46 pages, 2125116 bytes).
 PDF statistics:
- 637 PDF objects out of 1000 (max. 8388607)
- 155 named destinations out of 1000 (max. 500000)
- 33104 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 668 PDF objects out of 1000 (max. 8388607)
+ 163 named destinations out of 1000 (max. 500000)
+ 33122 words of extra memory for PDF output out of 35830 (max. 10000000)
 
