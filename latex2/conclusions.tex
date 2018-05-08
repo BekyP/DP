@@ -2,32 +2,6 @@
 
 \section{Zhrnutie}
 
-\iffalse 
-Vypracovaná prvá časť bakalárskeho projektu obsahuje analýzu nosnej časti pripravovaného riešenia, neurónových sietí. K ich správnemu popisu, princípom a fungovaniu bolo nutné prečítať a naštudovať značné množstvo hlavne odborných článkov. Spolu s popisom existujúcich riešení v danej oblasti práca v aktuálnom stave poskytuje dostatok informácií k oboznámeniu sa s popisovanou problematikou. 
+Vypracovaná prvá časť diplomového projektu zachytáva analýzu problémovej oblasti vizuálnej pozornosti, analýzu nosnej časti pripravovaného riešenia (neurónových sietí) a detailný popis fungovania a princípov existujúcich riešení, modelov k predikcii pozornosti oboch typov. V aktuálnom stave práca poskytuje dostatočné množstvo informácií k oboznámeniu sa s problematikou a pochopenie kľúčových existujúcich riešení. 
 
-Súčasťou odovzdávanej časti sú taktiež aj popisy prvotných experimentov spolu s návrhom neurónovej siete a datasetom použitým počas v rámci experimentovania.
-\newline
-\fi
-
-% TODO zistit ci treba nejaky plan na buduci semester
-
-\iffalse
-Plán a rozdelenie zvyšnej práce je zhruba nasledovný:
-
-\textbf{Skúškové obdobie}
-\begin{itemize}
-	\item refaktorizácia a „upratanie" doterajšej práce (hlavne kódu)
-	\item implementácia návrhu
-	\item mať funkčný prototyp schopný predikcie
-	\item otestovať rôzne možnosti učenia (meniť veľkosti batch-ov, rýchlosť,...)
-	\item v januári prekonzulovať dosiahnuté výsledky spolu s ďalším postupom
-\end{itemize}
-
-\textbf{Letný semester}
-\begin{itemize}
-	\item refaktorizácia a optimalizácia riešenia
-	\item postupné dopisovanie práce a dokumentácie
-\end{itemize}
-
-Vyššie uvedený plán je iba orientačný, určite sa bude meniť, či už v závislosti od vzniknutých problémov alebo množstva času nutného k splneniu jednotlivých bodov plánu a vypracovaniu častí práce.
-\fi
+Súčasťou odovzdávanej časti je taktiež prvotný návrh neurónovej siete spolu s počiatočnými experimentami a výsledkami. Z nich vyplynulo, že aj keď neurónová sieť tohto typu je schopná naučiť sa isté závislosti v častiach obrázkov a niečo aj predikovať, presnosť sa nejaví byť dostatočná vzhľadom na značné obmedzenie informácií o celej scéne. Tieto prvotné experimenty nám taktiež napovedajú, kam by sa práca mohla v ďalších mesiacoch uberať. V prvom rade vzhľadom na problémy s vyhodnotením predikcií v častiach obrázkov metrikami sa javí ako rozumné upustiť od predikovania na podobrázkoch a sústrediť sa radšej na plnohodnotnú predikciu pre celý obrázok. Ako druhú kľúčovú vec je vhodné uviesť, že samotná konvolučná neurónová sieť pravdepodobne nebude schopná odviesť si všetky závislosti vzhľadom na sémantický kontext scény a pozornosť zhora nadol (top-down). Preto bude prospešné použiť ju v kombinácii napríklad s LSTM sieťou (alebo jej variantami), ktorá vzhľadom na svoju schopnosť "pamäte" \ poskytuje oveľa väčšie možnosti obsiahnutia kľúčových informácií o scéne, čo koniec koncov vyplýva aj z analyzovaných riešení.

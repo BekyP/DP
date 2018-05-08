@@ -2,36 +2,18 @@
 \pagestyle{plain}
 \pagenumbering{roman}
 %\renewcommand{\thepage}{\Alph{page}}
-\ifthenelse {\boolean{bachelor}}
-{
-	%\section{Technical documentation}
-	\section{Technická dokumentácia}
-}
-{
-	%\chapter{Technical documentation}
-	\chapter{Technická dokumentácia}
-}
- \label{technical_documentation}
- 
-V nasledujúcej časti sa nachádza technická dokumentácia, spolu s doteraz použitými technológiami. Jednotlivo sú popísané najdôležitejšie použité knižnice a funkcionalita rozdelená v procedúrach.  
 
-\subsection{Hardvér}
-Trénovanie modelu neurónovej siete prebiehalo na fakultnom serveri s grafickou kartou Nvidia GeForce GTX 980 Ti 6gb a RAM pamäťou o veľkosti 24gb, avšak samotné riešenie nie je viazané na určitý typ hardvéru, stačí len mať dostatok pamäte na vytvorenie modelu a spracovanie datasetu. 
+\section{Plán ďalšej práce}
 
-\subsection{Použité knižnice}
+Plán a rozdelenie práce na ďalší semester:
 
-\subsubsection{TensorFlow}
-
-TensorFlow\footnote{https://www.tensorflow.org/} je open-source softvérová knižnica, ktorá pre numerické výpočty používa graf dátového toku, kde uzly grafu reprezentujú matematické operácie a hrany multidimenzionálne dátové polia, tzv. tenzory. Graf je možné skonštruovať použitím jazykov s podporou frontend-u (C++ a Python). 
-
-Flexibilná architektúra umožňuje vykonávať výpočty na CPU alebo GPU (nepomerne rýchlejšie) na serveroch, desktopových počítačoch či dokonca aj mobilných zariadeniach. Pôvodne bol TensorFlow vyvinutý výzkumníkmi a inžiniermi v Google-i pre strojové učenie a hlboké učenie, avšak jeho využitie je oveľa širšie. Momentálne používa TensorFlow veľké množstvo programov, napríklad Google vyhľadávač, prekladač alebo YouTube. 
-
-Centrálnou jednotkou v TensorFlow-e je tenzor. Ten pozostáva z hodnôt sformovaných v pole akejkoľvek veľkosti či dimenzie. Jadro TensorFlow-u tvorí výpočtový graf, čo je vlastne séria TensorFlow operácií, ktoré sú do grafu pridané ako uzly.
-
-Klientske programy interagujú s TensorFlow-om vytvorením tzv. \textit{Session}. Jej primárne podporovanou operáciou je \textit{Run},  ktorá 
-v podstate funguje ako \textit{init}, keďže do jej zavolania sú hodnoty všetkých premenných TensorFlow-u neinicializované. 
-
-Pre potreby strojového učenia je dostupné značné množstvo funkcií od nastavenia optimizérov, cez funkcie počítajúce chybu či presnosť až po tie zabezpečujúce samotné učenie. 
-
-\subsubsection{Matplotlib}
-Ďalšia open-source knižnica\footnote{https://matplotlib.org/}, pre zmenu určená pre 2D vykresľovanie nielen rôznych grafov. Poskytuje obrovské množstvo možností vizualizácií dát, ktoré ocení nielen hŕstka vedcov. Jeho základnou súčasťou je modul pyplot, ktorý prakticky implementuje vykresľovaciu funkcionalitu Matlabu.
+\begin{itemize}
+	\item refaktorizácia a upratanie doterajšej práce (kód, vygenerovaný dataset)
+	\item experimentácia s neurónovou sieťou
+	\item nájdenie možných verejne dostupných datasetov pre pozornosť zhora nadol (top-down)
+	\item pripravenie experimentu pre získanie dát pre pozornosť zhora nadol (top-down)
+	\item vykonanie experimentu s čo najväčším počtom ľudí
+	\item experimenty s rôznymi typmi sietí (dilatovaná konvolučná sieť, LSTM, konvolučná LSTM, ...)
+	\item porovnanie výsledkov s inými riešeniami
+	\item predbežné doplnenie dokumentácie
+\end{itemize}
