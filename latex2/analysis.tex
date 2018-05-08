@@ -5,7 +5,7 @@
 	
 Termín vizuálna pozornosť možno definovať ako súbor všetkých faktorov, ktoré ovplyvňujú naše mechanizmy výberu podstatných častí v scéne a jej spracovanie, nezáležiac od toho, aké tieto mechanizmy sú (či už riadené stimulmi, očakávaniami, pamaťou, atď.) \cite{borji2013state}.
 
-Tento pojem je často zamieňaný s vizuálnou výraznosťou, avšak tieto dva termíny nevyjadrujú úplne to isté. Presnejšou definíciou vizuálnej výraznosti (z angl. visual saliency) je, že sa jedná o značne subjektívnu perceptuálnu vlastnosť, vďaka ktorej niektoré veci vo svete (v scéne) vyčnievajú v porovnaní so svojimi susedmi kvôli ich vlastnostiam ako farba, jas, kontrast či orientácia \cite{itti2007visual}. Upútanie pozornosti ovplyvňujú mechanizmy spracovania scény, ktoré možno rozdeliť do na dve skupiny:
+Tento pojem je často zamieňaný s vizuálnou výraznosťou, avšak tieto dva termíny nevyjadrujú úplne to isté. Presnejšou definíciou vizuálnej výraznosti (z angl. visual saliency) je, že sa jedná o značne subjektívnu perceptuálnu vlastnosť, vďaka ktorej niektoré veci vo svete (v scéne) vyčnievajú v porovnaní so svojimi susedmi kvôli ich vlastnostiam ako farba, jas, kontrast či orientácia \cite{itti2007visual}. Upútanie pozornosti ovplyvňujú mechanizmy spracovania scény, ktoré možno rozdeliť na dve skupiny:
 \begin{itemize}
 	\item spracovanie „zdola nahor“ (z angl. bottom-up) %- riadená čisto iba pútavými stimulmi, ktoré sú v podstate známkou toho, že „táto lokácia je značne odlišná od svojho okolia a stojí za pozornosť.“\ Je rýchla a nevedomá.
 	\item spracovanie „zhora nadol“ (z angl. top-down) %- riadená tzv. predvídateľnými mechanizmami, ako napríklad hľadaním niečoho konkrétneho na webovej stránke. Je pomalšia, vedomá a ovplyvnená našou pamaťou. 
@@ -13,68 +13,68 @@ Tento pojem je často zamieňaný s vizuálnou výraznosťou, avšak tieto dva t
 \end{itemize}
 
 
-\subsection{Bottom-up spracovanie}
+\subsection{Spracovanie zdola nahor}
 Vizuálne stimuly, ktoré upútajú pozornosť automaticky, mimovoľne, sa nazývajú bottom-up stimuly (alebo kontextovo riadené). Práve tieto riadia našu pozornosť a v podstate sú akousi známkou (ukazovateľom), že táto lokácia (alebo objekt v nej) je značne odlišná od svojho okolia a presne preto stojí za pozornosť. Ich príkladom môžu byť značky pri pozemných komunikáciách, bezpečnostné prvky vo vozidlách, ale aj správne umiestnené titulky v novinách, blogoch, či dizajnérmi nesprávne umiestnená reklama na webových stránkach zbytočne odtrhujúca našu pozornosť od podstatných vecí. 
 
 Hlavnou charakteristikou tohto spracovania je nevedomosť (obvykle bez predošlých informácií o pozorovanej scéne) a rýchlosť - priemerné spracovanie jedného objektu v scéne je na úrovni od 20 do 50 milisekúnd\cite{itti2001computational}.
 
 
-\subsection{Top-down spracovanie}
-Tento typ spracovania vizuálnych signálov sa oproti vyššie uvedenému líši viacerými vecami. Tou prvou je, že sa riadi tzv. predvídateľnými mechanizmami a prináša so sebou bližšie nešpecifikovanú vedomosť o pozorovanej scéne - pozorovateľ má isté informácie ako predošlé skúsenosti, spomienky, alebo napríklad hľadá v scéne nejaký konkrétny objekt. Z tohto dôvodu sa nazýva aj spracovaním založeným na vedomostiach (z angl. knowledge-based processing\cite{goldstein2008blackwell}) alebo údajoch (a angl. data-driven processing\cite{gregory1974concepts})
+\subsection{Zhora nadol spracovanie}
+Tento typ spracovania vizuálnych signálov sa oproti vyššie uvedenému líši viacerými vecami. Tou prvou je, že sa riadi tzv. predvídateľnými mechanizmami a prináša so sebou bližšie nešpecifikovanú vedomosť o pozorovanej scéne - pozorovateľ má isté informácie ako napríklad predošlé skúsenosti, spomienky, alebo hľadá v scéne nejaký konkrétny objekt. Z tohto dôvodu sa nazýva aj spracovaním založeným na vedomostiach (z angl. knowledge-based processing\cite{goldstein2008blackwell}) alebo údajoch (z angl. data-driven processing\cite{gregory1974concepts})
 
-Druhým veľkým rozdielom oproti bottom-up spracovaniu je jeho rýchlosť, priemerný čas spracovania vizuálneho signálu sa pohybuje na úrovni 200 milisekúnd\cite{itti2001computational} a viac, čo je výrazne pomalšie.
+Druhým veľkým rozdielom oproti spracovaniu zdola nahor je jeho rýchlosť, priemerný čas spracovania vizuálneho signálu sa pohybuje na úrovni 200 milisekúnd\cite{itti2001computational} a viac, čo je výrazne pomalšie.
 
 % TODO dake shity dopisat este
 
 \section{Neurónové siete}
 \label{nn}
-	 Neurónová sieť je abstraktný výpočtovový model založený na princípe reálnych biologických neurosystémov. Základnou stavebnou jednotkou je tak rovnako ako u neurónových sietí živočíchov neurón, resp. model neurónu\cite{neuron}. Ten spracováva rôzne množstvo vstupov (N) a výstupov (M). V minulosti sa zvykol vyjadrovať podľa nasledovnej matematickej špecifikácie: 
+
+Neurónová sieť - pojem reprezentujúci značne abstraktný výpočtový model, ktorého princíp fungovania bol postavený na reálnych biologický neurosystémoch. Ako už zo základnej školy vieme, základnou stavebnou jednotkou živých organizmov je bunka. Jej špecializovaným derivátom je nervová bunka - neurón, stavebný kameň nervových systém. Pri neurónových sieťach je základnou jednotkou rovnako neurón (avšak nie živý ale umelý), respektíve jeho matematické vyjadrenie. To predpokladá, že umelý neurón je schopný spracovať \textit{N} vstupov a k nim poskytnúť \textit{M} výstupov. Jedna zo starších matematický špecifikácii ho popisuje nasledovne:
+
 	\begin{equation}
 		o_i ^{k+1} = f\left ( \sum_{j+1}^{N} w_{ij}^{k} * o_j^k - \theta_i^{k+1}  \right )
 	\end{equation}
 	
-	Pre vyššie uvedené platí: 
-	\newline
-	0 \textless i ≤ M
-	\newline
-	0 \textless j ≤ N
-	\newline
-	\(o_i^{k+1}\)  - výstupná hodnota i-teho neurónu patriaceho k+1 vrstve 
-	\newline
-	k - číslo vrstvy
-	\newline
-	\(\theta_{ij}^{k}\) - prah stimulácie i-teho neurónu k+1 vrstvy
-	\newline
-	\(w_{ij}^{k}\) - váha medzi i-tym neurónom vrstvy k+1 a j-tym neurónom vrstvy k 
-	\newline 
-	f() - funkcia
-	\newline
+Pre vyššie uvedené platí: 
+\newline
+\textit{0 \textless i ≤ M
+\newline
+0 \textless j ≤ N}
+\newline
+\(o_i^{k+1}\)  - výstupná hodnota i-teho neurónu patriaceho k+1 vrstve 
+\newline
+\textit{k} - číslo vrstvy
+\newline
+\(\theta_{ij}^{k}\) - prah stimulácie i-teho neurónu k+1 vrstvy
+\newline
+\(w_{ij}^{k}\) - váha medzi i-tym neurónom vrstvy k+1 a j-tym neurónom vrstvy k 
+\newline 
+\textit{f()} - aktivačná funkcia
+\newline
 	
-	V súčasnosti sa však používa radšej matematické vyjadrenie zobrazené v rovnici \ref{eq:new_neuron}. Vypustil sa z neho prah stimulácie neurónu, miesto ktorého sa používa tzv. predsudok (z angl. bias), čo je niečo ako predpokladaná hodnota (náš chýbajúci prah stimulácie) neurónu. Tá sa časom samozrejme mení. 
-	
-	Predpokladajme, že máme \textit{m+1} vstupov so signálmi od \(x_0\) po \(x_m\) a váhami od \(w_0\) po \(w_m\). Obvykle sa vstupu \(x_0\) pridelí hodnota +1, čím sa stane predsudkom vstupu s \(w_{k0} = b_k\). To necháva potom iba \textit{m} vstupov do neurónu, od \(x_1\) do \(x_m\). Samotný výstup z k-teho neurónu je potom matematicky vyjadrený nasledujúcou rovnicou:
-	
+Modernejšie prístupy však odstránili prah stimulácie neurónu a miesto neho pridali tzv. predsudok (z angl. bias), ktorý reprezentuje predpokladanú (s časom sa meniacu) hodnotu stimulácie neurónu na ďalšej vrstve. Pre vysvetlenie hypoteticky predpokladajme, že máme umelý neurón a chceme, aby spracoval \textit{m+1} vstupov so signálmi od \(x_0\) po \(x_m\) a váhami od \(w_0\) po \(w_m\). Pre \(x_0\) pridelíme hodnotu +1, vďaka čomu sa stane predsudkom (biasom) k vstupu s \(w_{k0} = b_k\). Týmto postupom nám teda zostane iba \textit{m} vstupov so signálmi od \(x_1\) po \(x_m\). Popisovaný postup ako aj výstup z k-teho neurónu matematicky vyjadruje rovnica \ref{eq:new_neuron} nižšie:
+
 	\begin{equation}
 		\label{eq:new_neuron}
 		y_k = \phi (\sum_{j=0}^{m} w_{kj}*x_j)
 	\end{equation}
 	
-	Pre vyššie uvedené platí:
-	\newline
-	\(y_k\) - výstup k-teho neurónu
-	\newline
-	\(w_{kj}\) - váha j-teho neurónu spojeného s k-tym neurónom na ďalšej vrstve
-	\newline
-	\(x_j\) - j-ty neurón 
-	\newline
-	\(\phi\) - funkcia
-	\newline
-	
-Neurónová sieť sa sa môže skladať z viacerých vrstiev, na ktorých sú umiestnené neuróny. Prvá vrstva sa nazýva vstupná, posledná výstupná. Medzi nimi môže byť ľubovoľný počet skrytých vrstiev rôzneho typu. Každá vrstva (s výnimkou výstupnej) by mala ešte navyše obsahovať aktivačnú funkciu (kapitola \ref{activation_functions}). V našom prípade sa jedná o neurón umelý a funkciu, ktorá definuje výstup neurónu pre vstup alebo sadu vstupov.
+Pre vyššie uvedené platí:
+\newline
+\(y_k\) - výstup k-teho neurónu
+\newline
+\(w_{kj}\) - váha j-teho neurónu spojeného s k-tym neurónom na ďalšej vrstve
+\newline
+\(x_j\) - j-ty neurón 
+\newline
+\(\phi\) - aktivačná funkcia
+\newline
+
+Takéto umelé neuróny sú potom umiestnené na vrstvách s prepojeniami napr. do ďalších vrstiev. Štandardne sa prvá vrstva nazýva vstupná a posledná výstupná. Tie medzi sebou ďalej môžu mať niekoľko ďalších vrstiev rôzneho typu. Tieto vrstvy sa nazývajú skrytými a obvykle práve tieto bývajú kľúčové pri učení sa a predikciách. Neuróny každej vrstvy navyše môžu obsahovať aj aktivačnú funkciu (klasicky býva pre všetky neuróny na vrstve rovnaká), ktorá definuje (upravuje) výstup z neurónu pre vstup alebo sériu vstupov.
 	
 \subsection{Aktivačné funkcie}\label{activation_functions}
 
-Aktivačná funkcia predstavuje matematické vyjadrenie použité k aproximácii vplyvu na neurón, zjednušene by bolo možné povedať, že pre sériu vstupov definuje výstupy. Aktivačných funkcií existuje niekoľko typov, každá vhodná na iný typ úloh. Ako príklad je možné uviesť nasledujúce: 
+Aktivačná funkcia predstavuje matematické vyjadrenie použité k aproximácii vplyvu na neurón, zjednodušene by bolo možné povedať, že pre sériu vstupov definuje výstupy. Aktivačných funkcií existuje niekoľko typov, každá vhodná na iný typ úloh. Ako príklad je možné uviesť nasledujúce: 
 	\begin{itemize}
 		\item {\textbf{Softmax}}
 		
@@ -131,9 +131,9 @@ Základným prvkom toho, aby bola neurónová sieť schopná riešiť úlohy je 
 Učenie s učiteľom prebieha na predpripravenom datasete, ktorý musí obsahovať nejaké testovacie vstupné dáta (pre ktoré chceme vypočítať výstupnú funkciu) a takzvané štítky (z angl. labels), ktoré sú v podstate naše očakaváne výstupy. Najčastejším príkladom tohto typu učenia je algoritmus spätného šírenia chyby (z angl. backpropagation\cite{nielsen2015neural}).
 
 \paragraph{Algoritmus spätného šírenia chyby}
-Hlavným princípom je snaha o minimalizovanie chyby predikcie pri učení a to tak, že po predikcii pri učení sa vypočíta hodnota chyby na poslednej výstupnej vrstve voči očakávanému výstupu (spomínaným štítkom). Tá sa potom tzv. "šíri" späť k vstupnej vrstve a vzhľadom na jej hodnotu sa postupne aktualizujú váhy jednotlivých neurónov.
+Hlavným princípom je snaha o minimalizovanie chyby predikcie pri učení a to tak, že po predikcii pri učení sa vypočíta hodnota chyby na poslednej výstupnej vrstve voči očakávanému výstupu (spomínaným štítkom). Tá sa potom tzv. "šíri" \ späť k vstupnej vrstve a vzhľadom na jej hodnotu sa postupne aktualizujú váhy jednotlivých neurónov.
 
-Príklad použitia tohto algoritmu možno nájsť v jednoduchej neurónovej sieti určenej k riešeniu problému funkcie XOR\cite{neuron}. Vstupné dáta je nutné reprezentovať ako dvojicu jednotiek a núl. Pre vstupnú dvojicu napríklad \textit{[0,1]} je očakávaným výstupom číslo \textit{1}, pre hodnotu \textit{[0,0]} je to \textit{0}. Tieto očakávané hodnoty zároveň označíme za spomínané štítky. Takto pripravíme celý dataset pre trénovanie, mal by byť dostatočne rozsiahly aby sa dosiahla maximálna presnosť. Problém veľkosti dostatočne rozsiahleho datasetu je považovaný za jeden z hlavných mínusov učenia s učiteľom.
+Príklad použitia tohto algoritmu možno nájsť v jednoduchej neurónovej sieti určenej k riešeniu problému funkcie XOR\cite{neuron}. Vstupné dáta je nutné reprezentovať ako dvojicu jednotiek a núl. Pre vstupnú dvojicu napríklad \textit{[0,1]} je očakávaným výstupom číslo \textit{1}, pre hodnotu \textit{[0,0]} je to \textit{0}. Tieto očakávané hodnoty zároveň označíme za spomínané štítky. Takto pripravíme celý dataset pre trénovanie, mal by byť dostatočne rozsiahly aby sa dosiahla maximálna presnosť (odhadnúť aké množstvo dát už možno považovať za dostatočné je značne netriviálny problém). Sieti sú potom počas učenia predkladané vstupy a štítky, na základe vypočítanej chyby sú potom predikcie upravované až kým chyba nie je úplne minimalizovaná. Spomínaný problém veľkosti dostatočne rozsiahleho datasetu je považovaný za jeden z hlavných mínusov učenia s učiteľom.
 
 	
 \paragraph{Učenie sa viacerých inštancií}
@@ -158,9 +158,7 @@ V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, kto
 \begin{itemize}
 	\item \textbf{Gradient descent optimizer \cite{gradient_descent}:}
 	
-	Je to iteratívny algoritmus používaný k nájdeniu lokálneho minima funkcie, kedy podniká kroky k nájdeniu záporného gradientu\footnote{ zmena veličiny v závislosti od inej premennej} funkcie v aktuálnom bode. To je využívané pri určovaní rýchlosti učenia sa neurónovej siete. 
-	
-	Existujú 3 hlavné varianty gradient descent optimizéru, ktoré počítajú sklon (gradient) funkcie. Delia sa hlavne podľa množstva dát určenému k spracovaniu, kedy sa robí kompromis medzi presnosťou aktualizácie parametra a časom, ktorý je potrebný na vykonanie tejto aktualizácie. Týmito typmi sú:
+	Je to iteratívny algoritmus používaný k nájdeniu lokálneho minima funkcie, kedy podniká kroky k nájdeniu záporného gradientu\footnote{ zmena veličiny v závislosti od inej premennej} funkcie v aktuálnom bode. To je využívané pri určovaní rýchlosti učenia sa neurónovej siete. Existujú 3 hlavné varianty gradient descent optimizéru, ktoré počítajú sklon (gradient) funkcie. Delia sa hlavne podľa množstva dát určenému k spracovaniu, kedy sa robí kompromis medzi presnosťou aktualizácie parametra a časom, ktorý je potrebný na vykonanie tejto aktualizácie. Týmito typmi sú:
 	\begin{itemize}
 		\item{Dávkový gradient descent:}
 		
@@ -212,15 +210,16 @@ LSTM\cite{gers1999learning} - skratka pre anglické pomenovanie Long short-term 
 
 \begin{figure}[H]
 	\begin{center}\includegraphics[scale=0.25]{lstm_unit.png}\end{center}
-	\caption[Zobrazenie LSTM jednotky]{Ukážka štruktúry LSTM jednotky\label{lstm_unit_image}}
+	\caption[Zobrazenie LSTM jednotky]{Ukážka štruktúry LSTM jednotky\label{lstm_unit_image}\footnotemark}
 	
 \end{figure}
+\footnotetext{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}
 
 Na rozdiel od klasickejších rekurentných sietí, kde jednotka obsahuje jednu vrstvu neurónov, LSTM jednotka (bunka) obsahuje až štyri, každá špecializovaná na niečo iné. Na obrázku vyššie reprezentuje prvá horizontálna čiara v jednotke jej stav. Informácia tadiaľto prakticky len "tečie", s malými lineárnymi zmenami ako pridanie alebo odobratie. Tieto akcie sú opatrne regulované tzv. bránami.
 
 Spodná horizontálna čiara reprezentuje postupné vstupy do štyroch vrstviev zobrazených na obrázku ako štvorce s aktivačnými funkciami ($\sigma$ - sigmoid, tanh). Vrstvy so sigmoid-om fungujú ako tzv. "strážcovia", vzhľadom na ich výstup v intervale \ <0,1> \ určujú aké veľké množstvo informácie má byť pustené ďalej (0 - nič, 1 - všetko). Týmto prakticky kontrolujú a udržujú stav celej bunky. Prvá sigmoid vrstva sa nazýva "zabúdacia brána" (z angl. forget gate layer) a určuje, aké množstvo informácií z aktuálneho stavu bunky bude zahodených. Druhá sigmoid vrstva sa nazýva "vstupná brána" (z angl. input gate layer) a určuje, ktoré hodnoty budú aktualizované. Tretia tanh vrstva vytvorí vektor hodnôt, ktoré je možné pridať k stavu bunky. Výstup z týchto dvoch vrstiev je skombinovaný k aktualizovaniu stavu bunky. Posledná sigmoid vrstva prakticky určuje aké hodnoty budú výstupom z celej jednotky. Výstup je založený na upravenom stave bunky, avšak vyfiltrovaný na základe hodnôt z poslednej sigmoid vrstvy.
 
-Keďže rekurentné siete na rozdiel od dopredných môžu na vstupe spracovať aj ľubovoľnú sekvenciu (vektor) predstavujú s možnosťou "pamäte" značný posun. V praxi sa používajú napríklad pri úlohách so spracúvaním jazyka. Keby sme chceli napríklad predikovať nasledujúce slovo vo vete, je veľmi užitočné vedieť aké slová boli pred ním aby predikcia dávala zmysel. Práve v tejto oblasti sa LSTM siete ukázali veľmi efektívne. Využívajú sa ďalej napríklad aj pri rozpoznávaní reči\cite{rnn_speech} alebo písma\cite{rnn_handwriting}, či generovaní popisu k obrázkom\cite{image_description}, kedy však funguje v kombinácii s konvolučnou neurónovou sieťou (z angl. convolutional neural network).Tá je ďalším typom sietí a v tomto prípade bola použitá na klasifikáciu obrázkov a rozpoznávanie objektov, LSTM sieť bola použitá iba na generovanie výsledného jednoduchého popisu.
+Keďže rekurentné siete na rozdiel od dopredných môžu na vstupe spracovať aj ľubovoľnú sekvenciu (vektor) predstavujú s možnosťou "pamäte" \ značný posun. V praxi sa používajú napríklad pri úlohách so spracúvaním jazyka. Keby sme chceli napríklad predikovať nasledujúce slovo vo vete, je veľmi užitočné vedieť aké slová boli pred ním aby predikcia dávala zmysel. Práve v tejto oblasti sa LSTM siete ukázali veľmi efektívne. Využívajú sa ďalej napríklad aj pri rozpoznávaní reči\cite{rnn_speech} alebo písma\cite{rnn_handwriting}, či generovaní popisu k obrázkom\cite{image_description}, kedy však fungujú v kombinácii s konvolučnou neurónovou sieťou (z angl. convolutional neural network). Tá je ďalším typom sietí a v tomto prípade bola použitá na klasifikáciu obrázkov a rozpoznávanie objektov, LSTM sieť bola použitá iba na generovanie výsledného jednoduchého popisu.
 
 
 \subsubsection{Konvolučné neurónové siete}
@@ -229,7 +228,7 @@ Keďže rekurentné siete na rozdiel od dopredných môžu na vstupe spracovať 
 \
 \
 \
-Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/} s konvolučným filtrom, ten býva väčšinou malý (3x3, 5x5). Vstup tejto vrstvy musí byť v tvare \textit{m} x \textit{m} x \textit{r}, kde \textit{m} je šírka a výška obrázku, \textit{r} je počet farebných kanálov. Napríklad pre RGB obrázok je r=3 (červená, zelená, modrá). Konvolučným filtrom sa prejde celý obrázok a výstupom z tejto vrstvy je niekoľko filtrov. Tie sa potom spracúvajú v ďalšie vrstve združovania (z angl. pooling layer\cite{cs231n}), ktorá tieto filtre rozvzorkuje. To prebieha nezávisle na každom získanom filtry z konvolučnej vrstvy. Rozvzorkovanie v podstate znamená, že sa zmení veľkosť filtrov použítim operácie MAX. Najbežnejšou formou spomínanej vrstvy je verzia s oknom (filtrom) o veľkosti 2x2 aplikovaným s krokom veľkosti 2. Toto sa dá jednoducho vysvetliť ako prejdenie každého výstupu z konvolučnej vrstvy oknom uvedenej veľkosti postupne po 2 políčkach na šírku aj výšku, pričom z každej štvorice v okne sa získa MAX operáciou maximum, s ktorým sa pracuje ďalej. Na  obrázku\footnote{http://cs231n.github.io/convolutional-networks/} \ref{fig:cnn} je vidieť výsledok popisovaného postupu na jednoduchom príklade.
+Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/} s konvolučným filtrom, ten býva väčšinou malý (3x3, 5x5). Vstup tejto vrstvy musí byť v tvare \textit{m} x \textit{m} x \textit{r}, kde \textit{m} je šírka a výška obrázku, \textit{r} je počet farebných kanálov. Napríklad pre RGB obrázok je r=3 (červená, zelená, modrá). Konvolučným filtrom sa prejde celý obrázok a výstupom z tejto vrstvy je niekoľko filtrov. Tie sa potom spracúvajú v ďalšie vrstve združovania (z angl. pooling layer\cite{cs231n}), ktorá tieto filtre rozvzorkuje. To prebieha nezávisle na každom získanom filtri z konvolučnej vrstvy. Rozvzorkovanie v podstate znamená, že sa zmení veľkosť filtrov použítim operácie MAX. Najbežnejšou formou spomínanej vrstvy je verzia s oknom (filtrom) o veľkosti 2x2 aplikovaným s krokom veľkosti 2. Toto sa dá jednoducho vysvetliť ako prejdenie každého výstupu z konvolučnej vrstvy oknom uvedenej veľkosti postupne po 2 políčkach na šírku aj výšku, pričom z každej štvorice v okne sa získa MAX operáciou maximum, s ktorým sa pracuje ďalej. Na  obrázku\footnote{http://cs231n.github.io/convolutional-networks/} \ref{fig:cnn} je vidieť výsledok popisovaného postupu na jednoduchom príklade.
 	
 	\begin{figure}[H]
 		\begin{center}\includegraphics[scale=0.38]{maxpool.jpeg}\end{center}
@@ -241,8 +240,7 @@ Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www
 		\caption[Konvolučná neurónová sieť]{Príklad konvolučnej neurónovej siete}\label{conv_nn}
 	\end{figure}
 	
-	Využite tohto typu je v podstate všade, kde sa jedná o rozpoznávanie obrázkov. Či už ide o automatické vyznačenie tvárí pre označenie na facebooku, autonómne vozidlá, ktoré sa vedia riadiť sami (autopilot) alebo triedenie uhoriek na farmách v Japonsku\footnote{https://cloud.google.com/blog/big-data/2016/08/how-a-japanese-cucumber-farmer-is-using-deep-learning-and-tensorflow}. Na tento konkrétny softvér bol použitý príklad kódu jednoduchej konvolučnej siete z tutoriálu\footnote{https://www.tensorflow.org/versions/0.6.0/tutorials/mnist/pros/index.html} pre TensorFlow (knižnica pre prácu s neurónovými sieťami), s modifikáciou konvolučnej a združovacej vrstvy tak, aby bola sieť uspôsobená počtu tried uhoriek (10) a ich formátu obrázkov. 
-	
+	Využite tohto typu je v podstate všade, kde sa pracuje s obrázkami. Či už ide o automatické vyznačenie tvárí pre označenie na facebook-u, autonómne vozidlá, ktoré sa vedia riadiť sami (autopilot) alebo triedenie uhoriek na farmách v Japonsku\footnote{https://cloud.google.com/blog/big-data/2016/08/how-a-japanese-cucumber-farmer-is-using-deep-learning-and-tensorflow}. Na tento konkrétny softvér bol použitý príklad kódu jednoduchej konvolučnej siete z tutoriálu\footnote{https://www.tensorflow.org/versions/0.6.0/tutorials/mnist/pros/index.html} pre TensorFlow (knižnica pre prácu s neurónovými sieťami, popísaná v kapitole \ref{tf}), s modifikáciou konvolučnej a združovacej vrstvy tak, aby bola sieť uspôsobená počtu tried uhoriek (10) a ich formátu obrázkov. 
 	
 	Z mnohých pokusov o autonómnu jazdu stoja za zmienku hlavne tie od Tesly a Google. Prototyp autonómneho systému vozidla od Google-u Dave-2\cite{google_car} využíva model neurónovej siete s 9 vrstvami, jednu normalizačnú, 5 konvolučných a 3 plne prepojené vrstvy. Kamerami spracovaný obraz okolia s frekvenciou 10 snímkov za sekundu (tak nízky počet preto, aby sa predišlo veľkému množstvu príliš podobných obrázkov) je po jednom snímku rozdelený do YUV\footnote{farebný priestor používaný vo video aplikáciách} úrovní a posunutý do neurónovej siete.   
  
@@ -250,9 +248,10 @@ Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www
 V dnešnej dobe moderného internetu a dostupnosti technológií máme možnosť výberu z dostatočného množstva framework-ov pre potreby riešenia najrôznejších problémov neurónovými sieťami. Pri výbere môžeme brať do úvahy napríklad preferencie operačného systému (Windows, Linux, ...), programovacieho jazyka (Python, C++, Java, ...), ale aj benefity distribuovaného riešenia a omnoho viac. V nasledujúcich podkapitolách sú preto popísané niektoré z najpoužívanejších technológií pre implementovanie neurónových sietí. 
 
 \subsubsection{TensorFlow}
+\label{tf}
 TensorFlow\footnote{https://www.tensorflow.org/} je open-source softvérová knižnica, ktorá pre numerické výpočty používa graf dátového toku, kde uzly grafu reprezentujú matematické operácie a hrany multidimenzionálne dátové polia, tzv. tenzory. Graf je možné skonštruovať použitím jazykov s podporou frontend-u (C++, Python, ...). 
 
-Flexibilná architektúra umožňuje vykonávať výpočty na CPU alebo GPU (nepomerne rýchlejšie) na serveroch, desktopových počítačoch či dokonca aj mobilných zariadeniach. Pôvodne bol TensorFlow vyvinutý výzkumníkmi a inžiniermi v Google-i pre strojové učenie a hlboké učenie, avšak jeho využitie je oveľa širšie. Momentálne používa TensorFlow veľké množstvo programov, napríklad Google vyhľadávač, prekladač alebo YouTube. 
+Flexibilná architektúra umožňuje vykonávať výpočty na CPU alebo GPU (nepomerne rýchlejšie) na serveroch, desktopových počítačoch či dokonca aj mobilných zariadeniach. Pôvodne bol TensorFlow vyvinutý výzkumníkmi a inžiniermi v Google-i pre strojové učenie a hlboké učenie, avšak jeho využitie je oveľa širšie. V súčasnosti používa TensorFlow veľké množstvo programov, napríklad Google vyhľadávač, prekladač alebo YouTube. 
 
 Momentálne podporuje jazyky C++, Python, Java, Go, Swift.
 
@@ -261,7 +260,7 @@ Medzi hlavné výhody patrí:
 	\item podpora pre jednoducho naučiteľné jazyky (Python)
 	\item použtie výpočtovej grafovej abstrakcie
 	\item vizualizácie pomocou TensorBoard-u\footnote{https://www.tensorflow.org/programmers\_guide/summaries\_and\_tensorboard} (interaktívne grafy pre priebeh učenia, pre model siete, ...)
-	\item dostatočne nízko-úrovňový pre plnú kontrolu a implementáciu vlastnej (novej nie len preddefinovanej) funkcionality (v porovnaní napríklad s framework-om Keras(kapitola \ref{keras}))
+	\item dostatočne nízko-úrovňový pre plnú kontrolu a implementáciu vlastnej (novej nie len preddefinovanej) funkcionality (v porovnaní napríklad s framework-om Keras (kapitola \ref{keras}))
 \end{itemize}
 
 Ako nevýhody možno uviesť:
@@ -298,7 +297,7 @@ Medzi nevýhody možno zaradiť:
 
 \subsubsection{Theano}
 
-Theano\footnote{https://github.com/Theano/Theano} je veľmi silná knižnica umožňujúca definovanie, optimalizáciu a evaluáciu numerických operácií nad multidimenzionálnymi poliami s obrovskou efektivitou. Podobne ako TensorFlow, k abstrakcii výpočtov používa grafy ako možno vidieť na príklade na obrázku \ref{theano_image}.
+Theano\footnote{https://github.com/Theano/Theano} je veľmi silná knižnica umožňujúca definovanie, optimalizáciu a evaluáciu numerických operácií nad multidimenzionálnymi poliami s obrovskou efektivitou. Podobne ako TensorFlow, k abstrakcii výpočtov používa grafy, ako možno vidieť na príklade na obrázku \ref{theano_image}.
 
 % theano-data-visualization.png
 
@@ -315,7 +314,7 @@ Momentálne podporuje iba programovací jazyk Python a v poslednej dobe vývoj t
 
 Medzi hlavné výhody patrí:
 \begin{itemize}
-	\item veľmi dobrá optimalizácia pre CPU a GPU (najmä vďaka použitiu nízko-úrovňovej funkcionality naprogramovanie v jazyku C)
+	\item veľmi dobrá optimalizácia pre CPU a GPU (najmä vďaka použitiu nízko-úrovňovej funkcionality naprogramovanej v jazyku C)
 	\item vysoko efektívna knižnica pre numerické úlohy
 \end{itemize}
 
@@ -336,7 +335,7 @@ Jeho hlavnými výhodami sú:
 	\item jednoduchosť naučenia, používateľsky veľmi prívetivé
 	\item ľahká rozšíriteľnosť
 	\item bezproblémový beh aj na CPU aj na GPU
-	\item bezproblémové fungovanie aj s Theano-m a s TensorFlow-om
+	\item bezproblémové fungovanie aj s Theano-m a aj s TensorFlow-om
 	\item rýchle prototypovanie
 \end{itemize}
 
@@ -357,14 +356,14 @@ Najväčšími výhodami sú:
 Za nevýhody možno pokladať:
 \begin{itemize}
 	\item strmá krivka učenia
-	\item dostupnosť v jazykoch, ktoré podobnými framework-ami nie sú často podporované
+	\item jednoduché používanie formou "pripoj a hraj" \ (z angl. plug-and-play) dostupné iba pre Hadoop
 \end{itemize}
 
 Nevýhodou v porovnaní s vyššie uvedenými framework-ami môže byť nižšie množstvo implementovaných algoritmov, avšak vývoj rozhodne nezaháľa a pridávanej funcionality je stále viac a viac.
 
 \section{Existujúce modely vizuálnej pozornosti}
 
-Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných máp výraznosti rozdeliť na bottom-up modely (kapitola \ref{bottom-up_modely}) a top-down modely (kapitola \ref{top-down_modely}). Ďalším zaujímavým rozdelením však je rozdelenie podľa použitých princípov a technológií \cite{polatsek}, na modely:
+Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných máp výraznosti rozdeliť na modely k predikcii pozornosti zdola nahor \ (kapitola \ref{bottom-up_modely}) a modely k predikcii pozornosti zhora nadol (kapitola \ref{top-down_modely}). Ďalším zaujímavým rozdelením však je rozdelenie podľa použitých princípov a technológií \cite{polatsek}, na modely:
 
 \begin{itemize}
 	\item hierarchické - využívajú hierarchické rozkladanie príznakov
@@ -375,9 +374,9 @@ Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných m
 	\item vzorovo klasifikačné - využívajú strojové učenie zo vzorov s výraznými črtami
 \end{itemize}
 
-\subsection{Bottom-up modely}
+\subsection{Modely k predikcii pozornosti zdola nahor}
 \label{bottom-up_modely}
-Nakoľko práve bottom-up pozornosť bola prvá skúmaná, existuje k jej predikcii obrovské množstvo najrozličnejších modelov. Niekoľko z nich je popísaných v nasledujúcich podkapitolách. Porovnaním týchto rôznych typov by sa dalo povedať, že ako najlepšie a najpresnejšie sa javia nové moderné postupy strojového učenia. Ich nevýhodou však je potreba dostatočne veľkého datasetu, na ktorom by mohli byť natrénované ako aj značne dlhé trénovanie a predikcie v porovnaní s tými, ktoré používajú rôzne matematické postupy alebo extrakcie čŕt a príznakov, kde fáza trénovania nie je nutná.
+Nakoľko práve pozornosť zdola nahor bola prvá skúmaná, existuje k jej predikcii obrovské množstvo najrozličnejších modelov. Niekoľko z nich je popísaných v nasledujúcich podkapitolách. Porovnaním týchto rôznych typov by sa dalo povedať, že ako najlepšie a najpresnejšie sa javia nové moderné postupy strojového učenia. Ich nevýhodou však je potreba dostatočne veľkého datasetu, na ktorom by mohli byť natrénované ako aj značne dlhé trénovanie a predikcie v porovnaní s tými, ktoré používajú rôzne matematické postupy alebo extrakcie čŕt a príznakov, kde fáza trénovania nie je nutná.
 
 \subsubsection{Itti-ho model}
 
@@ -400,7 +399,7 @@ Pri použítí metódy hierarchickej výraznosti (z angl. hierarchical-saliency 
 		\begin{enumerate}
 			\item výpočet mapy výraznosti \textit{S} zo vstupného obrázka \textit{I}
 			\item evaluácia oblastí záujmu (z angl. regions of interest, ROIs), automatická
-			klasifikácia všetkých pixelov do dvoch kategórií k získaniu masky M:
+			klasifikácia všetkých pixelov do dvoch kategórií k získaniu masky \textit{M}:
 			\begin{itemize}
 				\item[-] globálne výrazné oblasti (\textit{1})
 				\item[-] zvyšok (\textit{0})
@@ -415,18 +414,18 @@ Pri použítí metódy hierarchickej výraznosti (z angl. hierarchical-saliency 
 \subsubsection{Model pre určovanie salientných oblastí webových stránok}
 
 Veľmi zaujímavým riešením pre predikciu a určovanie salientných oblastí scény v doméne webových stránok je model od Chengyao Shen a Qi Zhao\cite{Saliency} využívajúci metódy strojového učenia. Model je postavený na použití metódy MKL (Multiple Kernel Learning - kombinuje viacero jadier SVM (Support Vector Machine) miesto jedného), ktorá bola 
-trénovaná na princípe binárneho regresného problému. Rozdiel oproti predošlým popisovaným modelom je však v tom, že predikovaná nebola priamo výsledná mapa výraznosti ale iba vektor pohľadov (fixácií) na vstupné obrázky na základe ktorého bola potom spomínaná mapa vypočítaná. Autori po vyhodnotení výsledkov zistili že ako najviac salientné oblasti sa v scéne javia v prvom rade ľudská tvár, oči a celkovo vrchná časť ľudského tela. Zaujímavým vylepšením ich modelu však bolo to, že tieto zistenia zapracovali formou predtrénovania MKL na tieto vysoko salientné oblasti. 
+trénovaná na princípe binárneho regresného problému. Rozdiel oproti predošlým popisovaným modelom je však v tom, že predikovaná nebola priamo výsledná mapa výraznosti ale iba vektor pohľadov (fixácií) na vstupné obrázky, na základe ktorého bola potom spomínaná mapa vypočítaná. Autori po vyhodnotení výsledkov zistili že ako najviac salientné oblasti sa v scéne javia v prvom rade ľudská tvár, oči a celkovo vrchná časť ľudského tela. Zaujímavým vylepšením ich modelu však bolo to, že tieto zistenia zapracovali formou predtrénovania MKL na tieto vysoko salientné oblasti. 
 
 
-\subsection{Top-down modely}
+\subsection{Modely k predikcii pozornosti zhora nadol}
 % TODO dolpnit plusy a minusy jednotlivych rieseni
 \label{top-down_modely}
-Predikcia top-down pozornosti je značne zložitejšia, nakoľko sa do úvahy berie aj sématický kontext scény. Tým môže byť napríklad emočný obsah (kapitola \ref{emotion_content}), či hľadanie konkrétnych objektov v scéne (kapitola \ref{caption_model}).
+Predikcia pozornosti zhora nadol (top-down) je značne zložitejšia, nakoľko sa do úvahy berie aj sématický kontext scény. Tým môže byť napríklad emočný obsah (kapitola \ref{emotion_content}), či hľadanie konkrétnych objektov v scéne (kapitola \ref{caption_model}).
 
 
 \subsubsection{Zameranie na emočný obsah}
 \label{emotion_content}
-Niekoľko riešení sa v posledných rokoch pokúsilo o predikovanie top-down pozornosti na základe emočného obsahu v pozorovanej scéne, z nich stojí za zmienku napríklad model od Liu a spol. \cite{liu2016improving}. Zamerali sa na spomínaný emočný obsah v rôznych oblastiach (blokoch) obrázka, kde do úvahy brali:
+Niekoľko riešení sa v posledných rokoch pokúsilo o predikovanie pozornosti zhora nadol (top-down) na základe emočného obsahu v pozorovanej scéne. Z nich stojí za zmienku napríklad model od Liu a spol. \cite{liu2016improving}, ktorí sa zamerali na spomínaný emočný obsah v rôznych oblastiach (blokoch) obrázka, kde do úvahy brali:
 \begin{itemize}
 	\item emočné objekty, napr. hady a krv (evokujú silný strach)
 	\item výrazy tváre
@@ -439,12 +438,11 @@ Hlavné problémy, ktoré riešili, by sa dali zhrnúť do dvoch otázok:
 	\item Aký typ emócie by mal byť dominantným pre jednotlivé obrázky?
 \end{itemize}
 
-Ich narhované riešenie malo niekoľko častí. Prvou je extrakcia bottom-up faktorov vo forme nízko-úrovňových 
-máp výraznosti založených na črtách a mapy priestorovej polohy s dôrazom na centrum pre výpočet odhadu hustoty pohľadu (z angl. gaze density estimation). K tomuto boli použité klasické hierarchické modely pre určovanie pozornosti (napr. Itti-ho model).
+Ich narhované riešenie malo niekoľko častí. Prvou je extrakcia faktorov pozornosti zdola nahor (bottom-up) vo forme nízko-úrovňových máp výraznosti založených na črtách a mapy priestorovej polohy s dôrazom na centrum pre výpočet odhadu hustoty pohľadu (z angl. gaze density estimation). K tomuto boli použité klasické hierarchické modely pre určovanie pozornosti (napr. Itti-ho model).
 
-Druhou časťou je detekcia emócií, k čomu bol použitý emočný detektor založený na učení s použitím učenia viacerých inštancií (z angl. multiple instance learning, MIL) zo slabo oštítkovaných dát. Tými boli obrázky označené emočným typom\footnote{jedna z 8 skupín, do ktorých boli rozdelené emócie. Príkladom týchto skúpín sú napr. hnev, láska, smútok, prekvapenie, atď.}, ktorý bol určený po vypočítaní pravdepodobnosti vyskýtu jednotlivých typov pre každú časť obrázka. Touto matematickou operáciou sa autorom podarilo úspešne vyriešiť problém určenia dominantného typu emócie pre obrázok.  Ďalej bol pre zlepšenie extrakcie emócií použitý mechanizmus založený na SVM, ktoré bolo použité na detekciu ľudských tvárí a odhadnutie intenzity výrazu. Výstupom z tejto časti je emočná mapa ohodnocujúca intenzitu emócií určená pre ďalšie spracovanie.
+Druhou časťou je detekcia emócií, k čomu bol použitý emočný detektor založený na učení s použitím učenia viacerých inštancií (z angl. multiple instance learning, MIL) zo slabo oštítkovaných dát. Tými boli obrázky označené emočným typom\footnote{jedna z 8 skupín, do ktorých boli rozdelené emócie. Príkladom týchto skúpín sú napr. hnev, láska, smútok, prekvapenie, atď.}, ktorý bol určený po vypočítaní pravdepodobnosti vyskýtu jednotlivých typov pre každú časť obrázka. Touto matematickou operáciou sa autorom podarilo úspešne vyriešiť problém určenia dominantného typu emócie pre obrázok.  Ďalej bol pre zlepšenie extrakcie emócií použitý mechanizmus založený na SVM, ktoré bolo použité na detekciu ľudských tvárí a odhadnutie intenzity výrazu. Výstupom z tejto časti je emočná mapa, ohodnocujúca intenzitu emócií, určená pre ďalšie spracovanie.
 
-Treťou časťou bolo spracovanie výstupom z predošlých dvoch lineárnym SVM, ktoré vo výsledku z bottom-up a emočných faktorov vygeneruje výslednú mapu hustoty pohľadu (z angl. gaze density map). Vyššie popísaný postup je zobrazený na diagrame na obrázku \ref{liu_image}.
+Treťou časťou bolo spracovanie výstupov z predošlých dvoch častí lineárnym SVM, ktoré vo výsledku z faktorov pozornosti zdola nahor (bottom-up) a emočných faktorov vygeneruje výslednú mapu hustoty pohľadu (z angl. gaze density map). Vyššie popísaný postup je zobrazený na diagrame na obrázku \ref{liu_image}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -453,12 +451,12 @@ Treťou časťou bolo spracovanie výstupom z predošlých dvoch lineárnym SVM,
 	\end{center}
 \end{figure}
 
-Za veľkú výhodu tohto riešenia by sa dala pokladať kombinácia bottom-up a top-down (emočných) faktorov do výslednej mapy, vďaka čomu sa viac priblíži k reálnej pozornosti. Ako vieme tú neovplyvňujú čisto len jedny alebo druhé faktory, ale vždy je to ich kombinácia. Ako mierna nevýhoda by sa mohlo javiť rozdelenie emócií iba na 8 typov a určenie ako dominantný typ len jeden z nich, pričom ostatné sa ďalej neberú do úvahy.  
+Za veľkú výhodu tohto riešenia by sa dala pokladať kombinácia viacerých faktorov (aj pozornosti zdola nahor (bottom-up) aj pozornosti zhora nadol (top-down emočné faktory)  do výslednej mapy, vďaka čomu sa viac priblíži k reálnej pozornosti. Ako vieme tú neovplyvňujú čisto len jedny alebo druhé faktory, ale vždy je to ich kombinácia. Ako mierna nevýhoda by sa mohlo javiť rozdelenie emócií iba na 8 typov a určenie ako dominantný typ len jeden z nich, pričom ostatné sa ďalej neberú do úvahy.  
 
 % TODO maybe \subsubsection{CRF}
 
 \subsubsection{SAM}
-SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší z modelov schopných aj predikcie top-down pozornosti. Založený je na architektúre nazvanej ML-Net (Multi-Level Network\cite{cornia2016deep}), ktorá miesto klasických konvolučných vrstiev využíva dilatované konvolučné vrstvy, ktoré limitujú efekt zmenšovania. Táto architekúra použitá pre spracovanie vstupného obrázka je nasledovaná konvolučnými LSTM vrstvami, ich naučené výstupy potom spracováva už klasická konvolučná vrstva, výstupom ktorej je mapa výraznosti. Popisovaný postup je zobrazený na obrázku \ref{dilated_model_image}.
+SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší z modelov schopných aj predikcie pozornosti zhora nadol (top-down). Založený je na architektúre nazvanej ML-Net (Multi-Level Network\cite{cornia2016deep}), ktorá miesto klasických konvolučných vrstiev využíva dilatované konvolučné vrstvy, ktoré limitujú efekt zmenšovania. Táto architekúra použitá pre spracovanie vstupného obrázka je nasledovaná konvolučnými LSTM vrstvami, ich naučené výstupy potom spracováva už klasická konvolučná vrstva, výstupom ktorej je mapa výraznosti. Popisovaný postup je zobrazený na obrázku \ref{dilated_model_image}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -469,7 +467,7 @@ SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší 
 
 Vďaka architektúre zobrazenej na obrázku vyššie je možné nezávisle na sebe trénovať dilatovanú konvolučnú sieť (alebo použiť predtrénovanú, či o niečo inú) a konvolučnú LSTM sieť. Veľkou výhodou dilatovanej konvolučnej siete je stratégia zväčšenia výstupného rozlíšenia obrázka, zatiaľ čo sa zachováva mierka, na ktorej operujú konvolučné filtre a počet parametrov. To je rozdiel oproti klasickej konvolučnej sieti, kedy je vstupný obrázok po extrakcii čŕt obvykle zmenšený, čo môže značne zhoršiť presnosť predikcie máp výraznosti.
 
-Spomínané LSTM vrstvy (podrobnejšie zobrazené aj na obrázku \ref{dilated_model_image}) využívajú kombináciu aktivačných funkcií \textit{softmax}, \textit{tanh} a \textit{sigmoid}, kedy pri spracúvaní sekvenčne aktualizujú svoj interný stav. Ako vstup dostanú vektor extrahovaných čŕt z dilatovaných konvolučných vrstiev (\textit{X}), ktoré spracúvajú vstupné obrázk,y a generovanú mapu výraznosti z predošlej LSTM vrstvy (s výnimkou prvej). Táto generovaná mapa je ešte upravená mechanizmami pozornosti, ktoré sa selektívne zameriavajú na rôzne časti obrázku. Vo výsledku je potom vektor extrahovaných čŕt (\textit{X}) a upravená generovaná mapa (\textit{$X_t$}) z predošlej vrstvy ešte ďalej spracovávaná aktovačnými funkciami \textit{tanh}.
+Spomínané LSTM vrstvy (podrobnejšie zobrazené aj na obrázku \ref{dilated_model_image}) využívajú kombináciu aktivačných funkcií \textit{softmax}, \textit{tanh} a \textit{sigmoid}, kedy pri spracúvaní sekvenčne aktualizujú svoj interný stav. Ako vstup dostanú vektor extrahovaných čŕt z dilatovaných konvolučných vrstiev (\textit{X}), ktoré spracúvajú vstupné obrázky, a generovanú mapu výraznosti z predošlej LSTM vrstvy (s výnimkou prvej). Táto generovaná mapa je ešte upravená mechanizmami pozornosti, ktoré sa selektívne zameriavajú na rôzne časti obrázku. Vo výsledku je potom vektor extrahovaných čŕt (\textit{X}) a upravená generovaná mapa (\textit{$X_t$}) z predošlej vrstvy ešte ďalej spracovávaná aktovačnými funkciami \textit{tanh}.
 
 Výstup z týchto vrstiev je ďalej upravený štandardnými konvolučnými vrstvami do výsledných máp výraznosti.
 
@@ -489,13 +487,13 @@ $y^{fix}$ - binárna mapa fixácií
 
 $\alpha, \beta, \gamma $ - tri skalárne hodnoty určené k vybalancovaniu troch funkcií chyby
 
-$L1, L2, L3$ - tri funkcie pre výpočet evaluačných metrík, za radom Normalizovaná cesta výraznosti (NSS, z angl. Normalized Scanpath Saliency), Lineárny Korelačný Koeficient (CC), Kullback-Leiblerova divergencia (KL-Div), všetky bližšie popísané v kapitole \ref{metric}.
+$L1, L2, L3$ - tri funkcie pre výpočet evaluačných metrík, za radom Normalizovaná cesta výraznosti (NSS, z angl. Normalized Scanpath Saliency), Lineárny korelačný koeficient (CC), Kullback-Leiblerova divergencia (KL-Div), všetky bližšie popísané v kapitole \ref{metric}.
 
-Za veľkú výhodu tohto riešenia pokladáme možnosť predikcie aj bottom-up aj top-down pozornosti, v závislosti od datasetu, na ktorom je model natrénovaný. Taktiež možnosť nezávislej výmeny submodelov (dilatovaná konvolučná sieť,  konvolučná LSTM sieť) sa javí ako veľmi výhodná, keďže uľahčuje protypovanie bez nutnosti nového natrénovania celého modelu. Za miernu nevýhodu možno považovať značnú komplexitu modelu a s tým spojené nároky na hardvér, rovnako ako aj na čas nutný na natrénovanie od 0, v prípade, že nechceme použiť predtrénované modely. 
+Za veľkú výhodu tohto riešenia pokladáme možnosť predikcie aj oboch typov pozornosti, v závislosti od datasetu, na ktorom je model natrénovaný. Taktiež možnosť nezávislej výmeny submodelov (dilatovaná konvolučná sieť,  konvolučná LSTM sieť) sa javí ako veľmi výhodná, keďže uľahčuje protypovanie bez nutnosti nového natrénovania celého modelu. Za miernu nevýhodu možno považovať značnú komplexitu modelu a s tým spojené nároky na hardvér, rovnako ako aj na čas nutný na natrénovanie od nuly, v prípade, že nechceme použiť predtrénované modely. 
 
-\subsubsection{Top-down pozornosť vedená titulkami}
+\subsubsection{Pozornosť zhora nadol vedená titulkami}
 \label{caption_model}
-Jedným z príkladov top-down pozornosti je úloha nájdenia nejakého konkrétneho objektu v scéne, čím sa inšpirovali výskumníci z Bostonskej univerzity. Predstavili model\footnote{http://ai.bu.edu/caption-guided-saliency/} \cite{ramanishka2017top} schopný predikcie máp výraznosti na základe kľúčových slov v zadanej vete a príslušnom obrázku alebo videu, príklad možno vidieť na obrázku \ref{top_down_captions_image}.
+Jedným z ukážkových príkladov pozornosti zhora nadol (top-down) je úloha nájdenia nejakého konkrétneho objektu v scéne, čím sa inšpirovali výskumníci z Bostonskej univerzity. Predstavili model\footnote{http://ai.bu.edu/caption-guided-saliency/} \cite{ramanishka2017top} schopný predikcie máp výraznosti na základe kľúčových slov v zadanej vete a príslušnom obrázku alebo videu, príklad predikcií možno vidieť na obrázku \ref{top_down_captions_image}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -504,12 +502,12 @@ Jedným z príkladov top-down pozornosti je úloha nájdenia nejakého konkrétn
 	\end{center}
 \end{figure}
 
-Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl. Caption-Guided Visual Saliency), ktorý produkuje mapy výraznosti pre nepohyblivé obrázky alebo video. Ako základný model použili LSTM encoder-decoder, ktorý predikuje aj dočasné (z videa) aj priestorové (z obrázkov) salientné mapy na základe kľúčových slov vo vete (vstupné titulky, popis) a mapuje ich na vstupné obrázky (alebo video). Vstupné titulky sú spracovávané LSTM vrstvami. Na obrázku \ref{top_down_captions_model_image} je možné vidieť načrtnutý model riešenia. Ako prvá vstupná vrstva funguje konvolučná neurónová sieť reprezentujúca encoder pre video, ktorá "zakóduje" \ reprezentáciu obrázkov aj s aktiváciami všetkých vizuálnych konceptov detekovaných vo videu. Tieto informácie posunie ďalej ako vektor pre LSTM vrstvy reprezentujúce decoder - ten rozhoduje o tom, ktoré časti použije pomocou LSTM výstupných brán k predikcii mapy výraznosti pre kľúčové slovo v čase \textit{t}. Autori ďalej zvolili veľmi šikovné riešenie pre predikciu máp len pre obrázky - jednoducho výstup produkovaný poslednou konvolučnou vrstvou zmenili na tzv. "dočasnú" sekvenciu (vektor): $V = (v_1, . . . , v_m)$. Tá je vytvorená sekvenčne scan-ovaním obrázka riadok po riadku z ľavého horného rohu do pravého dolného rohu. Prvá LSTM vrstva potom tento upravený vektor spracuje a posunie ďalej k dekódovaniu na kľúčové slová vo vete.
+Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl. Caption-Guided Visual Saliency), ktorý produkuje mapy výraznosti pre nepohyblivé obrázky alebo video. Ako základný model použili LSTM enkóder-dekóder (z angl. encoder-decoder), ktorý predikuje aj dočasné (z videa) aj priestorové (z obrázkov) salientné mapy na základe kľúčových slov vo vete (vstupné titulky, popis) a mapuje ich na vstupné obrázky (alebo video). Vstupné titulky sú spracovávané LSTM vrstvami. Na obrázku \ref{top_down_captions_model_image} je možné vidieť načrtnutý model riešenia. Ako prvá vstupná vrstva funguje konvolučná neurónová sieť reprezentujúca enkóder pre video, ktorá "zakóduje" \ reprezentáciu obrázkov aj s aktiváciami všetkých vizuálnych konceptov detekovaných vo videu. Tieto informácie posunie ďalej ako vektor pre LSTM vrstvy reprezentujúce dekóder - ten rozhoduje o tom, ktoré časti použije pomocou LSTM výstupných brán k predikcii mapy výraznosti pre kľúčové slovo v čase \textit{t}. Autori ďalej zvolili veľmi šikovné riešenie pre predikciu máp len pre obrázky - jednoducho výstup produkovaný poslednou konvolučnou vrstvou zmenili na tzv. "dočasnú" sekvenciu (vektor): $V = (v_1, . . . , v_m)$. Tá je vytvorená sekvenčne scan-ovaním obrázka riadok po riadku z ľavého horného rohu do pravého dolného rohu. Prvá LSTM vrstva potom tento upravený vektor spracuje a posunie ďalej k dekódovaniu na kľúčové slová vo vete.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.52]{top_down_captions_NN.png}
-		\caption[Model neurónovej siete pre predikciu na základe kľúčových slov]{Diagram modelu neurónovej siete, zhora vstup vľavo vo forme videa, vpravo titulky k nemu. V strede LSTM vrtvy neurónovej siete, dolu výstupná mapa výraznosti pre kľúčové slová. \cite{ramanishka2017top}\label{top_down_captions_model_image}}
+		\caption[Model neurónovej siete pre predikciu na základe kľúčových slov]{Diagram modelu neurónovej siete\cite{ramanishka2017top}, zhora vstup vľavo vo forme videa, vpravo titulky k nemu. V strede LSTM vrtvy neurónovej siete, dolu výstupná mapa výraznosti pre kľúčové slová. \label{top_down_captions_model_image}}
 	\end{center}
 \end{figure}
 
@@ -549,7 +547,7 @@ Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to 
 	CC (s, h) = \frac{cov(s, h)}{\sigma_{s} \sigma _{h}}
 	\end{equation}
 	
-	\item KL-Div - Kullback-Leiblerova divergencia, všeobecné teoretické merianie rozdielu medzi dvoma pravdepodobnostými distribúciami. V oblasti predikcií vizuálnej pozornosti sa často nazýva aj AUC-Judd. Ako vstup berie mapu výraznosti \textit{P} a mapu fixácií (z angl.  ground  truth  fixation map) \textit{$Q^{D}$}, evaluuje stratu informáciie keď je \textit{P} použité k aproximácii \textit{$Q^{D}$}.
+	\item KL-Div - Kullback-Leiblerova divergencia\cite{bylinskii2016different}, všeobecné teoretické meranie rozdielu medzi dvoma pravdepodobnostými distribúciami. V oblasti predikcií vizuálnej pozornosti sa často nazýva aj AUC-Judd. Ako vstup berie mapu výraznosti \textit{P} a mapu fixácií (z angl.  ground  truth  fixation map) \textit{$Q^{D}$}, evaluuje stratu informáciie keď je \textit{P} použité k aproximácii \textit{$Q^{D}$}.
 	
 	\begin{equation}
 		KL (P, Q^D) =  \sum_{i} Q_{i}^{D} log \left ( \epsilon + \frac{Q_{i}^{D}}{\epsilon + P_i} \right )
