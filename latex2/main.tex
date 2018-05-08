@@ -24,6 +24,7 @@
 %\documentclass[a4paper,slovak,12pt,appendix]{report}
 \usepackage{indentfirst}
 \usepackage{ifthen}
+\usepackage{fancyhdr}
 
 \newboolean{english}
 \newboolean{bachelor}
@@ -129,6 +130,9 @@ pdfkeywords={key words},%
 }
 \pagenumbering{arabic}
 \setcounter{page}{1}
+%\pagestyle{headings}
+\pagestyle{fancy}
+
 %%
 %% Introduction
 %%
