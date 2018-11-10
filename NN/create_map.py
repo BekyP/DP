@@ -5,10 +5,7 @@ import numpy as np
 from scipy.io import loadmat
 from scipy.misc import toimage
 from cv2 import GaussianBlur
-
-
-def listdir_fullpath(d):
-    return [os.path.join(d, f) for f in os.listdir(d)]
+from utils import listdir_fullpath
 
 
 def get_size_and_fix(data, users=[1, 2, 3, 4, 5]):
