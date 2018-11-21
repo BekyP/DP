@@ -18,7 +18,7 @@ def neural_network_model(data, keep_prob):
         conv = tf.nn.sigmoid(
             tf.nn.conv2d(x_image, w_conv,
                          strides=[1, 1, 1, 1], padding='SAME') + b_conv
-                             )
+        )
     print_shape(conv)
 
     with tf.name_scope('max_pooling_layer_1'):
