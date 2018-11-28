@@ -31,6 +31,7 @@ def visualize_heatmap(heatmap, orig, path_for_saving, heatmap_type='binary'):
     img = Image.open("/tmp/heatmap_tmp.jpg")
     rsz_img = img.resize(size, Image.ANTIALIAS)
     rsz_img.save("/tmp/heatmap_resized_tmp.jpeg", "jpeg")  # saving resized heatmap
+    rsz_img.save(path_for_saving + "map_prediction_for_" + str(orig.rsplit('/', 1)[1]),"jpeg")
 
     fig = plt.figure(figsize=(17, 9), frameon=False)
 

@@ -77,6 +77,7 @@ def train_neural_network():
         sess.run(tf.global_variables_initializer())
 
         # set up directories for log files
+        # TODO os.path.join
         summary_writer = tf.summary.FileWriter(args.model + "logs/train", sess.graph)
         validation_writer = tf.summary.FileWriter(args.model + "logs/val/", sess.graph)
 
@@ -141,6 +142,6 @@ def train_neural_network():
                 break
             iteration_loss = val
 
-        saver.save(sess, args.model)
+        saver.save(sess, args.model+"trained_model.model")
 
 train_neural_network()
