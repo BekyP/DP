@@ -58,5 +58,5 @@ for data in extracted_data:
         final_map = apply_fixations(data['size'], data[user_key], final_map)
 
     print(final_map.shape)
-    final_map = GaussianBlur(final_map, (15, 15), 0)
+    final_map = GaussianBlur(final_map, (35, 35), 0)
     toimage(final_map.T).save(os.path.join(args.output, data['file']))
