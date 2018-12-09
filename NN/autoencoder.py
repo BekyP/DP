@@ -71,6 +71,6 @@ train_maps = maps[:split]
 valid_images = images[split:]
 valid_maps = maps[split:]
 
-autoencoder.fit(train_images, train_maps, epochs=int(args.epoch), batch_size=16,
-                shuffle=True, validation_data=(valid_images, valid_maps), verbose=5, callbacks=[ModelCheckpoint("model.save",monitor='val_loss', verbose=3, save_best_only=True), TensorBoard(log_dir='logs', histogram_freq=0, write_graph=True, write_images=True), EarlyStopping(monitor='val_loss')])
+autoencoder.fit(train_images, train_maps, epochs=int(args.epoch), batch_size=128,
+                shuffle=True, validation_data=(valid_images, valid_maps), verbose=5, callbacks=[ModelCheckpoint("model.save",monitor='val_loss', verbose=3, save_best_only=True), TensorBoard(log_dir='logs', histogram_freq=0, write_graph=True, write_images=True), EarlyStopping(monitor='val_loss', patience=10)])
 
