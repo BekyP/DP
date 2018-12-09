@@ -5,9 +5,11 @@
 
 %TODO spomenut autoencoder
 
-Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}) vykonávaných v rámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/}.
+Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}) vykonávaných vrámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/}.
 
-\subsection{Návrh neurónovej siete}
+Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model vgg net ... TODO %TODO 
+
+\subsection{Konvolučná neurónová sieť}
 \label{nn_popis}
 
 Celá architektúra je načrtnutá na schéme na obrázku \ref{my_tensorboard_cnn} vytvorenej pomocou nástroja  TensorBoard\footnote{https://www.tensorflow.org/get\_started/summaries\_and\_tensorboard/}.
@@ -23,6 +25,9 @@ Aktivačná funkcia sigmoid je použitá najmä preto, že mapa výraznosti je p
 		}\label{my_tensorboard_cnn}
 	\end{center}
 \end{figure}
+
+\subsection{Autoenkóder}
+\label{autoencoder_design}
 
 \subsection{Prvotné experimenty}
 \label{first_experiments}
