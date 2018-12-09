@@ -13,12 +13,13 @@ parser.add_argument('--maps', help='folder with saliency maps', required=True)
 parser.add_argument('--batch', help='Numbers of samples for each epoch of training', required=True)
 parser.add_argument('--epochs', help='Number of epochs', required=True)
 parser.add_argument('--model', help='File where final trained model will be saved', required=True)
+parser.add_argument('--n', help='Images size n x n', required=True)
 
 args = parser.parse_args()
 
 keep_prob = tf.placeholder(tf.float32)  # drop out layer value
-x = tf.placeholder('float', shape=[None, 64, 64, 3])  # input images
-y = tf.placeholder('float', shape=[None, 64, 64])  # output
+x = tf.placeholder('float', shape=[None, args.n, args.n, 3])  # input images
+y = tf.placeholder('float', shape=[None, args.n, args.n])  # output
 
 from tensorflow.contrib.layers import fully_connected
 
@@ -48,7 +49,7 @@ def shuffle_data(images, maps):
 
 def train_neural_network():
     # creates model of neural network
-    prediction = neural_network_model(x, keep_prob)
+    prediction = neural_network_model(x, keep_prob, int(args.n))
 
     # setting up parameters of model
     cross_entropy = tf.reduce_mean(
@@ -84,8 +85,8 @@ def train_neural_network():
 
         end = False
 
-        images = np.array(load_data(args.images, (64, 64), int(args.batch)))
-        maps = np.array(load_data(args.maps, (64, 64), int(args.batch)))
+        images = np.array(load_data(args.images, (int(args.n), int(args.n)), int(args.batch)))
+        maps = np.array(load_data(args.maps, (int(args.n), int(args.n)), int(args.batch)))
 
         train_x, train_y, valid_x, valid_y = shuffle_data(images, maps)
 
@@ -129,7 +130,7 @@ def train_neural_network():
             validation_writer.flush()
 
 
-            if i != 0 and i%100 == 0:
+            if i != 0 and i%5 == 0:
                 #val = sess.run(validation_cross_entropy, feed_dict=val_data)
                 print("current loss: ", c)
                 print("validation loss: ", val)
