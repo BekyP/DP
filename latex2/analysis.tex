@@ -177,7 +177,9 @@ V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, kto
 	
 	V podstate vychádza priamo zo Stochaistického gradient descent optimizéru, resp. jeho modifikácie RMSProp algoritmu\cite{rms}. Rozdiel oproti Gradient descent optimizéru je ale v tom, že je schopný variabilne určovať rýchlosť učenia neurónovej siete.
 	
-	%TODO pridat adadelta
+	\item \textbf{Adadelta optimizer \cite{adadelta}:}
+	
+	Jedná sa o rozšírenie Adagrad optimizéru\cite{adagrad}, ktoré sa snaží zredukovať jeho agresívnu, monotónne klesajúcu rýchlosť učenia. Je robustnejší, prispôsobovanie spomínanej rýchlosti učenia je založené na pohyblivom okne aktualizácií gradientu namiesto akumulácie všetkých minulých gradientov, ako je to pri Adagrad optimizéri. Vďaka tomu je Adadelta schopný pokračovať v učení aj po veľkom množstve epoch a aktualizácií gradientu.\footnote{https://keras.io/optimizers/} 
 	
 	\item \textbf{Ftrl optimizer:}
 	
