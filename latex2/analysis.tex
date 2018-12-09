@@ -251,7 +251,30 @@ Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www
 	
 	Z mnohých pokusov o autonómnu jazdu stoja za zmienku hlavne tie od Tesly a Google. Prototyp autonómneho systému vozidla od Google-u Dave-2\cite{google_car} využíva model neurónovej siete s 9 vrstvami, jednu normalizačnú, 5 konvolučných a 3 plne prepojené vrstvy. Kamerami spracovaný obraz okolia s frekvenciou 10 snímkov za sekundu (tak nízky počet preto, aby sa predišlo veľkému množstvu príliš podobných obrázkov) je po jednom snímku rozdelený do YUV\footnote{farebný priestor používaný vo video aplikáciách} úrovní a posunutý do neurónovej siete.   
  
- %TODO autoencoder
+\subsubsection{Autoenkóder}
+\label{autoencoder}
+Autoenkóder (z angl. autoencoder) je špeciálnym typom neurónovej siete, tradične je používaný ako algoritmus učenia bez učiteľa. K učenia však požíva štandardný algoritmus spätného šírenia chyby, kedy sú ale cieľové hodnoty rovné tým vstupným, snaží sa teda naučiť funkciu:
+\begin{equation}
+	y^{(i)} = x^{(i)}
+\end{equation}
+
+Jeho cieľom je v podstate naučiť sa enkódovanú reprezentáciu dát, čo sa využíva napríklad pri komprimácii alebo k zníženiu dimenzionality dát\cite{autoencoder_dimensionality}. Autoenkóder sa skladá z dvoch častí (ako je to vidieť na obrázku \ref{autoencoder_graph}):
+\begin{itemize}
+	\item enkóder - prvá časť, postupne sa od vstupnej vrstvy zmenšuje počet neurónov, čo v podstate komprimuje vstupnú informáciu do enkódovanie reprezentácie
+	\item dekóder - druhá časť, jeho vstupom je práve enkódovaná reprezentácia dát a jeho cieľom je z tejto reprezntácie zrekonštruovať pôvodné dáta
+\end{itemize}
+ 
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.4]{autoencoder.png}
+		\caption[Príklad jednoduchého autoenkóderu]{
+			Diagram reprezentujúci jednoduchý autoenkóder\footnotemark
+		}\label{autoencoder_graph}
+	\end{center}
+\end{figure}
+
+\footnotetext{https://www.alanzucconi.com/2018/03/14/an-introduction-to-autoencoders/}
+
+I keď cieľom je na konci mať na výstupnej vrstve dokonale zrekonštruovaný vstup, bohužiaľ to tak takmer nikdy nie je a pri autoenkóderoch sa tak jedná o stratovú kompresiu. Zatiaľ nie sú široko rozšírené a v praxi sa používajú najmä pri odstraňovaní šumu\cite{autoencoder_denoising} z dát alebo pri znižovaní ich dimenzionality. Uplatnenie tak nachádzajú hlavne pri spracovaní jazyka\cite{autoencoder_nlp} a počítačovom videní - napríklad pri detekcii objektov\cite{autoencoder_artur}.
  
 \subsection{Framework-y pre prácu s neurónovými sieťami}
 V dnešnej dobe moderného internetu a dostupnosti technológií máme možnosť výberu z dostatočného množstva framework-ov pre potreby riešenia najrôznejších problémov neurónovými sieťami. Pri výbere môžeme brať do úvahy napríklad preferencie operačného systému (Windows, Linux, ...), programovacieho jazyka (Python, C++, Java, ...), ale aj benefity distribuovaného riešenia a omnoho viac. V nasledujúcich podkapitolách sú preto popísané niektoré z najpoužívanejších technológií pre implementovanie neurónových sietí. 
