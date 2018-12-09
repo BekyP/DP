@@ -131,7 +131,10 @@ pdfkeywords={key words},%
 \pagenumbering{arabic}
 \setcounter{page}{1}
 %\pagestyle{headings}
-\pagestyle{fancy}
+
+\pagestyle{headings}
+\renewcommand{\headrulewidth}{2pt}
+\cfoot{\thepage}
 
 %%
 %% Introduction
@@ -155,7 +158,7 @@ pdfkeywords={key words},%
  \newpage
 %\input{implementation.tex}
 
-%\input{experiments.tex}
+\input{experiments.tex}
 %%
 %% test
 %%

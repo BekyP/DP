@@ -5,9 +5,37 @@
 
 %TODO spomenut autoencoder
 
-Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}) vykonávaných vrámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/}.
+Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}).
 
-Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model vgg net ... TODO %TODO 
+Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG-Net siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete.
+
+V závislosti od toho, ktorý model, resp. varianta, sa ukáže byť najpresnejšia sa potom budeme venovať ďalšiemu experimentovaniu s pridávaním dodatočných (top-down) informácií o scéne, akými sú napr. poloha objektov konkrétnych objektov.
+
+\subsection{Dataset}
+Podarilo sa nám nájsť veľké množstvo datasetov, ktoré by sa potencionálne dali použiť pre našu neurónovú sieť, ako napr. 
+CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, či DUT-OMRON\cite{dut-omron}. Pôvodná myšlienka bola vytiahnuť z každého čo najlepšie vzorky (odstrániť rôzne abstraktné umenie, fraktály, atď.) a dať tak dokopy jeden veľký dataset, na ktorom by bolo možné experimentovať. To sme aj naozaj zrealizovali a takýto dataset použili pri prvotných experimentoch popísaných v kapitole \ref{first_experiments}.
+
+Neskôr sa ale postupne ukázalo, že takto zostrojený dataset zložený z viacerých menších má značné nedostatky. Najväčšími problémami boli:
+\begin{itemize}
+	\item rozdielna kvalita a veľkosť obrázkov
+	\item rozdielna dĺžka pohľadov ľudí na obrázky (2, 5, 10 sekúnd)
+	\item rozdielny počet fixácií pre obrázky
+	\item rozdielnosť experimentov, pri ktorých sa dáta zbierali (voľné sledovanie, voľné sledovanie s detekciou anomálií, zapamätanie si scény, atď.)
+	\item rozdielne zariadenia pre zachytenie fixácií s rôznou vzorkovacou frekvenciou 
+\end{itemize}
+
+Z vyššie uvedených dôvodov sme sa preto rozhodli vybrať iba jeden dataset. Voľba padla na DUT-OMRON\cite{dut-omron}, pretože:
+\begin{itemize}
+	\item obsahuje viac než 5000 obrázkov
+	\item obsahuje pohľady 5 ľudí za prvé 2 sekundy
+	\item má odstránené extrémy v dátach (z angl. outliers)
+	\item viac ako 95\% obrázkov má viac než 50 fixácií
+	\item všetky obrázky nemajú iba jeden veľký objekt v strede - t.j. fixácie nie sú stále centrované v tej istej oblasti
+	\item veľkosť obrázkov je \textit{400x300}
+	\item má dobre štruktúrovane spracované dáta
+\end{itemize} 
+
+Z vybraných dát sme si potom predpočítali mapy výraznosti (z angl. saliency maps) použitím fixácií a Gauss-ovho filtra. Mapy výrazností jednotlivých ľudí pre obrázky sme potom spojili dokopy. Takouto úpravou sme potom získali viac než 5000 vzoriek, na ktorých sme ďalej trénovali navrhnuté modely.
 
 \subsection{Konvolučná neurónová sieť}
 \label{nn_popis}
@@ -29,42 +57,6 @@ Aktivačná funkcia sigmoid je použitá najmä preto, že mapa výraznosti je p
 \subsection{Autoenkóder}
 \label{autoencoder_design}
 
-\subsection{Prvotné experimenty}
-\label{first_experiments}
-Pre prvotné experimenty sme sa rozhodli zvoliť problém predikcie vizuálnej pozornosti v častiach obrázkov, konkrétne v tzv. regiónoch záujmu (z angl. regions of interest, ROIs), ktoré sme zvolili v okolí fixácií na obrázky. Z veľkého množstva problémov, s ktorými sme sa potýkali, bol jedným z najväčších práve dataset, keďže bolo nutné vhodne ho zvoliť a predpripraviť (extrakcia regionóv záujmu pre obrázky, mapy výraznosti, správne oštítkovanie, ...)
-
-\subsubsection{Dataset}
-\label{dataset}
-%TODO vytiahnut hore samostane a popisat osobitne pre prvotne experimenty a pre finalny test
-Dataset použitý k trénovaniu navrhnutej neurónovej siete tvorili spomínané regióny zájmu extrahované z niekoľkých voľne dostupných dataset-ov vizuálnej pozornosti (CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, ...). Keďže vo viacerých z nich chýbali úplné informácie k výpočtu máp výraznosti, rozhodli sme sa ich extrahovať rovnako ako pri obrázkoch scény z obrázkov máp výraznosti. Vizualizáciu popisovanej extrakcie v okolí fixácií možno vidieť na obrázku \ref{roi_image}. Nevyhovujúce časti datasetov (ako napr. abstraktné umienie, fraktály, cartoon obrázky, ...) boli odfiltrované.
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.13]{img.PNG}
-		\includegraphics[scale=0.13]{map.PNG}
-		\caption[Vizualizácia extrakcie regiónov záujmu]{
-			Vizualizácia extrakcie regiónov záujmu, vľavo obrázok, vpravo mapa výraznosti k nemu
-		}\label{roi_image}
-	\end{center}
-\end{figure}
-
-Mapy výraznosti boli extrahované ako grayscale obrázky, kde hodnota pixelu prakticky určuje intenzitu. Získané dáta boli ďalej pre neurónovú sieť normalizované.
-\newline
-
-\subsubsection{Výsledky}
-
-Navrhovanú sieť sme trénovali na priravenom datasete (nakoniec obsahoval zhruba 500 000 vzoriek), ktorý bol rozdelený štandardne v pomere 80:10:10 (80 - trénovanie, 10 - validácia, 10 - testovanie). Validácia prebiehala po každej iterácii a trénovanie končilo v momente keď sa chyba na validačných dátach začala výrazne odlišovať oproti najnižšej dosiahnutej (pomaly dochádzalo k pretrénovaniu). V závere mala sieť chybu predikcie na testovacích dátach na úrovni \textit{0.29}, chyba bola počítaná ako priemer chýb v každom bode obrázka. Na obrázku \ref{results_image} možno vidieť porovanie predikovaných máp výraznosti s originálnymi a so vstupnými obrázkami. 
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.5]{predicted_saliency.PNG}
-		\caption[Porovnanie prvotných výsledkov]{
-			Porovnanie predikcií (dolu) s originálnymi mapami výraznosti (v strede) voči vstupným obrázkom (hore)
-		}\label{results_image}
-	\end{center}
-\end{figure}
-
-Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sme si na začiatku neuvedomili. Väčšina metrík evaluuje mapu výraznosti voči binárnej matici reprezentujúcej fixácie na obrázok. Vzhľadom na to, že našim vstupom boli regióny záujmy v okolí fixácií, vo väčšine prípadov tieto binárne matice obsahovali len jednu fixáciu. Vďaka tomu mali metriky (AUC, sAUC, NSS) nezmyselne vysoké hodnoty. Z tohto dôvodu ich teda považujeme za nerelevantné a jediná metrika, podľa ktorej sa môžeme riadiť, je korelačný koeficient, keďže ten evaluuje predikovanú mapu voči tej pôvodnej. Jeho hodnoty na testovacích dátach sa v priemere pohybovali na hranici 0.563.
 
 %TODO popisat poriadne CNN
 

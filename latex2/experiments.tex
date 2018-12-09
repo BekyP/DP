@@ -2,6 +2,63 @@
 
 \section{Experimenty}
 \label{experiments}
+V priebehu práce bolo nutné experimentovať v naozaj veľkom množstve s najrôznejším počtom vecí od typov neurónových sietí, datasetov až po rôzne prístupy k riešeniu zadaného problému.
+
+Prvotné experimenty vykonávané vrámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/} sú zachytené v kapitole \ref{first_experiments}.
+
+\subsection{Prvotné experimenty}
+\label{first_experiments}
+Pre prvotné experimenty sme sa rozhodli zvoliť problém predikcie vizuálnej pozornosti v častiach obrázkov, konkrétne v tzv. regiónoch záujmu (z angl. regions of interest, ROIs), ktoré sme zvolili v okolí fixácií na obrázky.
+
+\subsubsection{Úprava datasetu}
+\label{dataset}
+
+V tejto fáze prvotných experimentov sme pracovali s datasetom zloženým z niekoľkých voľne dostupných dataset-ov vizuálnej pozornosti (CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, ...).
+Keďže vo viacerých z nich chýbali úplné informácie k výpočtu máp výraznosti, rozhodli sme sa ich získať z dostupných obrázkov máp výraznosti, kedy sme ich načítali ako jednofarebný  obrázok v odtieňoch sivej (z angl. grayscale) - hodnota pixelu vtedy prakticky reprezentuje intenzitu. Ďalej sme spolu pre vstupné obrázky a mapy výraznosti extrahovali regióny záujmu, ktoré sme zvolili v okolí fixácií - vizualizácia popisovanej extrakcie je zobrazená na obrázku \ref{roi_image}. Nevyhovujúce časti datasetov (ako napr. abstraktné umienie, fraktály, cartoon obrázky, ...) boli odfiltrované.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.13]{img.PNG}
+		\includegraphics[scale=0.13]{map.PNG}
+		\caption[Vizualizácia extrakcie regiónov záujmu]{
+			Vizualizácia extrakcie regiónov záujmu, vľavo obrázok, vpravo mapa výraznosti k nemu
+		}\label{roi_image}
+	\end{center}
+\end{figure}
+
+Takto získané dáta boli ďalej pre neurónovú sieť normalizované, dokopy sme si nakoniec zaistili zhruba 500 000 vzoriek.
+\newline
+
+\subsubsection{Výsledky}
+
+Navrhovanú konvolučnú neurónovú sieť (kapitola \ref{nn_popis}) sme trénovali na priravenom datasete, ktorý bol rozdelený štandardne v pomere 80:10:10 (80 - trénovanie, 10 - validácia, 10 - testovanie). Validácia prebiehala po každej iterácii a trénovanie končilo v momente keď sa chyba na validačných dátach začala výrazne odlišovať oproti najnižšej dosiahnutej (pomaly dochádzalo k pretrénovaniu). V závere mala sieť chybu predikcie na testovacích dátach na úrovni \textit{0.29}, chyba bola počítaná ako priemer chýb v každom bode obrázka. Na obrázku \ref{results_image} možno vidieť porovanie predikovaných máp výraznosti s originálnymi a so vstupnými obrázkami. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{predicted_saliency.PNG}
+		\caption[Porovnanie prvotných výsledkov]{
+			Porovnanie predikcií (dolu) s originálnymi mapami výraznosti (v strede) voči vstupným obrázkom (hore)
+		}\label{results_image}
+	\end{center}
+\end{figure}
+
+Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sme si na začiatku neuvedomili. Väčšina metrík evaluuje mapu výraznosti voči binárnej matici reprezentujúcej fixácie na obrázok. Vzhľadom na to, že našim vstupom boli regióny záujmy v okolí fixácií, vo väčšine prípadov tieto binárne matice obsahovali len jednu fixáciu. Vďaka tomu mali metriky (AUC, sAUC, NSS) nezmyselne vysoké hodnoty. Z tohto dôvodu ich teda považujeme za nerelevantné a jediná metrika, podľa ktorej sa môžeme riadiť, je korelačný koeficient, keďže ten evaluuje predikovanú mapu voči tej pôvodnej. Jeho hodnoty na testovacích dátach sa v priemere pohybovali na hranici 0.563.
+
+\subsection{Konvolučná neurónová sieť}
+\label{experiments_cnn}
+
+
+\subsection{Konvolučný autoenkóder}
+\label{experiments_autoencoder}
+
+
+\subsection{Autoencoder s predtrénovaným modelom VGG-Net}
+\label{experiments_vgg_net}
+
+\subsection{Výsledky experimentov´}
+
+%multiline comment 
+\iffalse
 Počas zostrojovania neurónovej siete sme vykonali niekoľko experimentov, týkali sa hlavne konfigurácie siete, rôznych aktivačných funkcií, optimizérov a veľkosti datasetu pri trénovaní. Väčšie experimenty sú popísané v častiach \ref{val_vs_noval} a \ref{dropout_vs_nodropout}, zistenia z tých menších sú zhrnuté nasledovne:
 
 \begin{itemize}
@@ -38,3 +95,4 @@ Chyba na natrénovanom modeli bez validácia bola na testovacích dátach 0.2088
 		\caption[Model s vrstvou výpadku vs. bez nej]{Grafy poklesu chyby pri jednotlivých trénovaniach, vľavo model s vrstvou výpadku, vpravo bez nej}\label{dropout}
 	\end{figure}
 	
+\fi
