@@ -2,6 +2,9 @@
 \newpage
 \section{Návrh}
 \label{design}
+
+%TODO spomenut autoencoder
+
 Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}) vykonávaných v rámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/}.
 
 \subsection{Návrh neurónovej siete}
@@ -27,6 +30,7 @@ Pre prvotné experimenty sme sa rozhodli zvoliť problém predikcie vizuálnej p
 
 \subsubsection{Dataset}
 \label{dataset}
+%TODO vytiahnut hore samostane a popisat osobitne pre prvotne experimenty a pre finalny test
 Dataset použitý k trénovaniu navrhnutej neurónovej siete tvorili spomínané regióny zájmu extrahované z niekoľkých voľne dostupných dataset-ov vizuálnej pozornosti (CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, ...). Keďže vo viacerých z nich chýbali úplné informácie k výpočtu máp výraznosti, rozhodli sme sa ich extrahovať rovnako ako pri obrázkoch scény z obrázkov máp výraznosti. Vizualizáciu popisovanej extrakcie v okolí fixácií možno vidieť na obrázku \ref{roi_image}. Nevyhovujúce časti datasetov (ako napr. abstraktné umienie, fraktály, cartoon obrázky, ...) boli odfiltrované.
 
 \begin{figure}[H]
@@ -56,3 +60,11 @@ Navrhovanú sieť sme trénovali na priravenom datasete (nakoniec obsahoval zhru
 \end{figure}
 
 Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sme si na začiatku neuvedomili. Väčšina metrík evaluuje mapu výraznosti voči binárnej matici reprezentujúcej fixácie na obrázok. Vzhľadom na to, že našim vstupom boli regióny záujmy v okolí fixácií, vo väčšine prípadov tieto binárne matice obsahovali len jednu fixáciu. Vďaka tomu mali metriky (AUC, sAUC, NSS) nezmyselne vysoké hodnoty. Z tohto dôvodu ich teda považujeme za nerelevantné a jediná metrika, podľa ktorej sa môžeme riadiť, je korelačný koeficient, keďže ten evaluuje predikovanú mapu voči tej pôvodnej. Jeho hodnoty na testovacích dátach sa v priemere pohybovali na hranici 0.563.
+
+%TODO popisat poriadne CNN
+
+%TODO popisat poriadne autoencoder
+
+%TODO popisat poriadne transfer learning s autoencoderom s vgg netom
+
+%TODO zhrnutie experimentov s metrikami

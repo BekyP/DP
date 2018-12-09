@@ -177,6 +177,8 @@ V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, kto
 	
 	V podstate vychádza priamo zo Stochaistického gradient descent optimizéru, resp. jeho modifikácie RMSProp algoritmu\cite{rms}. Rozdiel oproti Gradient descent optimizéru je ale v tom, že je schopný variabilne určovať rýchlosť učenia neurónovej siete.
 	
+	%TODO pridat adadelta
+	
 	\item \textbf{Ftrl optimizer:}
 	
 	Vychádza z algoritmu učenia FTRL-Proximal\cite{ftrl}, celým názvom Nasleduj regularizovaného vodcu (z angl. Follow The (Proximal) Regularized Leader). Tento algoritmus je bez regularizácie v podstate identický s gradient descentom, avšak používa alternatívnu reprezentáciu koeficientov váh a tak môže byť regularizácia implementovaná efektívnejšie.
@@ -246,6 +248,8 @@ Základ tohto typu siete tvorí vstupná konvolučná vrstva\footnote{http://www
 	Využite tohto typu je v podstate všade, kde sa pracuje s obrázkami. Či už ide o automatické vyznačenie tvárí pre označenie na facebook-u, autonómne vozidlá, ktoré sa vedia riadiť sami (autopilot) alebo triedenie uhoriek na farmách v Japonsku\footnote{https://cloud.google.com/blog/big-data/2016/08/how-a-japanese-cucumber-farmer-is-using-deep-learning-and-tensorflow}. Na tento konkrétny softvér bol použitý príklad kódu jednoduchej konvolučnej siete z tutoriálu\footnote{https://www.tensorflow.org/versions/0.6.0/tutorials/mnist/pros/index.html} pre TensorFlow (knižnica pre prácu s neurónovými sieťami, popísaná v kapitole \ref{tf}), s modifikáciou konvolučnej a združovacej vrstvy tak, aby bola sieť uspôsobená počtu tried uhoriek (10) a ich formátu obrázkov. 
 	
 	Z mnohých pokusov o autonómnu jazdu stoja za zmienku hlavne tie od Tesly a Google. Prototyp autonómneho systému vozidla od Google-u Dave-2\cite{google_car} využíva model neurónovej siete s 9 vrstvami, jednu normalizačnú, 5 konvolučných a 3 plne prepojené vrstvy. Kamerami spracovaný obraz okolia s frekvenciou 10 snímkov za sekundu (tak nízky počet preto, aby sa predišlo veľkému množstvu príliš podobných obrázkov) je po jednom snímku rozdelený do YUV\footnote{farebný priestor používaný vo video aplikáciách} úrovní a posunutý do neurónovej siete.   
+ 
+ %TODO autoencoder
  
 \subsection{Framework-y pre prácu s neurónovými sieťami}
 V dnešnej dobe moderného internetu a dostupnosti technológií máme možnosť výberu z dostatočného množstva framework-ov pre potreby riešenia najrôznejších problémov neurónovými sieťami. Pri výbere môžeme brať do úvahy napríklad preferencie operačného systému (Windows, Linux, ...), programovacieho jazyka (Python, C++, Java, ...), ale aj benefity distribuovaného riešenia a omnoho viac. V nasledujúcich podkapitolách sú preto popísané niektoré z najpoužívanejších technológií pre implementovanie neurónových sietí. 
@@ -517,6 +521,8 @@ Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl
 \end{figure}
 
 Popisované riešenie je ukážkovým modelom pre predikciu pozornosti počas hľadania objektov v scéne. Veľkou výhodou je použitie LSTM vrstiev pre zachytenie predošlého kontextu ako aj možnosť predikcie pre video aj obrázky iba s minimálnymi zmenami.
+
+%TODO mozno spomenut https://github.com/arthurmeyer/Saliency_Detection_Convolutional_Autoencoder tento shit niekde
 
 \newpage
 \null
