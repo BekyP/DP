@@ -4,7 +4,19 @@
 \label{experiments}
 V priebehu práce bolo nutné experimentovať v naozaj veľkom množstve s najrôznejším počtom vecí od typov neurónových sietí, datasetov až po rôzne prístupy k riešeniu zadaného problému.
 
-Prvotné experimenty vykonávané vrámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/} sú zachytené v kapitole \ref{first_experiments}.
+Prvotné experimenty vykonávané vrámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/} sú zachytené v kapitole \ref{first_experiments}. Ďalšie experimenty potom prebiehali postupne s konvolučnou neurónovou sieťou (kapitola \ref{experiments_cnn}), konvolučným autoenkóderom (kapitola \ref{experiments_autoencoder}) a autoenkóderom s predtrénovanou sieťou VGG-Net (kapitola \ref{experiments_vgg_net}). Pri každom modeli sme odskúšali nespočetné množstvo rôznych konfigurácií, pre popis sme ale vybrali len tie s najlepšími výsledkami pre jednotlivé časti. 
+
+\subsection{Implementačné prostredie}
+
+Všetky nižšie popisované experimenty boli naimplementované v jazyku Python za použitia najrôznejších knižníc, hlavne pre prácu s obrázkami a neurónovými sieťami. Najdôležitejšími knižnicami sú:
+\begin{itemize}
+	\item TensorFlow\footnote{https://www.tensorflow.org/} - open-source knižnica pre prácu s neurónovými sieťami a strojovým učením
+	\item Keras\footnote{https://keras.io/} - vysoko úrovňová knižnica pre prácu s neurónovými sieťami, beží na nižšie úrovňovými knižnicami ako Theano či TensorFlow
+	\item Matplotlib\footnote{https://matplotlib.org/} - knižnica pre 2D vykresľovanie v Python-e
+	\item OpenCV\footnote{https://opencv.org/, https://pypi.org/project/opencv-python/} - open-source knižnica pre počítačové videnie a strojové učenie
+	
+	Trénovanie modelov v experimentoch prebiehalo na GPU.
+\end{itemize}
 
 \subsection{Prvotné experimenty}
 \label{first_experiments}
@@ -47,16 +59,60 @@ Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sm
 \subsection{Konvolučná neurónová sieť}
 \label{experiments_cnn}
 
+Ďalším experimentom bolo použitie klasickej konvolučnej neurónovej siete rovnako ako v predchádzajúcom prípade, tentokrát ale na celých obrázkoch. Ako dataset bol použitý spracovaný DUT-OMRON dataset (popísaný v kapitole \ref{dataset_description}) rozdelený podobne v pomere 80:10:10 (80 - trénovanie, 10 - validácia, 10 - testovanie), validácia bola tiež po každej epoche, trénovanie ale končilo v momente keď validačná chyba začala stúpať. Na obrázku nižšie možno vidieť vývoj jednotlivých chýb počas trénovania. Chyba bola počítaná ako priemier chýb predikcií v jednotlivých bodoch obrázka.
+
+\begin{figure}[H]
+	\begin{center}
+	
+	\includegraphics[scale=0.3]{nn_loss_outliers.png}
+	\includegraphics[scale=0.3]{nn_loss_no_outliers.png}
+		\caption[Vývoj chyby počas trénovania konvolučnej neurónovej siete]{
+			Grafy zobrazujúce vývoj chyby neurónovej siete počas 1500 epoch - modrá farba reprezentuje chybu na trénovacích dátach, oranžová chybu na validačných dátach. Horný graf bez odstránených extrémov, dolný už bez extrémov pre lepšie zobrazenie rozdielu medzi validačnou a trénovacou chybou
+		}\label{cnn_loss_outliers}
+	\end{center}
+\end{figure}
+
+Z vyššie uvedených grafov vyplýva, že sieť bola schopná najvýraznejšie znížiť chybu predikcií behom prvých 100 epoch. Z jej počiatočnej hodnoty približne 0.5657 klesla až na 0.0557 na trénovacích dátach, na validačných dosahovala hodnotu 0.0565. Pri finálnom testovaní bola priemerná chyba približne 0.0595. Na prvý pohľad sa to môže javiť ako solídny výsledok, po vizualizovaní predikcií sme ale zistili, že sieť sa prakticky naučila predikovať ako najvýraznejšiu časť obrázka vždy len jeho stred, príklad predikcie je na obrázku \ref{cnn_results}.
+
+\begin{figure}[H]
+	\begin{center}
+		
+		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_plane_heatmap.png}
+		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_plane_predict.png}
+		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_plane.png}
+		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_predict_on_plane.png}
+		\includegraphics[scale=0.4]{cnn_plane_heatmap.png}
+		\includegraphics[scale=0.4]{cnn_plane_predict.png}
+		\includegraphics[scale=0.4]{cnn_plane.png}
+		\includegraphics[scale=0.534]{cnn_predict_on_plane.png}
+		\caption[Vzorka predikcie konvolučnej neurónovej siete]{
+			Vľavo hore originálna mapa vizuálanej pozornosti, vpravo hore predikovaná mapa, vľavo dole obrázok pre prislúchajúce mapy výraznosti, vpravo dole zobrazenie predikcie na obrázku
+		}\label{cnn_results}
+	\end{center}
+\end{figure}
+
+Vyššie zobrazené správanie môže byť spôsobené napríklad relatívne malou veľkosťou vstupných obrázkov, kvôli veľkej pamäťovej náročnosti siete. 
 
 \subsection{Konvolučný autoenkóder}
 \label{experiments_autoencoder}
 
 
-\subsection{Autoencoder s predtrénovaným modelom VGG-Net}
+\subsection{Autoenkóder s predtrénovaným modelom VGG-Net}
 \label{experiments_vgg_net}
 
-\subsection{Výsledky experimentov´}
+Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho VGG-Net sieť k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG-Net pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. 
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.3]{vgg_pretrained.png}
+		\caption[Vývoj chyby počas trénovanie siete s predtrénovaným modelom VGG-Net]{
+			Graf zobrazujúci vývoj chyby pri použití predtrénovaného modelu VGG-Net
+		}\label{vgg_pretrained_loss}
+	\end{center}
+\end{figure}
+
+\subsection{Porovnanie výsledkov experimentov}
+% TODO metriky sem nahodit 
 %multiline comment 
 \iffalse
 Počas zostrojovania neurónovej siete sme vykonali niekoľko experimentov, týkali sa hlavne konfigurácie siete, rôznych aktivačných funkcií, optimizérov a veľkosti datasetu pri trénovaní. Väčšie experimenty sú popísané v častiach \ref{val_vs_noval} a \ref{dropout_vs_nodropout}, zistenia z tých menších sú zhrnuté nasledovne:
