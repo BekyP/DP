@@ -56,11 +56,14 @@ Aktivačná funkcia sigmoid je použitá najmä preto, že mapa výraznosti je p
 
 \subsection{Autoenkóder}
 \label{autoencoder_design}
+Ďalším z typov sietí, ktoré sme sa rozhodli otestovať je autoenkóder, konkrétne jeho variácia s konvolučnými vrstvami pre spracovanie obrazu. Jeho úloha je však trochu iná oproti klasickému čo najlepšiemu zrekonštruovaniu vstupu na výstupnej vrstve, miesto toho bude z enkódovaných (komprimovaných dát) predikovať mapy vizuálnej pozornosti. To dosiahneme použitím algoritmu učenia spätného šírenia chyby, kedy ako vstupné dáta budú sieti poskytnuté obrázky a očakávanými výstupmi budú práve mapy vizuálnej pozornosti.
 
+Autoenkóder sa klasicky skladá z dvoch častí. Prvou je enkóder, ktorý tvoria 3 konvolučné vrstvy, každá so svojou vlastnou vrstvou združovania, nasledované normalizačnou vrstvou a jednou plne prepojenou vrstvou (z angl. fully-connected layer). Konvolučné vrstvy majú každá filter o veľkosti \textit{3x3} a aktivačnú funkciu ReLU (popísaná v kapitole \ref{activation_functions}), vrstvy združovania podobne ako pri predchádzajúcom type siete používajú operáciu MAX s filtrom o veľkosti \textit{2x2} a krokom rovnako s veľkosťou \textit{2}. Cieľom týchto vrstiev je prakticky extrahovať relevantné črty a vstupný obrázok zmenšiť, resp. komprimovať, čo ďalej zabezpečuje spomínaná normalizačná a plne prepojená vrstva (bez aktivačných funkcií), ktorá už ale vstupný obrázok reprezentuje len ako komprimované jednorozmerné pole. 
 
-%TODO popisat poriadne CNN
+Druhou časťou spomínaného autoenkóderu je tzv. dekodér, ktorý sa snaží prakticky zrkadlovými operáciami získať informácie z komprimovaných dát, vďaka čomu je schopný predikovať mapy vizuálnej pozornosti. Jeho vstupnou vrstvou je v podstate výstupná vrstva z enkóderu, ktorej tvar ale musí byť najprv zmenený pre nasledujúce konvolučné vrstvy. Tie sú dokopy štyri, prvé tri konvolučné vrstvy obsahujú filter s veľkosťou \textit{3x3} a aktivačnú funkciu ReLU. Každá z nich je ešte navyše nasledovaná vlastnou vrstvou
+prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukcia do tvaru vstupného obrázku. Obsahujú vzorkovací faktor 2, na rozdiel od vrstiev združovania v enkóderi však miesto operácie MAX (ktorá dáta, resp. obrázok zmenší) duplikujú riadky a stĺpce poskytnutých dát (obrázka), vďaka čomu sa zväčší o vzorkovací faktor. Posledná výstupná konvolučná vrstva obsahuje filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid. Dátam na nej je ale ešte nutné predtransformovať na 2D maticu, reprezentujúce nami požadované mapy výraznosti. Spomínané trénovanie pomocu algoritmu spätného šírenia chyby využíva Adadelta optimizér (popísaný v časti \ref{optimizers}).
 
-%TODO popisat poriadne autoencoder
+%TODO autoencoder obrázok
 
 %TODO popisat poriadne transfer learning s autoencoderom s vgg netom
 
