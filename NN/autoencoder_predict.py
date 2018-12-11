@@ -49,7 +49,7 @@ model.compile(loss=loss,
 
 #model.summary()
 
-imgs = np.array(load_data(args.images, (n, n)))[5000:]
+imgs = np.array(load_data(args.images, (n, n),first=5000))
 img_names = sorted(listdir_fullpath(args.images))[5000:]
 
 predicted = model.predict(imgs, verbose=1)
@@ -94,7 +94,7 @@ def count_metrics(predicted_heatmaps, orig, binary_maps):  # computes metrics
     print("final shuffled AUC: " + str(auc_s / num))
     print("final borji AUC: " + str(auc_s / num))
 
-original = np.array(load_data(args.maps, (n, n)))[5000:]
+original = np.array(load_data(args.maps, (n, n),first=5000))
 binary_maps = np.array(get_binary_fixation_maps(args.binary_maps,size=n,first=5000))
 print("counting metrics")
 count_metrics(predicted, original, binary_maps)

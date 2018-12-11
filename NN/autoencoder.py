@@ -75,8 +75,8 @@ autoencoder.compile(optimizer=args.optimizer, loss='mean_squared_error')
 
 autoencoder.summary()
 
-images = np.array(load_data(args.images, (n, n), int(args.batch)))
-maps = np.array(load_data(args.maps, (n, n), int(args.batch)))
+images = np.array(load_data(args.images, (n, n), last=int(args.batch)))
+maps = np.array(load_data(args.maps, (n, n), last=int(args.batch)))
 
 split = int(0.9 * len(images))
 
