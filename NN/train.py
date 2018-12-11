@@ -85,8 +85,8 @@ def train_neural_network():
 
         end = False
 
-        images = np.array(load_data(args.images, (int(args.n), int(args.n)), int(args.batch)))
-        maps = np.array(load_data(args.maps, (int(args.n), int(args.n)), int(args.batch)))
+        images = np.array(load_data(args.images, (int(args.n), int(args.n)), last=int(args.batch)))
+        maps = np.array(load_data(args.maps, (int(args.n), int(args.n)), last=int(args.batch)))
 
         train_x, train_y, valid_x, valid_y = shuffle_data(images, maps)
 
