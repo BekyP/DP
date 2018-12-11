@@ -63,16 +63,14 @@ Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sm
 
 \begin{figure}[H]
 	\begin{center}
-	
-	\includegraphics[scale=0.3]{nn_loss_outliers.png}
 	\includegraphics[scale=0.3]{nn_loss_no_outliers.png}
 		\caption[Vývoj chyby počas trénovania konvolučnej neurónovej siete]{
-			Grafy zobrazujúce vývoj chyby neurónovej siete počas 1500 epoch - modrá farba reprezentuje chybu na trénovacích dátach, oranžová chybu na validačných dátach. Horný graf bez odstránených extrémov, dolný už bez extrémov pre lepšie zobrazenie rozdielu medzi validačnou a trénovacou chybou
+			Graf zobrazujúci vývoj chyby neurónovej siete po odstránení extrémov počas 300 epoch - modrá farba reprezentuje chybu na trénovacích dátach, oranžová chybu na validačných dátach
 		}\label{cnn_loss_outliers}
 	\end{center}
 \end{figure}
 
-Z vyššie uvedených grafov vyplýva, že sieť bola schopná najvýraznejšie znížiť chybu predikcií behom prvých 100 epoch. Z jej počiatočnej hodnoty približne 0.5657 klesla až na 0.0557 na trénovacích dátach, na validačných dosahovala hodnotu 0.0565. Pri finálnom testovaní bola priemerná chyba približne 0.0595. Na prvý pohľad sa to môže javiť ako solídny výsledok, po vizualizovaní predikcií sme ale zistili, že sieť sa prakticky naučila predikovať ako najvýraznejšiu časť obrázka vždy len jeho stred, príklad predikcie je na obrázku \ref{cnn_results}.
+Z vyššie uvedených grafov vyplýva, že sieť bola schopná najvýraznejšie znížiť chybu predikcií behom prvých 50 epoch. Z jej počiatočnej hodnoty približne \textit{0.6709} klesla až na \textit{0.1321} na trénovacích dátach, na validačných dosahovala hodnotu \textit{0.1396}. Pri finálnom testovaní bola priemerná chyba približne \textit{0.1459}. Na prvý pohľad sa to môže javiť ako solídny výsledok, po vizualizovaní predikcií sme ale zistili, že sieť sa prakticky naučila predikovať ako najvýraznejšiu časť obrázka vždy len jeho stred, príklad predikcie je na obrázku \ref{cnn_results}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -81,7 +79,7 @@ Z vyššie uvedených grafov vyplýva, že sieť bola schopná najvýraznejšie 
 		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_plane_predict.png}
 		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_plane.png}
 		%\includegraphics[width=10.58cm,height=6.32cm]{cnn_predict_on_plane.png}
-		\includegraphics[scale=0.4]{cnn_plane_heatmap.png}
+		\includegraphics[scale=0.4]{cnn_plane_heatmap_regenerated.png}
 		\includegraphics[scale=0.4]{cnn_plane_predict.png}
 		\includegraphics[scale=0.4]{cnn_plane.png}
 		\includegraphics[scale=0.534]{cnn_predict_on_plane.png}
@@ -96,59 +94,91 @@ Vyššie zobrazené správanie môže byť spôsobené napríklad relatívne mal
 \subsection{Konvolučný autoenkóder}
 \label{experiments_autoencoder}
 
+Ďalšou architektúrou, ktorú sme sa rozhodli vyskúšať, bol konvolučný autoenkóder (navrhnutý v kapitole \ref{autoencoder_design}. Použitý dataset a jeho rozdelenie bolo rovnaké ako v predošlom experimente, trénovanie ale končilo až keď validačná chyba za posledných \textit{n} epoch neklesla. Ako funkcia chyby bola použitá priemerná absolútna chyba (z angl. mean absolute error, MAE), ktorá meria rozdiel medzi dvomi spojitými premennými, v našom prípade medzi reálnou a predikovanou mapou výraznosti, resp. ich pixelmi. Priebeh učenia možno vidieť na obrázku \ref{autoencoder_loss}. 
+
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.2]{autoencoder_loss.png}
+		\caption[Vývoj chyby počas trénovania autoenkóderu]{
+			Vývoj chyby počas trénovania, oranžovaná reprezentuje trénovaciu, modrá validačnú 
+		}\label{autoencoder_loss}
+	\end{center}
+\end{figure}
+
+Z obrázku je vidieť, že učenie prebiehalo počas 45 epoch, chyba najvýraznejšie klesla počas prvých šiestich epoch. Z počiatočnej hodnoty \textit{0.2336} (trénovacie dáta) a \textit{0.2219} (validačné dáta) bola schopná klesnúť až na hodnotu \textit{0.00874} (trénovacie dáta) a \textit{0.01245} (validačné dáta). Priemerná hodnota chyby pri testovaní na dátach, ktoré sieť nikdy nevidela, bola na úrovni \textit{0.01301}. Vizualizácie porovnanie predikcií sú zobrazené na obrázku \ref{autoencoder_results}.
+
+\begin{figure}[H]
+	\begin{center}\includegraphics[scale=0.6]{autoencoder_results.png}
+		\caption[Porovnanie predikcií autoenkóderu voči reálnym mapám výraznosti]{
+			Porovnanie predikcií autoenkóderu, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku. 
+		}\label{autoencoder_results}
+	\end{center}
+\end{figure}
+
+Z vyššie uvedených vizualizácií jasne vidieť, že sieť bola schopná naučiť sa isté výrazné súvislosti z dát, predikcie však nie sú úplne presné. Na rozdiel od siete z predošlého experimentu už nepredikuje všetko do stredu, ale je schopná označiť aj viacero výrazných objektov. To môže byť spôsobené napríklad väčšou veľkosťou vstupných obrázkov. Nakoľko autoenkóder si interne vstupné dáta zkomprimuje a zníži ich dimezionalitu, je v porovnaní zo spomínanou sieťou z predchádzajúceho experimentu pri rovnako veľkých vstupných obrázkoch menej pamäťovo náročný.
+
+Zaujímavým javom, ktorý sme si všimli pri experimentovaní s týmto typom siete je, že hodnota chyby predikcie siete pri našom probléme nie je úplne smerodajná informácia. Pri použití napr. priemernej štvorcovej chyby (z angl. mean square error, MSE) bola výsledná chyba \textit{0.0000431}, ale predikcie boli v podstate len prázdne mapy bez akýchkoľvek výrazných častí. Tiež pri použití ešte väčšieho množstva konvlučných vrstiev sa použitá priemerná absolútna chyba zmenšila počas trénovania viac, avšak sieť sa v tomto prípade naučila predikovať najviac výrazné časti obrázkov vždy len do stredu, podobne ako pri konvolučnej neurónovej sieti z predošlého experimentu. Práve preto sme kvalitu modelov a predikcií vyhodnocovali metrikami vizuálnej pozornosti (kapitola \ref{metric}), ktorých prehľadné porovnanie aj so závermi je uvedené v \ref{results}.
 
 \subsection{Autoenkóder s predtrénovaným modelom VGG-Net}
 \label{experiments_vgg_net}
 
-Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho VGG-Net sieť k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG-Net pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. 
-
+Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho VGG-Net sieť k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG-Net pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. Po menších úpravách siete sme pristúpili k trénovaniu na našom datasete, postupný vývoj chyby počas trénovania možno vidieť na obrázku \ref{vgg_pretrained_loss}. Validácia prebiehala každých 100 epoch, trénovanie končilo v momente keď minimálna hodnota chyby za posledných \textit{n} epoch neklesla. 
+ 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{vgg_pretrained.png}
 		\caption[Vývoj chyby počas trénovanie siete s predtrénovaným modelom VGG-Net]{
-			Graf zobrazujúci vývoj chyby pri použití predtrénovaného modelu VGG-Net
+			Graf zobrazujúci vývoj chyby po odstránení extrémov pri použití predtrénovaného modelu VGG-Net 
 		}\label{vgg_pretrained_loss}
 	\end{center}
 \end{figure}
 
+Na prvý pohľad sa môže zdať, že sieť sa bola schopná naučiť aspoň nejaké závislosti z dát. Po vizualizovaní dát sme ale zistili, že sme sa veľmi mýlili a snaha o dotrénovanie nepriniesla žiadne ovocie. Vizualizované výsledné dáta, ktoré mali reprezentovať mapy výraznosti, rozhodne ako mapy výraznosti nevyzerali a sieť sa nenaučila nič užitočné. Výsledkom boli len úplne náhodné hodnoty, ktoré sa ani zďaleko neblížili realite. Preto možno považovať tento experiment za nepríjemnú slepú uličku.
+
 \subsection{Porovnanie výsledkov experimentov}
-% TODO metriky sem nahodit 
-%multiline comment 
+\label{results}
+
+Do výsledného porovnania sme nakoniec zobrali iba modely so zmysluplnými výsledkami - konvolučnú neurónovú sieť a autoenkóder. Konvolučná neurónová sieť pri rovnakej vstupnej veľkosti obrázkov zaberá značne väčšie množstvo pamäte ako autoenkóder, jeho trénovanie ale trvá o niečo dlhšie kvôli viacerým konvolučným vrstvám. Pri porovnaní sme sa riadili najmä metrikami vizuálnej pozornosti (kapitola \ref{metric}), prehľadné zhrnutie ich hodnôt je v tabuľke \ref{cnn_vs_autoencoder}.
+
+\begin{table}[H]
+	%\begin{minipage}{\textwidth}
+	\centering
+	\caption[Porovnanie konvolučnej neurónovej siete a autoenkóderu]{Porovnanie konvolučnej neurónovej siete a autoenkóderu spolu s hodnotami metrík vizuálnej pozornosti}
+	\label{cnn_vs_autoencoder}
+	\begin{tabular}{{ | p{2cm} |  p{3cm} |  p{3cm} |  p{3cm} |  }}
+		\hline
+		& \textbf{Konvolučná neurónová sieť} &  \textbf{Autoenkóder} \\ \hline
+		Veľkosť vstupných obrázkov & 64x64 & 256x256  \\ \hline
+		Chyba na testovacích dátach & 0.1459 & 0.01301  \\ \hline
+		\textbf{Metriky} &  &   \\ \hline
+		CC & 0.3891 & 0.4634  \\ \hline
+		AUC & 0.6892 & 0.7967  \\ \hline
+		sAUC & 0.6631 & 0.7245 \\ \hline
+		NSS & 0.7334 & 1.1588  \\ \hline
+	\end{tabular}
+	
+	%\end{minipage}
+\end{table}
+
+Z vyššie uvedenej tabuľky jasne vyplýva, že lepšie výsledky jednoznačne podáva práve autoenkóder, čo je koniec koncov pozorovateľné pri vizualizáciách predikcií. Predpokladáme, že to bude spôsobené najmä veľkosťou vstupných obrázkov. Keďže autoenkóder zaberá menšie množstvou pamäte, boli sme ním schopní spracovať väčšie vstupné obrázky. Pri ďalších experimentoch bude vychádzať práve z neho.
+
 \iffalse
-Počas zostrojovania neurónovej siete sme vykonali niekoľko experimentov, týkali sa hlavne konfigurácie siete, rôznych aktivačných funkcií, optimizérov a veľkosti datasetu pri trénovaní. Väčšie experimenty sú popísané v častiach \ref{val_vs_noval} a \ref{dropout_vs_nodropout}, zistenia z tých menších sú zhrnuté nasledovne:
+cnn:
 
-\begin{itemize}
-	\item najlepšie sa sieť učí, keď dostane naraz celý trénovací dataset, nie len jeho časti
-	\item pridanie ďalších plne prepojených vrstiev predikcie zhoršilo
-	\item pridanie viacerých konvolučných vrstiev nemalo prakticky žiadny vplyv na predikcie
-	\item použitím štandardnej ReLU aktivačnej funkcie dosahovala chyba predikcie enormné hodnoty, bez ohľadu na rýchlosť učenia a použitý optimizér (Adam, Gradient descent, ...)
-	\item aktivačná funkcia Sigmoid v kombinácii s Ftrl optimizérom, ktorého rýchlosť učenia bola 0.2, dávala najnižšiu chybu predikcií
-\end{itemize}
+final correlation coeficient: 0.3891757367163311
+final SIM: 0.30586936122666497
+final NSS: 1.2774279939809017
+final judd AUC: 0.8380535277085104
+final shuffled AUC: 0.8247464580221275
+final borji AUC: 0.8247464580221275
 
-Na základe vyššie uvedeného sme teda do ďalších experimentov pokračovali s modelom neurónovej siete, kde bola aktivačná funkcia Sigmoid, Ftrl optimizér, rýchlosť učenia 0.2 a rovnaký počet konvolučných a plne prepojených vrstiev ako v zobrazenom modeli v časti \ref{navrh}.
+autoencoder:
 
-\subsection{Model s validáciou vs. model bez validácie}
-\label{val_vs_noval}
-Nakoľko máme dosť malý dataset, experimentovali sme s modelom, kde nebola použitá validácia a dáta pre ňu určené boli pridelené k trénovacím dátam. Výsledok však dosiahol iba zhoršenie priemernej chyby predikcie o 0.001. Tréning bez validácie končil v momente, keď chyba na tréningových dátach začala rásť, s validáciou končil až keď začala rásť na validačných dátach. To vyústilo vo viac ako 2x dlhší tréning, ako môžete vidieť na obrázku \ref{validation_graph}. 
+final correlation coeficient: 0.46347693013377667
+final SIM: 0.39894061994859475
+final NSS: 1.1588045041398367
+final judd AUC: 0.7967435191207479
+final shuffled AUC: 0.7245778882530994
+final borji AUC: 0.7245778882530994
 
-	\begin{figure}[H]
-			\includegraphics[scale=0.33]{train+val.png}
-			\includegraphics[scale=0.33]{train.png}
-		\caption[Trénovanie s validáciou vs. trénovanie bez validácie]{Grafy poklesu chyby pri jednotlivých trénovaniach, vľavo trénovanie s validáciou, vpravo bez nej}\label{validation_graph}
-	\end{figure}
-	
-Chyba na natrénovanom modeli bez validácia bola na testovacích dátach 0.2088, na trénovacích 0.2061. Na natrénovanom modeli s validáciou bola chyba na testovacích dátach 0.2078, na validačných 0.2166 a na trénovacích 0.2066. Takže zlepšenie bolo síce minimálne, ale stále badateľné. Hlavný dôvod, prečo validácia nemala až taký účinok, je malé množstvo dát. 
 
-\subsection{Model s vrstvou výpadku vs. model bez vrstvy výpadku}
-\label{model_graph}
-\label{dropout_vs_nodropout}
-Ďalšiu konfiguračnú zmenu, s ktorej implementáciou sme experimentovali, bolo pridanie vrstvy výpadku. Výsledok bol však len ten, že sieť sa dokázala naučiť to isté za rýchlejší čas, predikcie sa ale nezlepšili, ako je vidieť na nasledujúcich grafoch na obrázku \ref{dropout}. 
-
-	\begin{figure}[H]
-		
-		\includegraphics[scale=0.33]{train+val.png}
-		\includegraphics[scale=0.33]{without_dropout.png}
-		\caption[Model s vrstvou výpadku vs. bez nej]{Grafy poklesu chyby pri jednotlivých trénovaniach, vľavo model s vrstvou výpadku, vpravo bez nej}\label{dropout}
-	\end{figure}
-	
 \fi
