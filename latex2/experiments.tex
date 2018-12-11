@@ -63,16 +63,14 @@ Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sm
 
 \begin{figure}[H]
 	\begin{center}
-	
-	\includegraphics[scale=0.3]{nn_loss_outliers.png}
 	\includegraphics[scale=0.3]{nn_loss_no_outliers.png}
 		\caption[Vývoj chyby počas trénovania konvolučnej neurónovej siete]{
-			Grafy zobrazujúce vývoj chyby neurónovej siete počas 1500 epoch - modrá farba reprezentuje chybu na trénovacích dátach, oranžová chybu na validačných dátach. Horný graf bez odstránených extrémov, dolný už bez extrémov pre lepšie zobrazenie rozdielu medzi validačnou a trénovacou chybou
+			Graf zobrazujúci vývoj chyby neurónovej siete po odstránení extrémov počas 300 epoch - modrá farba reprezentuje chybu na trénovacích dátach, oranžová chybu na validačných dátach
 		}\label{cnn_loss_outliers}
 	\end{center}
 \end{figure}
 
-Z vyššie uvedených grafov vyplýva, že sieť bola schopná najvýraznejšie znížiť chybu predikcií behom prvých 100 epoch. Z jej počiatočnej hodnoty približne 0.5657 klesla až na 0.0557 na trénovacích dátach, na validačných dosahovala hodnotu 0.0565. Pri finálnom testovaní bola priemerná chyba približne 0.0595. Na prvý pohľad sa to môže javiť ako solídny výsledok, po vizualizovaní predikcií sme ale zistili, že sieť sa prakticky naučila predikovať ako najvýraznejšiu časť obrázka vždy len jeho stred, príklad predikcie je na obrázku \ref{cnn_results}.
+Z vyššie uvedených grafov vyplýva, že sieť bola schopná najvýraznejšie znížiť chybu predikcií behom prvých 50 epoch. Z jej počiatočnej hodnoty približne \textit{0.6709} klesla až na \textit{0.1321} na trénovacích dátach, na validačných dosahovala hodnotu \textit{0.1396}. Pri finálnom testovaní bola priemerná chyba približne \textit{0.1459}. Na prvý pohľad sa to môže javiť ako solídny výsledok, po vizualizovaní predikcií sme ale zistili, že sieť sa prakticky naučila predikovať ako najvýraznejšiu časť obrázka vždy len jeho stred, príklad predikcie je na obrázku \ref{cnn_results}.
 
 \begin{figure}[H]
 	\begin{center}
