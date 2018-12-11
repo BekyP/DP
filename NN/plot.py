@@ -11,7 +11,7 @@ def visualize_heatmap(heatmap, orig, path_for_saving, heatmap_type='binary'):
     fig = plt.figure(frameon=False)
     fig_save = plt.gcf()
     DPI = fig_save.get_dpi()
-    fig_save.set_size_inches(64.0 / float(DPI), 64.0 / float(DPI))
+    fig_save.set_size_inches(len(heatmap) / float(DPI), len(heatmap) / float(DPI))
 
     ax = fig.add_subplot(1, 1, 1)
     plt.axis('off')

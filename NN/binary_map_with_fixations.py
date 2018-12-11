@@ -30,7 +30,7 @@ def apply_fixations(original_size, fixations, map):
     return map
 
 
-def get_binary_fixation_maps(folder, first=0, last=None):
+def get_binary_fixation_maps(folder, size=256, first=0, last=None):
     ret_maps = []
 
     extracted_data = list(
@@ -39,7 +39,7 @@ def get_binary_fixation_maps(folder, first=0, last=None):
 
     for data in extracted_data:
         #print("working on file: " + data['file'])
-        final_map = np.zeros([64,64])
+        final_map = np.zeros([size,size])
 
         for i in range(1, 6):
             user_key = 'user_' + str(i)
