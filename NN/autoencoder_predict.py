@@ -1,7 +1,8 @@
+import tensorflow as tf
+
 import argparse
 import matplotlib.pyplot as plt
 import numpy as np
-import tensorflow as tf
 import os
 
 from keras import backend as K
@@ -47,7 +48,7 @@ model.compile(loss=loss,
               optimizer=optimizer,
               metrics=['accuracy'])
 
-#model.summary()
+model.summary()
 
 imgs = np.array(load_data(args.images, (n, n),first=5000))
 img_names = sorted(listdir_fullpath(args.images))[5000:]
