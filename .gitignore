@@ -15,3 +15,8 @@ __pycache__
 *.lol
 *.pyg
 *.lot
+
+*./models
+*./model
+*./logs
+*.save

@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../') 
 import math
 import random
 import numpy as np
@@ -5,7 +7,7 @@ import tensorflow as tf
 import argparse
 
 from nn_model import neural_network_model
-from load_data import load_data
+from nn_utils.load_data import load_data
 
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train neural network')
 parser.add_argument('--images', help='folder with input images', required=True)

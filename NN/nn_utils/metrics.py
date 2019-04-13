@@ -22,7 +22,7 @@ try:
 except ImportError:
     print('please install Python binding of OpenCV to compute EMD')
 
-from utils import normalize, match_hist
+from nn_utils.utils import normalize, match_hist
 
 
 def AUC_Judd(saliency_map, fixation_map, jitter=True):

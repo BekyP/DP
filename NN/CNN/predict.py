@@ -11,12 +11,14 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 
+sys.path.append('../') 
+
 #from nn_model import neural_network_model
-from utils import listdir_fullpath
-from load_data import load_data
+from nn_utils.utils import listdir_fullpath
+from nn_utils.load_data import load_data
 from plot import visualize_heatmap
-from binary_map_with_fixations import get_binary_fixation_maps
-import metrics
+from nn_utils.binary_map_with_fixations import get_binary_fixation_maps
+import nn_utils.metrics
 
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train neural network')
 parser.add_argument('--images', help='folder with input images to predict', required=True)

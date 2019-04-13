@@ -1,4 +1,6 @@
 import tensorflow as tf
+import sys
+sys.path.append('../') 
 
 import argparse
 import matplotlib.pyplot as plt
@@ -9,10 +11,10 @@ from keras import backend as K
 from keras.models import load_model
 from scipy.misc import toimage
 
-import metrics  # source codes of metrics from: https://github.com/herrlich10/saliency
-from utils import listdir_fullpath
-from load_data import load_data
-from binary_map_with_fixations import get_binary_fixation_maps
+import nn_utils.metrics  # source codes of metrics from: https://github.com/herrlich10/saliency
+from nn_utils.utils import listdir_fullpath
+from nn_utils.load_data import load_data
+from nn_utils.binary_map_with_fixations import get_binary_fixation_maps
 
 import matplotlib
 matplotlib.use('Agg')

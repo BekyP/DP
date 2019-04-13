@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append('../')
+
 import argparse
 
 import numpy as np
@@ -7,23 +11,23 @@ from keras.models import Model
 from keras import backend as K
 from keras.callbacks import ModelCheckpoint, TensorBoard, EarlyStopping
 
-from load_data import load_data
+from nn_utils.load_data import load_data
 
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train neural network')
 parser.add_argument('--images', help='folder with input images', required=True)
 parser.add_argument('--maps', help='folder with saliency maps', required=True)
-parser.add_argument('--batch', help='Numbers of samples for each epoch of training', required=True)
-parser.add_argument('--epoch', help='Numbers of epochs', required=True)
-parser.add_argument('--n', help='Images size n x n', required=True)
-parser.add_argument('--conv_layers', help='number of hidden conv layers with max pooling', required=True)
+parser.add_argument('--batch', help='Numbers of samples for each epoch of training', type=int, default=5000)
+parser.add_argument('--epoch', help='Numbers of epochs', type=int, default=500)
+parser.add_argument('--n', help='Images size n x n', type=int, default=256)
+parser.add_argument('--conv_layers', help='number of hidden conv layers with max pooling', type=int, default=3)
 
-parser.add_argument('--conv_encoder_filters', help='number of filter on first', type=int, required=True)
-parser.add_argument('--conv_encoder_hidden_filters', type=int, required=True)
-parser.add_argument('--conv_decoder_hidden_filters', type=int, required=True)
-parser.add_argument('--conv_decoder_filters', type=int, required=True)
+parser.add_argument('--conv_encoder_filters', help='number of filter on first', type=int, default=3)
+parser.add_argument('--conv_encoder_hidden_filters', type=int, default=3)
+parser.add_argument('--conv_decoder_hidden_filters', type=int, default=3)
+parser.add_argument('--conv_decoder_filters', type=int, default=3)
 
-parser.add_argument('--optimizer', required=True)
-parser.add_argument('--loss', required=True)
+parser.add_argument('--optimizer', default="adadelta")
+parser.add_argument('--loss', default="binary_crossentropy")
 args = parser.parse_args()
 n = int(args.n)
 
@@ -87,6 +91,9 @@ valid_images = images[split:]
 valid_maps = maps[split:]
 
 model_name = args.optimizer + "_" + args.loss + "_" + str(args.conv_encoder_filters) + "_" + str(args.conv_encoder_hidden_filters) + "_" + str(args.conv_decoder_hidden_filters) + "_" + str(args.conv_decoder_filters) + "_" + ".save"
+
+if not os.path.exists("models"):
+    os.makedirs("models")
 
 autoencoder.fit(train_images, train_maps, epochs=int(args.epoch), batch_size=500,
                 shuffle=True, validation_data=(valid_images, valid_maps), verbose=5, callbacks=[ModelCheckpoint("models/"+model_name,monitor='val_loss', verbose=3, save_best_only=True), TensorBoard(log_dir='logs', histogram_freq=0, write_graph=True, write_images=True), EarlyStopping(monitor='val_loss', patience=10)])

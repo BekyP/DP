@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from utils import listdir_fullpath
+from nn_utils.utils import listdir_fullpath
 
 
 def load_data(folder, first=0, last=None, read_flag=cv2.IMREAD_UNCHANGED):
