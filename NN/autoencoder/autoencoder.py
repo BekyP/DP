@@ -13,6 +13,8 @@ from keras.callbacks import ModelCheckpoint, TensorBoard, EarlyStopping
 
 from nn_utils.load_data import load_data
 
+import cv2
+
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train neural network')
 parser.add_argument('--images', help='folder with input images', required=True)
 parser.add_argument('--maps', help='folder with saliency maps', required=True)
@@ -79,7 +81,7 @@ autoencoder.compile(optimizer=args.optimizer, loss='mean_squared_error')
 
 autoencoder.summary()
 
-images = np.array(load_data(args.images, (n, n), last=int(args.batch)))
+images = np.array(load_data(args.images, (n, n), last=int(args.batch), read_flag=cv2.IMREAD_COLOR))
 maps = np.array(load_data(args.maps, (n, n), last=int(args.batch)))
 
 split = int(0.9 * len(images))

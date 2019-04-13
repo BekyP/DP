@@ -12,6 +12,7 @@ import argparse
 
 from nn_utils.load_data import load_data 
 from nn_utils.utils import get_model_memory_usage
+import cv2
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
@@ -26,6 +27,7 @@ parser.add_argument('--optimizer', help='optimizer', required=True)
 parser.add_argument('--conv_layers', help='number of conv layers', type=int, default=3)
 parser.add_argument('--batch_size', help='batch size', type=int, default=10)
 parser.add_argument('--epochs', help='number of epochs', type=int, default=500)
+parser.add_argument('--samples', help='number of samples', type=int, default=5000)
 
 args = parser.parse_args()
 conv_layers = args.conv_layers
@@ -102,10 +104,10 @@ final.summary()
 
 #print("saved in model.png")
 
-images = np.array(load_data(args.images, (n, n), last=5000))
-maps = np.array(load_data(args.maps, (n, n), last=5000))
+images = np.array(load_data(args.images, (n, n), last=args.samples, read_flag=cv2.IMREAD_COLOR))
+maps = np.array(load_data(args.maps, (n, n), last=args.samples))
 
-split = int(0.9 * len(images))
+split = int(0.85 * len(images))
 
 train_images = images[:split]
 train_maps = maps[:split]

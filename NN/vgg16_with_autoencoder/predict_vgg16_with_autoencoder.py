@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from scipy.misc import toimage
+import cv2
 
 import sys
 sys.path.append('../') 
@@ -29,6 +30,7 @@ parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train n
 parser.add_argument('--images', help='folder with input images', required=True)
 parser.add_argument('--maps', help='folder with heatmaps', required=True)
 parser.add_argument('--binary_maps', help='folder with binary fixations maps', required=True)
+parser.add_argument('--binary_format', help='binary maps format, mat or jpg', default='jpg')
 parser.add_argument('--loss', help='loss function', required=True)
 parser.add_argument('--optimizer', help='optimizer', required=True)
 
@@ -44,8 +46,8 @@ model.compile(loss=args.loss,
 
 model.summary()
 
-imgs = np.array(load_data(args.images, (n, n)))[5000:]
-img_names = sorted(listdir_fullpath(args.images))[5000:]
+imgs = np.array(load_data(args.images, (n, n), read_flag=cv2.IMREAD_COLOR))
+img_names = sorted(listdir_fullpath(args.images))
 
 predicted = model.predict(imgs, verbose=1)
 
@@ -84,7 +86,11 @@ def count_metrics(predicted_heatmaps, orig, binary_maps):  # computes metrics
     print("final shuffled AUC: " + str(auc_s / num))
     print("final borji AUC: " + str(auc_s / num))
 
-original = np.array(load_data(args.maps, (n, n)))[5000:]
-binary_maps = np.array(get_binary_fixation_maps(args.binary_maps, size=n, first=5000))
+original = np.array(load_data(args.maps, (n, n)))
+
+if args.binary_format == 'mat':
+    binary_maps = np.array(get_binary_fixation_maps(args.binary_maps, size=n))
+else:
+    binary_maps = np.array(load_data(args.binary_maps, (n, n)))
 
 count_metrics(predicted, original, binary_maps)
