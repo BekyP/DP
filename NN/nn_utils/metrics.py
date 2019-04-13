@@ -63,7 +63,7 @@ def AUC_Judd(saliency_map, fixation_map, jitter=True):
         return np.nan
     # Make the saliency_map the size of the fixation_map
     if saliency_map.shape != fixation_map.shape:
-        saliency_map = resize(saliency_map, fixation_map.shape, order=3, mode='nearest')
+        saliency_map = resize(saliency_map, fixation_map.shape, order=3, mode='edge')
     # Jitter the saliency map slightly to disrupt ties of the same saliency value
     if jitter:
         saliency_map += random.rand(*saliency_map.shape) * 1e-7
@@ -127,7 +127,7 @@ def AUC_Borji(saliency_map, fixation_map, n_rep=100, step_size=0.1, rand_sampler
         return np.nan
     # Make the saliency_map the size of the fixation_map
     if saliency_map.shape != fixation_map.shape:
-        saliency_map = resize(saliency_map, fixation_map.shape, order=3, mode='nearest')
+        saliency_map = resize(saliency_map, fixation_map.shape, order=3, mode='edge')
     # Normalize saliency map to have values between [0,1]
     saliency_map = normalize(saliency_map, method='range')
 
@@ -245,7 +245,7 @@ def CC(saliency_map1, saliency_map2):
     map1 = np.array(saliency_map1, copy=False)
     map2 = np.array(saliency_map2, copy=False)
     if map1.shape != map2.shape:
-        map1 = resize(map1, map2.shape, order=3, mode='nearest') # bi-cubic/nearest is what Matlab imresize() does by default
+        map1 = resize(map1, map2.shape, order=3, mode='edge') # bi-cubic/nearest is what Matlab imresize() does by default
     # Normalize the two maps to have zero mean and unit std
     map1 = normalize(map1, method='standard')
     map2 = normalize(map2, method='standard')
@@ -273,7 +273,7 @@ def SIM(saliency_map1, saliency_map2):
     map1 = np.array(saliency_map1, copy=False)
     map2 = np.array(saliency_map2, copy=False)
     if map1.shape != map2.shape:
-        map1 = resize(map1, map2.shape, order=3, mode='nearest') # bi-cubic/nearest is what Matlab imresize() does by default
+        map1 = resize(map1, map2.shape, order=3, mode='edge') # bi-cubic/nearest is what Matlab imresize() does by default
     # Normalize the two maps to have values between [0,1] and sum up to 1
     map1 = normalize(map1, method='range')
     map2 = normalize(map2, method='range')
@@ -302,8 +302,8 @@ def EMD(saliency_map1, saliency_map2, sub_sample=1/32.0):
     '''
     map2 = np.array(saliency_map2, copy=False)
     # Reduce image size for efficiency of calculation
-    map2 = resize(map2, np.round(np.array(map2.shape)*sub_sample), order=3, mode='nearest')
-    map1 = resize(saliency_map1, map2.shape, order=3, mode='nearest')
+    map2 = resize(map2, np.round(np.array(map2.shape)*sub_sample), order=3, mode='edge')
+    map1 = resize(saliency_map1, map2.shape, order=3, mode='edge')
     # Histogram match the images so they have the same mass
     map1 = match_hist(map1, *exposure.cumulative_distribution(map2))
     # Normalize the two maps to sum up to 1,

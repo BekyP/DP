@@ -11,7 +11,7 @@ from keras import backend as K
 from keras.models import load_model
 from scipy.misc import toimage
 
-import nn_utils.metrics  # source codes of metrics from: https://github.com/herrlich10/saliency
+import nn_utils.metrics as metrics # source codes of metrics from: https://github.com/herrlich10/saliency
 from nn_utils.utils import listdir_fullpath
 from nn_utils.load_data import load_data
 from nn_utils.binary_map_with_fixations import get_binary_fixation_maps
