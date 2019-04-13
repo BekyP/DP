@@ -17,15 +17,19 @@ from nn_utils.load_data import load_data
 from nn_utils.binary_map_with_fixations import get_binary_fixation_maps
 
 import matplotlib
+import cv2
 matplotlib.use('Agg')
 
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train neural network')
 parser.add_argument('--images', help='folder with input images', required=True)
 parser.add_argument('--maps', help='folder with heatmaps', required=True)
 parser.add_argument('--binary_maps', help='folder with binary fixations maps', required=True)
-parser.add_argument('--n', help='images size n x n', type=int, required=True)
+parser.add_argument('--binary_format', help='binary maps format, mat or jpg', default='jpg')
+parser.add_argument('--n', help='images size n x n', type=int, default=224)
 parser.add_argument('--device', help='cpu or gpu', default='gpu')
 parser.add_argument('--model', required=True)
+parser.add_argument('--optimizer', default="adadelta")
+parser.add_argument('--loss', default="binary_crossentropy")
 
 args = parser.parse_args()
 n = int(args.n)
@@ -46,20 +50,14 @@ if args.device == 'cpu':
 #model = load_model('adadelta+binary.save')
 model = load_model(args.model)
 
-optimizer=args.model.rsplit("/", 2)[-1].split('_1',2)[0].split('_',1)[0]
-loss=args.model.rsplit("/", 2)[-1].split('_1',2)[0].split('_', 1)[1]
-
-print(optimizer, loss)
-
-
-model.compile(loss=loss,
-              optimizer=optimizer,
+model.compile(loss=args.loss,
+              optimizer=args.optimizer,
               metrics=['accuracy'])
 
 model.summary()
 
-imgs = np.array(load_data(args.images, (n, n),first=5000))
-img_names = sorted(listdir_fullpath(args.images))[5000:]
+imgs = np.array(load_data(args.images, (n, n), read_flag=cv2.IMREAD_COLOR))
+img_names = sorted(listdir_fullpath(args.images))
 
 predicted = model.predict(imgs, verbose=1)
 
@@ -103,7 +101,11 @@ def count_metrics(predicted_heatmaps, orig, binary_maps):  # computes metrics
     print("final shuffled AUC: " + str(auc_s / num))
     print("final borji AUC: " + str(auc_s / num))
 
-original = np.array(load_data(args.maps, (n, n),first=5000))
-binary_maps = np.array(get_binary_fixation_maps(args.binary_maps,size=n,first=5000))
+original = np.array(load_data(args.maps, (n, n)))
+if args.binary_format == 'mat':
+    binary_maps = np.array(get_binary_fixation_maps(args.binary_maps, size=n))
+else:
+    binary_maps = np.array(load_data(args.binary_maps, (n, n)))
+
 print("counting metrics")
 count_metrics(predicted, original, binary_maps)
