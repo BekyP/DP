@@ -1,3 +1,4 @@
+import tensorflow as tf
 import sys
 import os
 sys.path.append('../')
@@ -14,6 +15,11 @@ from keras.callbacks import ModelCheckpoint, TensorBoard, EarlyStopping
 from nn_utils.load_data import load_data
 
 import cv2
+
+config = tf.ConfigProto()
+session = tf.Session(config=config)
+config.gpu_options.allow_growth = True
+K.set_session(session)
 
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@', description='train neural network')
 parser.add_argument('--images', help='folder with input images', required=True)
@@ -52,11 +58,11 @@ for i in range(0, int(args.conv_layers)):
 x = Flatten()(x)
 resized_n = int(resized_n/2)
 print("resized_n", resized_n)
-encoded = Dense(resized_n*resized_n)(x)
+x = Dense(resized_n*resized_n)(x)
 
 #print("shape of encoded", K.int_shape(encoded))
 
-x = Reshape((resized_n,resized_n,1))(encoded)
+x = Reshape((resized_n,resized_n,1))(x)
 print("reshape", K.int_shape(x))
 
 for i in range(0, int(args.conv_layers)):
@@ -72,19 +78,19 @@ print("shape u", K.int_shape(x))
 
 x = Conv2D(filters=1, kernel_size=5, activation='sigmoid', padding='same')(x)
 print("shape before decoded", K.int_shape(x))
-decoded = Reshape((n, n))(x)
-print("shape of decoded", K.int_shape(decoded))
+x = Reshape((n, n))(x)
+print("shape of decoded", K.int_shape(x))
 
-autoencoder = Model(input_img, decoded)
+autoencoder = Model(input_img, x)
 #autoencoder.compile(optimizer='adadelta', loss='mean_squared_error')
-autoencoder.compile(optimizer=args.optimizer, loss='mean_squared_error')
+autoencoder.compile(optimizer=args.optimizer, loss=args.loss)
 
 autoencoder.summary()
 
 images = np.array(load_data(args.images, (n, n), last=int(args.batch), read_flag=cv2.IMREAD_COLOR))
 maps = np.array(load_data(args.maps, (n, n), last=int(args.batch)))
 
-split = int(0.9 * len(images))
+split = int(0.85 * len(images))
 
 train_images = images[:split]
 train_maps = maps[:split]
@@ -97,6 +103,6 @@ model_name = args.optimizer + "_" + args.loss + "_" + str(args.conv_encoder_filt
 if not os.path.exists("models"):
     os.makedirs("models")
 
-autoencoder.fit(train_images, train_maps, epochs=int(args.epoch), batch_size=500,
+autoencoder.fit(train_images, train_maps, epochs=int(args.epoch), batch_size=100,
                 shuffle=True, validation_data=(valid_images, valid_maps), verbose=5, callbacks=[ModelCheckpoint("models/"+model_name,monitor='val_loss', verbose=3, save_best_only=True), TensorBoard(log_dir='logs', histogram_freq=0, write_graph=True, write_images=True), EarlyStopping(monitor='val_loss', patience=10)])
 

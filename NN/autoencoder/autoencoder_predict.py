@@ -30,10 +30,16 @@ parser.add_argument('--model', required=True)
 args = parser.parse_args()
 n = int(args.n)
 
+config = tf.ConfigProto()
+session = tf.Session(config=config)
+config.gpu_options.allow_growth = True
+K.set_session(session)
+
 if args.device == 'cpu':
     config = tf.ConfigProto(intra_op_parallelism_threads=12,\
         inter_op_parallelism_threads=12, allow_soft_placement=True,\
         device_count = {'CPU' : 1, 'GPU' : 0})
+    config.gpu_options.allow_growth = True
     session = tf.Session(config=config)
     K.set_session(session)
 
