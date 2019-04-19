@@ -38,7 +38,7 @@ args = parser.parse_args()
 
 n = 224
 
-model = load_model("models/"+args.optimizer+"_"+args.loss+".model")
+model = load_model("models_all_train/"+args.optimizer+"_"+args.loss+".model")
 
 model.compile(loss=args.loss,
               optimizer=args.optimizer,

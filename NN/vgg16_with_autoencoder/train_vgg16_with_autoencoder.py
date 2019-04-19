@@ -70,8 +70,8 @@ for layer in model.layers[:vgg16_layers_num]:
 for i in range(0, len(model.layers)-vgg16_layers_num):
 	model.layers.pop()
 
-for layer in small_model.layers:
-	layer.trainable = False
+#for layer in small_model.layers:
+	#layer.trainable = False
 
 model=None
 small_model.summary()
@@ -120,6 +120,6 @@ print("memory usage: " + str(get_model_memory_usage(args.batch_size, final)) + "
 model_name = args.optimizer + "_" + args.loss + ".model"
 final.fit(train_images, train_maps, epochs=args.epochs, batch_size=args.batch_size,
 				shuffle=True, validation_data=(valid_images, valid_maps), 
-				verbose=5, callbacks=[ModelCheckpoint("models/"+model_name,monitor='val_loss', verbose=3, save_best_only=True), 
-									  TensorBoard(log_dir='logs', histogram_freq=0, write_graph=True, write_images=True), 
+				verbose=5, callbacks=[ModelCheckpoint("models_all_train/"+model_name,monitor='val_loss', verbose=3, save_best_only=True), 
+									  TensorBoard(log_dir='logs/'+model_name, histogram_freq=0, write_graph=True, write_images=True), 
 									  EarlyStopping(monitor='val_loss', patience=10)])
