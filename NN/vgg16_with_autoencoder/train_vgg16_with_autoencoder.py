@@ -1,17 +1,19 @@
 import tensorflow as tf
 import sys
 sys.path.append('../') 
-from keras.applications.vgg16 import VGG16
-from keras.layers import *
-from keras.models import Model, Sequential
-from keras.utils import plot_model
-from keras.callbacks import ModelCheckpoint, TensorBoard, EarlyStopping
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.utils import plot_model
+from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard, EarlyStopping
+from tensorflow.keras import backend as K
 
-from keras import backend as K
+from math import ceil
+
 import argparse
 
-from nn_utils.load_data import load_data 
-from nn_utils.utils import get_model_memory_usage
+from nn_utils.load_data import load_data, load_images_and_maps
+from nn_utils.utils import listdir_fullpath, get_model_memory_usage
 import cv2
 
 config = tf.ConfigProto()
@@ -30,6 +32,22 @@ parser.add_argument('--epochs', help='number of epochs', type=int, default=500)
 parser.add_argument('--samples', help='number of samples', type=int, default=5000)
 
 args = parser.parse_args()
+
+def setup_ds(orig_ds, type="train"):
+	ds = orig_ds.cache(filename='./'+type+'-cache.tf-data')
+	ds = ds.apply(
+	  tf.data.experimental.shuffle_and_repeat(buffer_size=8000))
+	ds = ds.batch(args.batch_size).prefetch(1)
+
+	print('image shape: ', ds.output_shapes[0])
+	print('label shape: ', ds.output_shapes[1])
+	print('types: ', ds.output_types)
+	print()
+	print(ds)
+
+	return ds
+
+
 conv_layers = args.conv_layers
 
 input_layer=Input(shape=(224, 224, 3))
@@ -99,27 +117,37 @@ autoencoder = None
 final.compile(optimizer=args.optimizer, loss=args.loss)
 final.summary()
 
+split = int(0.85 * args.samples)
 
-#plot_model(final, to_file='model.png', show_shapes=True)
+imgs_paths = sorted(listdir_fullpath(args.images))
+maps_paths = sorted(listdir_fullpath(args.maps))
 
-#print("saved in model.png")
+train_imgs_paths = imgs_paths[:split]
+train_maps_paths = maps_paths[:split]
 
-images = np.array(load_data(args.images, (n, n), last=args.samples, read_flag=cv2.IMREAD_COLOR))
-maps = np.array(load_data(args.maps, (n, n), last=args.samples))
+valid_imgs_paths = imgs_paths[split:]
+valid_maps_paths = maps_paths[split:]
 
-split = int(0.85 * len(images))
+print("number of train samples: " + str(len(train_imgs_paths)))
+print("number of valid samples: " + str(len(valid_imgs_paths)))
 
-train_images = images[:split]
-train_maps = maps[:split]
+train_img_map_ds = load_images_and_maps(train_imgs_paths, train_maps_paths, (n, n))
+valid_img_map_ds = load_images_and_maps(valid_imgs_paths, valid_maps_paths, (n, n))
 
-valid_images = images[split:]
-valid_maps = maps[split:]
+train_ds = setup_ds(train_img_map_ds, "train")
+valid_ds = setup_ds(valid_img_map_ds, "valid")
 
-print("memory usage: " + str(get_model_memory_usage(args.batch_size, final)) + " GB")
+#train_image_batch, train_map_batch = next(iter(train_ds))
+#valid_image_batch, valid_map_batch = next(iter(valid_ds))
+
+steps_per_epoch=ceil(len(train_imgs_paths)/args.batch_size)
+
+print("steps_per_epoch: " + str(steps_per_epoch))
+
+#print("memory usage: " + str(get_model_memory_usage(args.batch_size, final)) + " GB")
 
 model_name = args.optimizer + "_" + args.loss + ".model"
-final.fit(train_images, train_maps, epochs=args.epochs, batch_size=args.batch_size,
-				shuffle=True, validation_data=(valid_images, valid_maps), 
+final.fit(train_ds, epochs=args.epochs, steps_per_epoch=steps_per_epoch, validation_data=valid_ds, 
 				verbose=5, callbacks=[ModelCheckpoint("models_all_train/"+model_name,monitor='val_loss', verbose=3, save_best_only=True), 
 									  TensorBoard(log_dir='logs/'+model_name, histogram_freq=0, write_graph=True, write_images=True), 
 									  EarlyStopping(monitor='val_loss', patience=10)])
