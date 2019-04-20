@@ -1,7 +1,10 @@
 import os
+import sys
+
 import numpy as np
 from skimage import img_as_float
 from skimage import exposure
+
 
 def get_model_memory_usage(batch_size, model):
     import numpy as np
@@ -31,32 +34,6 @@ def get_model_memory_usage(batch_size, model):
 
 def listdir_fullpath(d):
     return [os.path.join(d, f) for f in os.listdir(d)]
-
-def count_metrics(predicted_heatmaps, orig, binary_maps):  # computes metrics
-    cc = 0
-    auc = 0
-    similarity = 0
-    nss = 0
-    auc_s = 0
-    auc_b = 0
-
-    for map, original_map, fix in zip(predicted_heatmaps, orig, binary_maps):
-        auc += metrics.AUC_Judd(map, fix, True)
-        #auc_b += metrics.AUC_Borji(map, fix)
-        nss += metrics.NSS(map, fix)
-        auc_s += metrics.AUC_shuffled(map, fix, np.zeros([n,n]))
-        cc += metrics.CC(map, original_map)
-        similarity += metrics.SIM(map, original_map)
-
-    num=len(orig)
-    print("final correlation coeficient: " + str(cc / num))
-    print("final SIM: " + str(similarity / num))
-    print("final NSS: " + str(nss / num))
-    print("final judd AUC: " + str(auc / num))
-    print("final shuffled AUC: " + str(auc_s / num))
-    print("final borji AUC: " + str(auc_s / num))
-
-    return cc, sim, nss, auc, auc_s, auc_b
 
 """
 source codes from https://github.com/herrlich10/saliency

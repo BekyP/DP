@@ -36,7 +36,7 @@ args = parser.parse_args()
 def setup_ds(orig_ds, type="train"):
 	ds = orig_ds.cache(filename='./'+type+'-cache.tf-data')
 	ds = ds.apply(
-	  tf.data.experimental.shuffle_and_repeat(buffer_size=8000))
+	  tf.data.experimental.shuffle_and_repeat(buffer_size=3000))
 	ds = ds.batch(args.batch_size).prefetch(1)
 
 	print('image shape: ', ds.output_shapes[0])
