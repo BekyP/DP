@@ -154,6 +154,10 @@ Základný popis o učení bez učiteľa hovorí, že sa jedná o odvodenie funk
 \subsubsection{Učenie posilňovaním}
 Tento typ učenia má podobne ako učenie s učiteľom k dispozícii istú spätnú väzbu o kvalite predikcií počas trénovania, nie je to však tak konkrétna informácia ako chyba predikcie voči správnym výstupom. Spätná väzba predstavuje ohodnotenie predikcie buď odmenou alebo trestom, v závislosti od toho aká dobrá bola. Hlavným cieľom je, ako by sa dalo očakávať, maximalizovanie získanej odmeny. Tú neurónová sieť získava metódou pokus- omyl pri upravovaní váh počas trénovania. Tento postup do značnej miery simuluje učenie sa v reálnom svete. Najčastejšie sa používa pri algoritmoch, ktoré sú stavané na hranie doskových alebo počítačových hier. 
 
+\subsubsection{Transfer learning}
+% TODO transfer learning
+TODO
+
 
 \subsubsection{Optimizačné algoritmy}
 \label{optimizers}
@@ -551,6 +555,11 @@ Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl
 
 Popisované riešenie je ukážkovým modelom pre predikciu pozornosti počas hľadania objektov v scéne. Veľkou výhodou je použitie LSTM vrstiev pre zachytenie predošlého kontextu ako aj možnosť predikcie pre video aj obrázky iba s minimálnymi zmenami.
 
+\subsubsection{Redukcia sémantických medzier pri predikcii vizuálnej pozornosti}
+%TODO Redukcia sémantických medzier pri predikcii vizuálnej pozornosti
+http://openaccess.thecvf.com/content\_iccv\_2015/papers/Huang\_SALICON\_Reducing\_the\_ICCV\_2015\_paper.pdf
+
+
 \subsection{Detekcia objektov}
 \label{object_detection}
 Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre detekciu objektov a ich klasifikáciu, ktorých je dostupné značné množstvo aj predtrénovaných. Ako príklad si môžeme uviesť konvolučnú sieť VGG-Net\cite{vgg_net} určenú práve pre klasifikáciu objektov na obrázku. Skladá sa z 16 konvolučných vrstiev a veľkého množstva filtrov, ako možno vidieť na obrázku \ref{vgg_net_model}. Spracováva obrázky o veľkosti \textit{224x224}, bola trénovaná na 4 GPU 2-3 týždne a skladá sa zhruba zo 138 miliónov parametrov\footnote{https://medium.com/@sidereal/cnns-architectures-lenet-alexnet-vgg-googlenet-resnet-and-more-666091488df5}.  Je častou voľbou pre ďalšie experimentovanie v oblasti pre svoju presnosť a dostupnosť už natrénovaného modelu.
@@ -579,7 +588,7 @@ Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vr
 \thispagestyle{empty}
 \newpage
 
-
+%TODO nejak skratit nazov alebo vyriesit hlavicku
 \section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
 \label{metric}
 
@@ -619,6 +628,9 @@ Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to 
 	\begin{equation}
 		KL (P, Q^D) =  \sum_{i} Q_{i}^{D} log \left ( \epsilon + \frac{Q_{i}^{D}}{\epsilon + P_i} \right )
 	\end{equation}
+	
+	\item SIM - similarity TODO %TODO similarity
+	
 	
 \end{itemize}
  

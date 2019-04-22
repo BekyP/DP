@@ -3,11 +3,9 @@
 \section{Návrh}
 \label{design}
 
-%TODO spomenut autoencoder
-
 Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}).
 
-Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG-Net siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete.
+Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG-Net siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete. % TODO dopisat posledny semester
 
 V závislosti od toho, ktorý model, resp. varianta, sa ukáže byť najpresnejšia sa potom budeme venovať ďalšiemu experimentovaniu s pridávaním dodatočných (top-down) informácií o scéne, akými sú napr. poloha objektov konkrétnych objektov.
 
@@ -24,6 +22,8 @@ Neskôr sa ale postupne ukázalo, že takto zostrojený dataset zložený z viac
 	\item rozdielnosť experimentov, pri ktorých sa dáta zbierali (voľné sledovanie, voľné sledovanie s detekciou anomálií, zapamätanie si scény, atď.)
 	\item rozdielne zariadenia pre zachytenie fixácií s rôznou vzorkovacou frekvenciou 
 \end{itemize}
+
+% TODO nejako spomenut salicon a ostatne
 
 Z vyššie uvedených dôvodov sme sa preto rozhodli vybrať iba jeden dataset. Voľba padla na DUT-OMRON\cite{dut-omron}, pretože:
 \begin{itemize}
@@ -73,8 +73,8 @@ prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukc
 	\end{center}
 \end{figure}
 
-%TODO autoencoder obrázok
+\subsection{Kombinácia VGG16 siete s autoenkóderom}
+TODO 
+%TODO Kombinácia VGG16 siete s autoenkóderom
 
-%TODO popisat poriadne transfer learning s autoencoderom s vgg netom
-
-%TODO zhrnutie experimentov s metrikami
+%TODO odkazat na transfer learning a to riesenie, kt. to je inspirovane

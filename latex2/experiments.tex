@@ -3,6 +3,7 @@
 \thispagestyle{empty}
 \newpage
 \section{Experimenty}
+%TODO upravit
 \label{experiments}
 V priebehu práce bolo nutné experimentovať v naozaj veľkom množstve s najrôznejším počtom vecí od typov neurónových sietí, datasetov až po rôzne prístupy k riešeniu zadaného problému.
 
@@ -136,10 +137,17 @@ Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.
 
 Na prvý pohľad sa môže zdať, že sieť sa bola schopná naučiť aspoň nejaké závislosti z dát. Po vizualizovaní dát sme ale zistili, že sme sa veľmi mýlili a snaha o dotrénovanie nepriniesla žiadne ovocie. Vizualizované výsledné dáta, ktoré mali reprezentovať mapy výraznosti, rozhodne ako mapy výraznosti nevyzerali a sieť sa nenaučila nič užitočné. Výsledkom boli len úplne náhodné hodnoty, ktoré sa ani zďaleko neblížili realite. Preto možno považovať tento experiment za nepríjemnú slepú uličku.
 
+\subsection{Kombinácia autoenkóderu s VGG16 sieťou}
+
+%TODO Kombinácia autoenkóderu s VGG16 sieťou
+%TODO vyriesit pomenovanie vgg-net vs. vgg16
+
 \subsection{Porovnanie výsledkov experimentov}
 \label{results}
 
 Do výsledného porovnania sme nakoniec zobrali iba modely so zmysluplnými výsledkami - konvolučnú neurónovú sieť a autoenkóder. Konvolučná neurónová sieť pri rovnakej vstupnej veľkosti obrázkov zaberá značne väčšie množstvo pamäte ako autoenkóder, jeho trénovanie ale trvá o niečo dlhšie kvôli viacerým konvolučným vrstvám. Pri porovnaní sme sa riadili najmä metrikami vizuálnej pozornosti (kapitola \ref{metric}), prehľadné zhrnutie ich hodnôt je v tabuľke \ref{cnn_vs_autoencoder}.
+
+%TODO doplnit ostatne datasety, metriky a riesenia
 
 \begin{table}[H]
 	%\begin{minipage}{\textwidth}
