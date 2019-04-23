@@ -154,11 +154,11 @@ Základný popis o učení bez učiteľa hovorí, že sa jedná o odvodenie funk
 \subsubsection{Učenie posilňovaním}
 Tento typ učenia má podobne ako učenie s učiteľom k dispozícii istú spätnú väzbu o kvalite predikcií počas trénovania, nie je to však tak konkrétna informácia ako chyba predikcie voči správnym výstupom. Spätná väzba predstavuje ohodnotenie predikcie buď odmenou alebo trestom, v závislosti od toho aká dobrá bola. Hlavným cieľom je, ako by sa dalo očakávať, maximalizovanie získanej odmeny. Tú neurónová sieť získava metódou pokus- omyl pri upravovaní váh počas trénovania. Tento postup do značnej miery simuluje učenie sa v reálnom svete. Najčastejšie sa používa pri algoritmoch, ktoré sú stavané na hranie doskových alebo počítačových hier. 
 
-%TODO ako prelozit transfer learning
-\subsubsection{Transfer learning \cite{transfer_learning} - ako prelozit?}
-Týmto pojmom sa označuje zaujímavý problém pri strojovom učení - ako uložiť vedomosti naučené pri riešení danej úlohy a následne ich uplatniť pri riešení ďalšej odlišnej, ale súvisiacej úlohy. Najľahšie sa dá vysvetliť na príklade rozpoznávania objektov, kedy máme natrénovaný model napríklad na detekciu osobných áut a chceme vytvoriť ďalší, ktorý by detekoval  kamióny. Pri klasickom postupe by sme potrebovali dostatočné veľký dataset kamiónov, na ktorom by sme model trénovali. To je však značne náročné čo sa týka zdrojov a času, preto môžeme použiť predtrénovaný model pre osobné autá a dotrénovať ho pre detekciu kamiónov. Takto môžeme výrazne znížiť čas nutný na trénovanie a zvýšiť presnosť detekcie. 
 
-Transfer learning má 2 základné prístupy:
+\subsubsection{Prenos učenia}
+Z angl. transfer learning \cite{transfer_learning}, týmto pojmom sa označuje zaujímavý problém pri strojovom učení - ako uložiť vedomosti naučené pri riešení danej úlohy a následne ich uplatniť pri riešení ďalšej odlišnej, ale súvisiacej úlohy. Najľahšie sa dá vysvetliť na príklade rozpoznávania objektov, kedy máme natrénovaný model napríklad na detekciu osobných áut a chceme vytvoriť ďalší, ktorý by detekoval  kamióny. Pri klasickom postupe by sme potrebovali dostatočné veľký dataset kamiónov, na ktorom by sme model trénovali. To je však značne náročné čo sa týka zdrojov a času, preto môžeme použiť predtrénovaný model pre osobné autá a dotrénovať ho pre detekciu kamiónov. Takto môžeme výrazne znížiť čas nutný na trénovanie a zvýšiť presnosť detekcie. 
+
+Prenos učenia má 2 základné prístupy \cite{transfer_learning_approaches}:
 \begin{itemize}
 	\item použitie predtrénovaného modelu - jedná sa o prípad uvedený ako príklad vyššie. Zvolíme si natrénovaný model pre podobnú úlohu ako chceme riešiť a ten následne znovupoužijeme (môže sa jednať o celý model, ale aj jednotlivé časti) a dotrénujeme ho pre náš problém. Znižuje čas potrebný na učenie, nevyžaduje tak veľký dataset a môže výrazne zvýšiť presnosť. 
 	\item použitie základného modelu - v prípade, že nemáme k dispozícii predtrénovaný model, môžeme si zvoliť ako zdrojovú úlohu pre základný model podobnú, ako chceme riešiť my, avšak s hojným počtom dát. Tento model natrénujeme a podobne ako pri predošlom prístupe ho potom znovupoužijeme a dotrénujeme na riešenie inej úlohy. Dobrým zvykom býva porovnanie výsledkov základného modelu napr. s naivnými Bayes-ovskými modelmi, aby sa zistilo, či sa model naučil aspoň nejaké relevantné črty. Tento prístup môže byť užitočný v prípade, že pre špecifickú úlohu máme málo dát. 
@@ -501,7 +501,6 @@ Treťou časťou bolo spracovanie výstupov z predošlých dvoch častí lineár
 
 Za veľkú výhodu tohto riešenia by sa dala pokladať kombinácia viacerých faktorov (aj pozornosti zdola nahor (bottom-up) aj pozornosti zhora nadol (top-down emočné faktory)  do výslednej mapy, vďaka čomu sa viac priblíži k reálnej pozornosti. Ako vieme tú neovplyvňujú čisto len jedny alebo druhé faktory, ale vždy je to ich kombinácia. Ako mierna nevýhoda by sa mohlo javiť rozdelenie emócií iba na 8 typov a určenie ako dominantný typ len jeden z nich, pričom ostatné sa ďalej neberú do úvahy.  
 
-% TODO maybe \subsubsection{CRF}
 
 \subsubsection{SAM}
 SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší z modelov schopných aj predikcie pozornosti zhora nadol (top-down). Založený je na architektúre nazvanej ML-Net (Multi-Level Network\cite{cornia2016deep}), ktorá miesto klasických konvolučných vrstiev využíva dilatované konvolučné vrstvy, ktoré limitujú efekt zmenšovania. Táto architekúra použitá pre spracovanie vstupného obrázka je nasledovaná konvolučnými LSTM vrstvami, ich naučené výstupy potom spracováva už klasická konvolučná vrstva, výstupom ktorej je mapa výraznosti. Popisovaný postup je zobrazený na obrázku \ref{dilated_model_image}.
@@ -562,22 +561,34 @@ Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl
 Popisované riešenie je ukážkovým modelom pre predikciu pozornosti počas hľadania objektov v scéne. Veľkou výhodou je použitie LSTM vrstiev pre zachytenie predošlého kontextu ako aj možnosť predikcie pre video aj obrázky iba s minimálnymi zmenami.
 
 \subsubsection{Redukcia sémantických medzier pri predikcii vizuálnej pozornosti}
-%TODO Redukcia sémantických medzier pri predikcii vizuálnej pozornosti
-http://openaccess.thecvf.com/content\_iccv\_2015/papers/Huang\_SALICON\_Reducing\_the\_ICCV\_2015\_paper.pdf
 
+Riešenie od Huang a spol. \cite{salicon_semantic_gap} sa zaoberalo zachytením sémantického kontextu scény ako prvku pozornosti zhora nadol, keďže práve to chýba v starších modeloch pre predikciu vizuálnej pozornosti. Pristúpili k tomu za použitia dvoch neurónových sietí (obrázok \ref{semantic_gap_nn}), ktorých predikcie na konci spojili pomocou spojovacej vrstvy do výslednej mapy vizuálnej pozornosti.  
+
+\begin{figure}[H]
+	\includegraphics[scale=0.7]{semantic_gap_nn.png}
+	\caption[Model redukcie sémantických medzier pri predikcii pozornosti]{Náčrt architektúri pri predikcii dvoch sietí so spojením výsledku do jednej mapy vizuálnej pozornosti}\label{semantic_gap_nn}
+\end{figure}
+
+Riešenie sa prakticky skladá z 2 častí a to z:
+\begin{itemize}
+	\item tzv. "hrubozrnnej" (z angl. coarse) - je zameraná na detekciu centier výrazných veľkých regiónov pozornosti, vstupom je menší obrázok
+	\item tzv. "jemnozrnnej" (z angl. fine) - je zameraná na detekciu salientných oblastí menšej veľkosti, vstupom je vačší obrázok
+\end{itemize}
+
+Autori experimentovali s architektúrami sietí pre detekciu objektov (s časti popisované v kapitole \ref{object_detection}) ako napríklad AlexNet \cite{alexnet}, VGG-16 \cite{vgg16} a GoogLeNet \cite{googlenet}). Najlepšie predikcie mala kombinácia VGG-16 siete, čím sme sa neskôr pri experimentovaní inšpirovali. 
 
 \subsection{Detekcia objektov}
 \label{object_detection}
-Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre detekciu objektov a ich klasifikáciu, ktorých je dostupné značné množstvo aj predtrénovaných. Ako príklad si môžeme uviesť konvolučnú sieť VGG-Net\cite{vgg_net} určenú práve pre klasifikáciu objektov na obrázku. Skladá sa z 16 konvolučných vrstiev a veľkého množstva filtrov, ako možno vidieť na obrázku \ref{vgg_net_model}. Spracováva obrázky o veľkosti \textit{224x224}, bola trénovaná na 4 GPU 2-3 týždne a skladá sa zhruba zo 138 miliónov parametrov\footnote{https://medium.com/@sidereal/cnns-architectures-lenet-alexnet-vgg-googlenet-resnet-and-more-666091488df5}.  Je častou voľbou pre ďalšie experimentovanie v oblasti pre svoju presnosť a dostupnosť už natrénovaného modelu.
+Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre detekciu objektov a ich klasifikáciu, ktorých je dostupné značné množstvo aj predtrénovaných. Ako príklad si môžeme uviesť konvolučnú sieť VGG16\cite{vgg_net} určenú práve pre klasifikáciu objektov na obrázku. Skladá sa z 16 konvolučných vrstiev a veľkého množstva filtrov, ako možno vidieť na obrázku \ref{vgg_net_model}. Spracováva obrázky o veľkosti \textit{224x224}, bola trénovaná na 4 GPU 2-3 týždne a skladá sa zhruba zo 138 miliónov parametrov\footnote{https://medium.com/@sidereal/cnns-architectures-lenet-alexnet-vgg-googlenet-resnet-and-more-666091488df5}.  Je častou voľbou pre ďalšie experimentovanie v oblasti pre svoju presnosť a dostupnosť už natrénovaného modelu.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.8]{vgg_net.png}
-	\caption[VGG-Net]{Štruktúra neurónovej siete VGG-Net\footnotemark}\label{vgg_net_model}
+	\caption[VGG16]{Štruktúra neurónovej siete VGG-Net\footnotemark}\label{vgg_net_model}
 \end{figure}
 
 \footnotetext{https://www.quora.com/What-is-the-VGG-neural-network}
 
-Ďalším zaujímavým riešením detekcie objektov v obrázku je autoenkóder od A. Meyer-a\cite{autoencoder_artur}, ktorý využíva aj vyššie popisovanú sieť VGG-Net. Využil princíp konvolúcie-dekonvolúcie kedy práve VGG-Net funguje ako enkóder a jej v podstate zrkadlová podoba s dekonvolučnými vrstvami funguje ako dekóder (zobrazené na obrázku \ref{autoencoder_artur_graph})
+Ďalším zaujímavým riešením detekcie objektov v obrázku je autoenkóder od A. Meyer-a\cite{autoencoder_artur}, ktorý využíva aj vyššie popisovanú sieť VGG16. Využil princíp konvolúcie-dekonvolúcie kedy práve VGG16 funguje ako enkóder a jej v podstate zrkadlová podoba s dekonvolučnými vrstvami funguje ako dekóder (zobrazené na obrázku \ref{autoencoder_artur_graph})
 
 \begin{figure}[H]
 \centering	\includegraphics[scale=0.12]{autoencoder_artur.jpg}
@@ -586,7 +597,7 @@ Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre 
 
 \footnotetext{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder}
 
-Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vrstiev a predikuje v podstate binárny obrázok, kde hodnota 1 reprezentuje pixel nájdeného objektu. Veľkou výhodou pri takejto sieti je možnosť použitia predtrénované modelu VGG-Net-u pre enkóder. 
+Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vrstiev a predikuje v podstate binárny obrázok, kde hodnota 1 reprezentuje pixel nájdeného objektu. Veľkou výhodou pri takejto sieti je možnosť použitia predtrénované modelu VGG16 pre enkóder. 
 
 
 \newpage
@@ -594,11 +605,14 @@ Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vr
 \thispagestyle{empty}
 \newpage
 
-%TODO nejak skratit nazov alebo vyriesit hlavicku
-\section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
+\section{Datasety vizuálnej pozornosti}
+% TODO Datasety vizuálnej pozornosti, využiť aj časť v experimentovaní
+TODO
+
+\section{Metriky pre modely vizuálnej pozornosti}
 \label{metric}
 
-Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to buď vzhľadom na pohyb očí (resp. fixácie) alebo vzhľadom na originálnu mapu výraznosti. K tomu slúži veľké množstvo metrík\cite{metriky}, medzi tie najčastejšie používané patria:
+Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to buď vzhľadom na pohyb očí (resp. fixácie) alebo vzhľadom na originálnu mapu výraznosti. K tomu slúži veľké množstvo metrík \cite{metriky}\cite{bylinskii2016different}, medzi tie najčastejšie používané patria:
 
 \begin{itemize}
 	
@@ -635,7 +649,22 @@ Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to 
 		KL (P, Q^D) =  \sum_{i} Q_{i}^{D} log \left ( \epsilon + \frac{Q_{i}^{D}}{\epsilon + P_i} \right )
 	\end{equation}
 	
-	\item SIM - similarity TODO %TODO similarity
+	\item SIM - podobnosť (z angl. similarity), meria resp. vyjadruje podobnosť medzi dvoma distribúciami zobrazenými ako histogram. Počíta sa ako suma minimálnych hodnôt v každom pixeli po normalizácii. 
+	
+	\begin{equation}
+		\begin{aligned}
+			SIM (P, Q^{D}) = \sum_{i} min (P_{i}, Q_{i}^{D})
+			\\
+			\\
+			kde \ \sum_{i} P_{i} = \sum_{i} Q_{i}^{D} = 1 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+		\end{aligned}
+	\end{equation}
+	
+	%\begin{equation}
+		%SIM (P, Q^{D}) = \sum_{i} min (P_{i}, Q_{i}^{D})
+		
+		%kde %\sum_{i} P_{i} = \sum_{i} Q_{i}^{D} = 1
+	%\end{equation}
 	
 	
 \end{itemize}

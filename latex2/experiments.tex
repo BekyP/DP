@@ -121,16 +121,16 @@ Z vyššie uvedených vizualizácií jasne vidieť, že sieť bola schopná nau�
 
 Zaujímavým javom, ktorý sme si všimli pri experimentovaní s týmto typom siete je, že hodnota chyby predikcie siete pri našom probléme nie je úplne smerodajná informácia. Pri použití napr. priemernej štvorcovej chyby (z angl. mean square error, MSE) bola výsledná chyba \textit{0.0000431}, ale predikcie boli v podstate len prázdne mapy bez akýchkoľvek výrazných častí. Tiež pri použití ešte väčšieho množstva konvlučných vrstiev sa použitá priemerná absolútna chyba zmenšila počas trénovania viac, avšak sieť sa v tomto prípade naučila predikovať najviac výrazné časti obrázkov vždy len do stredu, podobne ako pri konvolučnej neurónovej sieti z predošlého experimentu. Práve preto sme kvalitu modelov a predikcií vyhodnocovali metrikami vizuálnej pozornosti (kapitola \ref{metric}), ktorých prehľadné porovnanie aj so závermi je uvedené v \ref{results}.
 
-\subsection{Autoenkóder s predtrénovaným modelom VGG-Net}
+\subsection{Autoenkóder s predtrénovaným modelom VGG16}
 \label{experiments_vgg_net}
 
-Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho VGG-Net sieť k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG-Net pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. Po menších úpravách siete sme pristúpili k trénovaniu na našom datasete, postupný vývoj chyby počas trénovania možno vidieť na obrázku \ref{vgg_pretrained_loss}. Validácia prebiehala každých 100 epoch, trénovanie končilo v momente keď minimálna hodnota chyby za posledných \textit{n} epoch neklesla. 
+Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho sieť VGG16 k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG16 pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. Po menších úpravách siete sme pristúpili k trénovaniu na našom datasete, postupný vývoj chyby počas trénovania možno vidieť na obrázku \ref{vgg_pretrained_loss}. Validácia prebiehala každých 100 epoch, trénovanie končilo v momente keď minimálna hodnota chyby za posledných \textit{n} epoch neklesla. 
  
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{vgg_pretrained.png}
-		\caption[Vývoj chyby počas trénovanie siete s predtrénovaným modelom VGG-Net]{
-			Graf zobrazujúci vývoj chyby po odstránení extrémov pri použití predtrénovaného modelu VGG-Net 
+		\caption[Vývoj chyby počas trénovanie siete s predtrénovaným modelom VGG16]{
+			Graf zobrazujúci vývoj chyby po odstránení extrémov pri použití predtrénovaného modelu VGG16 
 		}\label{vgg_pretrained_loss}
 	\end{center}
 \end{figure}
