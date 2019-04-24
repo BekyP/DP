@@ -62,7 +62,7 @@ Aktivačná funkcia sigmoid je použitá najmä preto, že mapa výraznosti je p
 Autoenkóder sa klasicky skladá z dvoch častí, prehľadná štruktúra je zobrazená na obrázku \ref{autoencoder_structure}. Prvou je enkóder, ktorý tvoria 3 konvolučné vrstvy, každá so svojou vlastnou vrstvou združovania, nasledované normalizačnou vrstvou a jednou plne prepojenou vrstvou (z angl. fully-connected layer). Konvolučné vrstvy majú každá filter o veľkosti \textit{3x3} a aktivačnú funkciu ReLU (popísaná v kapitole \ref{activation_functions}), vrstvy združovania podobne ako pri predchádzajúcom type siete používajú operáciu MAX s filtrom o veľkosti \textit{2x2} a krokom rovnako s veľkosťou \textit{2}. Cieľom týchto vrstiev je prakticky extrahovať relevantné črty a vstupný obrázok zmenšiť, resp. komprimovať, čo ďalej zabezpečuje spomínaná normalizačná a plne prepojená vrstva (bez aktivačných funkcií), ktorá už ale vstupný obrázok reprezentuje len ako komprimované jednorozmerné pole. 
 
 Druhou časťou spomínaného autoenkóderu je tzv. dekodér, ktorý sa snaží prakticky zrkadlovými operáciami získať informácie z komprimovaných dát, vďaka čomu je schopný predikovať mapy vizuálnej pozornosti. Jeho vstupnou vrstvou je v podstate výstupná vrstva z enkóderu, ktorej tvar ale musí byť najprv zmenený pre nasledujúce konvolučné vrstvy. Tie sú dokopy štyri, prvé tri konvolučné vrstvy obsahujú filter s veľkosťou \textit{3x3} a aktivačnú funkciu ReLU. Každá z nich je ešte navyše nasledovaná vlastnou vrstvou
-prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukcia do tvaru vstupného obrázku. Obsahujú vzorkovací faktor 2, na rozdiel od vrstiev združovania v enkóderi však miesto operácie MAX (ktorá dáta, resp. obrázok zmenší) duplikujú riadky a stĺpce poskytnutých dát (obrázka), vďaka čomu sa zväčší o vzorkovací faktor. Posledná výstupná konvolučná vrstva obsahuje filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid. Dátam na nej je ale ešte nutné predtransformovať na 2D maticu, reprezentujúce nami požadované mapy výraznosti. Spomínané trénovanie pomocu algoritmu spätného šírenia chyby využíva Adadelta optimizér (popísaný v časti \ref{optimizers}).
+prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukcia do tvaru vstupného obrázku. Obsahujú vzorkovací faktor 2, na rozdiel od vrstiev združovania v enkóderi však miesto operácie MAX (ktorá dáta, resp. obrázok zmenší) duplikujú riadky a stĺpce poskytnutých dát (obrázka), vďaka čomu sa zväčší o vzorkovací faktor. Posledná výstupná konvolučná vrstva obsahuje filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid. Dáta na nej je ale ešte nutné pretransformovať na 2D maticu, reprezentujúcu nami požadovanú mapu výraznosti. Spomínané trénovanie pomocu algoritmu spätného šírenia chyby využíva Adadelta optimizér (popísaný v časti \ref{optimizers}).
 
 \begin{figure}[H]
 	\begin{center}
@@ -74,7 +74,28 @@ prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukc
 \end{figure}
 
 \subsection{Kombinácia VGG16 siete s autoenkóderom}
-TODO 
+
+Pre experimentovanie so zapojením faktorov pozornosti zhora nadol sme navrhli sieť, ktorá kombinuje predikcie vyššie navrhnutého autoenkóderu s detekciou objektov VGG16 siete. Náčrt architektúry je na obrázku \ref{vgg_16_with_autoencoder}, podrobný diagram sa nachádza v prílohe \ref{vgg16_autoencoder_architecture_detailed}. 
+
+Celá sieť je prakticky zložená z 3 častí:
+\begin{itemize}
+	\item enkóder - časť siete zodpovedná za detekciu salientných častí, je totožná s enkóderom v \ref{autoencoder_design} na obrázku \ref{autoencoder_structure}.
+	\item VGG16 konvolučná časť - obsahuje prvých 10 konvolučný vrstiev VGG16 siete (diagram na obrázku \ref{vgg_net_model}) spolu s príslušnými vrstvami združovania (z angl. max pooling). Je zodpovedná za detekciu objektov. 
+	\item dekóder - časť, v kt. sa postupne spájajú a upravujú predikcie z predošlých dvoch častí. Rovnako ako v návrhu z kapitoly \ref{autoencoder_design}, obsahuje štyri konvolučné vrstvy, prvá však nie je nasledovaná vrstvou prevzorkovania, ale vrstvou spájania - tá zabezpečuje spojenie predikcií z enkóderu a VGG16 konvolučnej časti. Po nej sú ďalej upravované pomocou ďalších dvoch konvolučných vrstiev nasledovaných vrstvou prevzorkovania, rovnako ako pri spomínanom predošlom návrhu. Tiež obsahujú aktivačnú funkciu ReLU a filter o veľkosti \textit{3x3}. Posledná výstupná konvolučná vrstva využíva filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid, nasledovaná je už len vrstvou, na ktorej sa dáta pretransformujú na 2D maticu reprezentujúcu predikovanú mapu výraznosti.
+\end{itemize}
+
+Pri trénovaní sme potom využili prenos učenia (popísaný v kapitole \ref{transfer_learning}), kedy vrstvy VGG16 konvolučnej časti boli už predtrénované k detekcii objektov. Počas trénovania celej siete sme potom experimentovali s vypnutím učenia pre spomínanú časť siete, keďže sme chceli zachovať kontext detekcie objektov. Samotné trénovanie prebiehalo pomocou algoritmu spätného šírenia chyby s použítím Adadelta optimizéru. 
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{vgg16_with_autoencoder.png}
+		\caption[Náčrt architektúry VGG16 siete s autoenkóderom]{
+			Náčrt architektúry VGG16 siete s autoenkóderom, VGG16 konvolučná časť obsahuje 10 konvolučných vrstiev pre detekciu objektov, enkóder je identický s enkóderom použitým v \ref{autoencoder_design}, podrobná architektúra je v prílohe \ref{vgg16_autoencoder_architecture_detailed}
+		}\label{vgg_16_with_autoencoder}
+	\end{center}
+\end{figure}
+
 %TODO Kombinácia VGG16 siete s autoenkóderom
 
 %TODO odkazat na transfer learning a to riesenie, kt. to je inspirovane
