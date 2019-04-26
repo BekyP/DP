@@ -5,9 +5,9 @@
 
 Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}).
 
-Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG-Net siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete. % TODO dopisat posledny semester
+Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG16 siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete. 
 
-V závislosti od toho, ktorý model, resp. varianta, sa ukáže byť najpresnejšia sa potom budeme venovať ďalšiemu experimentovaniu s pridávaním dodatočných (top-down) informácií o scéne, akými sú napr. poloha objektov konkrétnych objektov.
+Neskôr sme v rámci pridávania dodatočných (top-down) informácií o scéne, akými sú napr. poloha objektov konkrétnych objektov, vytvorili model, ktorý kombinuje VGG16 sieť s autoenkóderom. Jeho architektúra a princípy sú popísané v kapitole \ref{vgg16_combination_with_autoencoder}.
 
 \subsection{Dataset}
 \label{dataset_description}
@@ -74,7 +74,7 @@ prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukc
 \end{figure}
 
 \subsection{Kombinácia VGG16 siete s autoenkóderom}
-
+\label{vgg16_combination_with_autoencoder}
 Pre experimentovanie so zapojením faktorov pozornosti zhora nadol sme navrhli sieť, ktorá kombinuje predikcie vyššie navrhnutého autoenkóderu s detekciou objektov VGG16 siete. Náčrt architektúry je na obrázku \ref{vgg_16_with_autoencoder}, podrobný diagram sa nachádza v prílohe \ref{vgg16_autoencoder_architecture_detailed}. 
 
 Celá sieť je prakticky zložená z 3 častí:
