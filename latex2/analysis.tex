@@ -566,7 +566,7 @@ Popisované riešenie je ukážkovým modelom pre predikciu pozornosti počas h�
 Riešenie od Huang a spol. \cite{salicon_semantic_gap} sa zaoberalo zachytením sémantického kontextu scény ako prvku pozornosti zhora nadol, keďže práve to chýba v starších modeloch pre predikciu vizuálnej pozornosti. Pristúpili k tomu za použitia dvoch neurónových sietí (obrázok \ref{semantic_gap_nn}), ktorých predikcie na konci spojili pomocou spojovacej vrstvy do výslednej mapy vizuálnej pozornosti.  
 
 \begin{figure}[H]
-	\includegraphics[scale=0.7]{semantic_gap_nn.png}
+	\includegraphics[scale=0.7]{semantic_gap_nn.PNG}
 	\caption[Model redukcie sémantických medzier pri predikcii pozornosti]{Náčrt architektúri pri predikcii dvoch sietí so spojením výsledku do jednej mapy vizuálnej pozornosti}\label{semantic_gap_nn}
 \end{figure}
 
@@ -589,6 +589,8 @@ Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre 
 
 \footnotetext{https://www.quora.com/What-is-the-VGG-neural-network}
 
+\subsubsection{Autoenkóder s VGG16 sieťou}
+
 Ďalším zaujímavým riešením detekcie objektov v obrázku je autoenkóder od A. Meyer-a\cite{autoencoder_artur}, ktorý využíva aj vyššie popisovanú sieť VGG16. Využil princíp konvolúcie-dekonvolúcie kedy práve VGG16 funguje ako enkóder a jej v podstate zrkadlová podoba s dekonvolučnými vrstvami funguje ako dekóder (zobrazené na obrázku \ref{autoencoder_artur_graph})
 
 \begin{figure}[H]
@@ -599,6 +601,17 @@ Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre 
 \footnotetext{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder}
 
 Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vrstiev a predikuje v podstate binárny obrázok, kde hodnota 1 reprezentuje pixel nájdeného objektu. Veľkou výhodou pri takejto sieti je možnosť použitia predtrénované modelu VGG16 pre enkóder. 
+
+\subsubsection{Vedená a upravená vizuálna pozornosť}
+\label{relu_and_guided_saliency}
+Pri natrénovaných modeloch k detekcii objektov vieme pár jednoduchými zmenami docieliť, aby sme z nich dostali salientné mapy. Ako ukázali Springenberg a spol. \cite{springenberg2014striving}, stačí zmeniť aktivačné funkcie a upraviť algoritmus spätného šírenia chyby. K tomu môžeme použiť dva spôsoby, vďaka ktorým dostaneme dva typy vizuálnej pozornosti:
+
+\begin{itemize}
+	\item upravená alebo dekonvolučná (z angl.  rectified or deconv saliency \cite{zeiler2014visualizing}) - v algoritme spätného šírenia chyby sa odsekávajú negatívne gradienty a propaguje sa len pozitívny gradient pri zvýšení výstupných hodnôt
+	\item vedená vizuálna pozornosť (z angl. guided saliency) - podobne ako pri predošlom type sa odsekávajú negatívne gradienty, propaguje sa však pozitívny gradient zodpovedný za pozitívne aktivácie
+\end{itemize}
+
+Po týchto zmenách vieme z vybraných konvolučných vrstiev dostať rôzne aktivácie a črty určitých filtrov, z ktorých potom po ďalších úpravách a spojeniach získame salientné mapy. Hoci celkovo tieto mapy nemusia byť veľmi presné, toto riešenie je vhodné ako začiatok pri kritickom nedostatku dát, keďže využíva už natrénované modely detekcie objektov. Tie sú voľne dostupné pre najrôznejšie experimentovanie. 
 
 
 \newpage

@@ -141,25 +141,68 @@ Na prvý pohľad sa môže zdať, že sieť sa bola schopná naučiť aspoň nej
 
 %TODO Kombinácia autoenkóderu s VGG16 sieťou
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{vgg16_predictions_nontrainable.png}
+		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania voči reálnym mapám výraznosti]{
+			Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{vgg16_predictions_nontrainable}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{vgg16_predictions_trainable.png}
+		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou s dodatočným trénovaním voči reálnym mapám výraznosti]{
+			Porovnanie predikcií autoenkóderu s VGG16 sieťou s dodatočným trénovaním, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{vgg_predictions_trainable}
+	\end{center}
+\end{figure}
+
 \subsection{Vedená a upravená vizuálna pozornosť pri modeloch na detekciu objektov}
 
-Pri natrénovaných modeloch k detekcii objektov vieme pár jednoduchými zmenami docieliť, aby sme z nich dostali salientné mapy. Ako ukázali Springenberg a spol. \cite{springenberg2014striving}, stačí zmeniť aktivačné funkcie a upraviť algoritmus spätného šírenia chyby. K tomu môžeme použiť dva spôsoby, vďaka ktorým dostaneme dva typy vizuálnej pozornosti:
+Ako sme popisovali v kapitole \ref{relu_and_guided_saliency}, pri natrénovaných modeloch k detekcii objektov vieme pár jednoduchými zmenami docieliť, aby sme z nich dostali salientné mapy. V rámci jedného experimentu experimentu sme teda zobrali natrénovanú VGG16 sieť, zmenili sme \textit{softmax} aktivačnú funkciu na lineárnu a postupne použili obe popísané úpravy algoritmu spätného šírenia chyby. Vizualizácie predikcií sú zobrazené na obrázkoch \ref{relu_saliency_predictions} (pre upravenú vizuálnu pozornosť) a \ref{guided_saliency_predictions} (pre vedenú vizuálnu pozornosť). 
 
-\begin{itemize}
-	\item upravená alebo dekonvolučná (z angl.  rectified or deconv saliency \cite{zeiler2014visualizing}) - v algoritme spätného šírenie chyby sa odsekávajú negatívne gradienty a propaguje sa len pozitívny gradient pri zvýšení výstupných hodnôt
-	\item vedená vizuálna pozornosť (z angl. guided saliency) - podobne ako pri predošlom type sa odsekávajú negatívne gradienty, propaguje sa však pozitívny gradient zodpovedný za pozitívne aktivácie
-\end{itemize}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{relu_saliency_predictions.png}
+		\caption[Porovnanie predikcií upravenej vizuálnej pozornosti voči reálnym mapám výraznosti]{
+			Predikcie upravenej vizuálnej pozornosti, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{relu_saliency_predictions}
+	\end{center}
+\end{figure}
 
-Po týchto zmenách vieme z vybraných konvolučných vrstiev dostať rôzne aktivácie a črty určitých filtrov, z ktorých potom po ďalších úpravách a spojeniach získame salientné mapy.
+Vyššie zobrazené vizualizácie ukazujú, že v niektorých prípadoch sa predikcia dokázala zhruba trafiť do salientných miest, tie sú však oveľa rozsiahlejšie ako v originálnych mapách a celkovo majú predikované mapy dosť nízku granularitu. 
 
-Podľa vyššie uvedeného sme teda v rámci jedného experimentu zobrali natrénovanú VGG16 sieť, zmenili sme \textit{softmax} aktivačnú funkciu na lineárnu a postupne použili obe úpravy algoritmu spätného šírenia chyby.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{guided_saliency_predictions.png}
+		\caption[Porovnanie predikcií vedenej vizuálnej pozornosti voči reálnym mapám výraznosti]{
+			Predikcie vedenej vizuálnej pozornosti, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{guided_saliency_predictions}
+	\end{center}
+\end{figure}
 
-% RELU
-% final correlation coeficient: 0.07075053428738037                                                                       final SIM: 0.3040971396484601                                                                                           final NSS: 0.07634455110347538                                                                                          final judd AUC: 0.5183381972678621                                                                                      final shuffled AUC: 0.5155567545578212                                                                                  final borji AUC: 0.5155567545578212 
+Pri vedenej vizuálnej pozornosti v zásade pretrvávajú podobné problémy, navyše sa však dosť často stávalo, že sme z modelu neboli schopní dostať žiadne mapy vizuálnej pozornosti. To môže súvisieť s tým, že po úprave algoritmu spätného šírenia chyby sa propaguje iba pozitívny gradient zodpovedný za pozitívne aktivácie. Celkovo predikcie nie sú veľmi presné, presnejšie ale boli mapy práve prvého typu, čo dokázali aj hodnoty metrík vizuálnej pozornosti (kapitola \ref{metric}). Ako je vidieť v tabuľke \ref{relu_vs_guided}, hodnoty metrík nedosahujú veľké čísla, rozdiely medzi dvomi typmi predikcií nie sú až tak veľké.
 
 
-% guided
-% final correlation coeficient: 0.02592870838107928                                                                       final SIM: 0.31058350941862484                                                                                          final NSS: 0.02048344547699894                                                                                          final judd AUC: 0.5032850855843063                                                                                      final shuffled AUC: 0.5018114247009428                                                                                  final borji AUC: 0.5018114247009428  
+\begin{table}[H]
+	%\begin{minipage}{\textwidth}
+	\centering
+	\caption[Porovnanie vedenej a upravenej vizuálnej pozornosti]{Porovnanie hodnôt metrík pre predikcie vedenej a upravnej vizuálnej pozornosti}
+	\label{relu_vs_guided}
+	\begin{tabular}{{ | p{2cm} |  p{3cm} |  p{3cm} |  p{3cm} |  }}
+		\hline
+		& \textbf{Predikcie vedenej vizuálnej pozornosti (z angl. guided saliency)} &  \textbf{Predikcie upravenej vizuálnej pozornosti (z angl. rectified saliency)} \\ \hline
+		CC & 0.0259 & 0.0707  \\ \hline
+		SIM & 0.2805 & 0.3040  \\ \hline
+		AUC & 0.4973 & 0.5183  \\ \hline
+		sAUC & 0.5018 & 0.5155 \\ \hline
+		NSS & 0.0204 & 0.0763  \\ \hline
+	\end{tabular}
+	
+\end{table}
+
 
 \subsection{Porovnanie výsledkov experimentov}
 \label{results}
