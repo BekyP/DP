@@ -152,7 +152,14 @@ Pri natrénovaných modeloch k detekcii objektov vieme pár jednoduchými zmenam
 
 Po týchto zmenách vieme z vybraných konvolučných vrstiev dostať rôzne aktivácie a črty určitých filtrov, z ktorých potom po ďalších úpravách a spojeniach získame salientné mapy.
 
-Podľa vyššie uvedeného sme teda v rámci jedného experimentu zobrali natrénovanú VGG16 sieť, zmenili sme \textit{softmax} aktivačnú funkciu na lineárnu a postupne použili obe úpravy algoritmu spätného šírenia chyby. Výsledky boli na piču.
+Podľa vyššie uvedeného sme teda v rámci jedného experimentu zobrali natrénovanú VGG16 sieť, zmenili sme \textit{softmax} aktivačnú funkciu na lineárnu a postupne použili obe úpravy algoritmu spätného šírenia chyby.
+
+% RELU
+% final correlation coeficient: 0.07075053428738037                                                                       final SIM: 0.3040971396484601                                                                                           final NSS: 0.07634455110347538                                                                                          final judd AUC: 0.5183381972678621                                                                                      final shuffled AUC: 0.5155567545578212                                                                                  final borji AUC: 0.5155567545578212 
+
+
+% guided
+% final correlation coeficient: 0.02592870838107928                                                                       final SIM: 0.31058350941862484                                                                                          final NSS: 0.02048344547699894                                                                                          final judd AUC: 0.5032850855843063                                                                                      final shuffled AUC: 0.5018114247009428                                                                                  final borji AUC: 0.5018114247009428  
 
 \subsection{Porovnanie výsledkov experimentov}
 \label{results}
