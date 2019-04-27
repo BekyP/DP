@@ -143,6 +143,21 @@ Na prvý pohľad sa môže zdať, že sieť sa bola schopná naučiť aspoň nej
 
 \begin{figure}[H]
 	\begin{center}
+		\includegraphics[scale=0.415]{vgg16_nontrainable_loss.png}
+		\includegraphics[scale=0.415]{vgg16_trainable_loss.png}
+		\caption[Porovnanie vývoja chyby predikcie počas trénovania kombinácie autoenkóderu s VGG16 sieťou]{
+			Porovnanie vývoja chyby počas trénovania, oranžová reprezentuje chybu na trénovacích dátach, modrá na validačných
+		}\label{vgg16_loss_trainable_vs_nontrainable}
+	\end{center}
+\end{figure}
+
+% koncové hodnoty chyby: 
+% nontrainable: train - 0.1344, val - 0.1382 -> 81 epoch
+% trainable: train - 0.125, val - 0.1332 -> 41 epoch
+
+
+\begin{figure}[H]
+	\begin{center}
 		\includegraphics[scale=0.6]{vgg16_predictions_nontrainable.png}
 		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania voči reálnym mapám výraznosti]{
 			Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
