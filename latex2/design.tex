@@ -12,7 +12,7 @@ Neskôr sme v rámci pridávania dodatočných (top-down) informácií o scéne,
 \subsection{Dataset}
 \label{dataset_description}
 Podarilo sa nám nájsť veľké množstvo datasetov, ktoré by sa potencionálne dali použiť pre našu neurónovú sieť, ako napr. 
-CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, či DUT-OMRON\cite{dut-omron}. Pôvodná myšlienka bola vytiahnuť z každého čo najlepšie vzorky (odstrániť rôzne abstraktné umenie, fraktály, atď.) a dať tak dokopy jeden veľký dataset, na ktorom by bolo možné experimentovať. To sme aj naozaj zrealizovali a takýto dataset použili pri prvotných experimentoch popísaných v kapitole \ref{first_experiments}.
+CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, či DUT-OMRON\cite{dut-omron} (popísané aj v kapitole \ref{datasets}) Pôvodná myšlienka bola vytiahnuť z každého čo najlepšie vzorky (odstrániť rôzne abstraktné umenie, fraktály, atď.) a dať tak dokopy jeden veľký dataset, na ktorom by bolo možné experimentovať. To sme aj naozaj zrealizovali a takýto dataset použili pri prvotných experimentoch popísaných v kapitole \ref{first_experiments}.
 
 Neskôr sa ale postupne ukázalo, že takto zostrojený dataset zložený z viacerých menších má značné nedostatky. Najväčšími problémami boli:
 \begin{itemize}
@@ -23,20 +23,7 @@ Neskôr sa ale postupne ukázalo, že takto zostrojený dataset zložený z viac
 	\item rozdielne zariadenia pre zachytenie fixácií s rôznou vzorkovacou frekvenciou 
 \end{itemize}
 
-% TODO nejako spomenut salicon a ostatne
-
-Z vyššie uvedených dôvodov sme sa preto rozhodli vybrať iba jeden dataset. Voľba padla na DUT-OMRON\cite{dut-omron}, pretože:
-\begin{itemize}
-	\item obsahuje viac než 5000 obrázkov
-	\item obsahuje pohľady 5 ľudí za prvé 2 sekundy
-	\item má odstránené extrémy v dátach (z angl. outliers)
-	\item viac ako 95\% obrázkov má viac než 50 fixácií
-	\item všetky obrázky nemajú iba jeden veľký objekt v strede - t.j. fixácie nie sú stále centrované v tej istej oblasti
-	\item veľkosť obrázkov je \textit{400x300}
-	\item má dobre štruktúrovane spracované dáta
-\end{itemize} 
-
-Z vybraných dát sme si potom predpočítali mapy výraznosti (z angl. saliency maps) použitím fixácií a Gauss-ovho filtra. Mapy výrazností jednotlivých ľudí pre obrázky sme potom spojili dokopy. Takouto úpravou sme potom získali viac než 5000 vzoriek, na ktorých sme ďalej trénovali navrhnuté modely.
+Z vyššie uvedených dôvodov sme sa preto rozhodli vybrať iba jeden dataset. Voľba padla na SALICON, pretože je dosť rozsiahly, dobre spracovaný a hlavne obsahuje rôznorodé scény s kontextom. Z datasetu sme teda vybrali iba anotovanú vzorku dát (15 000 obrázkov) aby sme boli schopní vyhodnotiť predikcie metrikami vizuálnej pozornosti. Pre experimentovanie bol dataset rozdelený tradične v pomere 80 : 10 : 10 (trénovanie : validácia : testovanie).
 
 \subsection{Konvolučná neurónová sieť}
 \label{nn_popis}

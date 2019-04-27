@@ -620,8 +620,43 @@ Po týchto zmenách vieme z vybraných konvolučných vrstiev dostať rôzne akt
 \newpage
 
 \section{Datasety vizuálnej pozornosti}
-% TODO Datasety vizuálnej pozornosti, využiť aj časť v experimentovaní
-TODO
+\label{datasets}
+Pre problém predikcie vizuálnej pozornosti existuje niekoľko voľne dostupných datasetov, ktoré sa líšia v kvalitou, veľkosťou obrázkov, počtom fixácií či experimentami, pri ktorých boli zozbierané. Medzi najpoužívanejšie patria:
+
+\begin{itemize}
+	\item CAT2000\cite{cat2000}:
+		\begin{itemize}
+			\item obsahuje 4000 obrázkov z 20 rôznych kategórií
+			\item obsahuje pohľady 24 ľudí počas 5 sekúnd
+			\item obrázky sú naozaj rôznorodé, sú medzi nimi aj rôzne fraktály a obstraktné umenie
+			\item veľkosť obrázkov je \textit{1920x1080}
+		\end{itemize} 
+	\item MIT1003\cite{mit1003}:
+		\begin{itemize}
+			\item 1003 obrázkov prírodných a vonkajších scén (779 krajina, 228 portrét)
+			\item obsahuje pohľady 15 ľudí počas 3 sekúnd
+			\item veľkosť obrázkov je rôznorodá, od menších až po HD obrázky
+		\end{itemize} 
+	\item SALICON\cite{salicon}
+		\begin{itemize}
+			\item vizuálna pozornosť v kontexte (z angl. Saliency in Context)
+			\item obsahuje obrázky z datasetu MS COCO\footnote{http://cocodataset.org}, tie obsahujú neikonické pohľady a objekty v kontexte
+			\item pozostáva z 10 000 trénovacích, 5 000 validačných a 5 000 testovacích obrázkov 
+			\item veľkosť obrázkov je \textit{1920x1080}
+		\end{itemize} 
+	\item DUT-OMRON\cite{dut-omron}:
+		\begin{itemize}
+			\item obsahuje viac než 5000 obrázkov
+			\item obsahuje pohľady 5 ľudí za prvé 2 sekundy
+			\item má odstránené extrémy v dátach (z angl. outliers)
+			\item viac ako 95\% obrázkov má viac než 50 fixácií
+			\item všetky obrázky nemajú iba jeden veľký objekt v strede - t.j. fixácie nie sú stále koncentrované v tej istej oblasti
+			\item veľkosť obrázkov je \textit{400x300}
+			\item má dobre štruktúrovane spracované dáta
+		\end{itemize} 
+\end{itemize}
+
+Z vyššie uvedených sa ako najlepšie javia posledné dva datasety, SALICON a DUT-OMRON, najmä z dôvodu spracovania a obsahu.
 
 \section{Metriky pre modely vizuálnej pozornosti}
 \label{metric}
