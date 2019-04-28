@@ -139,17 +139,27 @@ Na prvý pohľad sa môže zdať, že sieť sa bola schopná naučiť aspoň nej
 
 \subsection{Kombinácia autoenkóderu s VGG16 sieťou}
 
-%TODO Kombinácia autoenkóderu s VGG16 sieťou
+V jednom z experimentov sme testovali architektúru inšpirovanú riešením  zachytávajúcim sémantickú medzeru pri predikcii vizuálnej pozornosti (kapitola \ref{semantic_gap}). Prakticky podľa návrhu v kapitole \ref{vgg16_combination_with_autoencoder} sme zostrojili neurónovú sieť kombinujúcu detekciu objektov pomocou predtrénovanej siete VGG16 a predikciu vizuálnej pozornosti pomocou autoenkóderu. 
+
+Sieť sme potom postupne trénovali v 2 dvoch konfiguráciach:
+\begin{itemize}
+	\item s vypnutím učenia pre vrstvy VGG16 siete - išlo nám o snahu zachovať kontext detekcie objektov.
+	\item so zapnutím učenia pre vrstvy VGG16 siete - po odskúšaní vyššie uvedenej konfigurácie sme zistili, že mapy vizuálnej pozornosti nemajú až tak vysokú mieru granularity a chceli sme to zmeniť dotrénovaním vrstiev pre detekciu objektov. 
+\end{itemize}
+
+Na obrázku \ref{vgg16_loss_trainable_vs_nontrainable} je zobrazený vývoj  trénovacej a validačnej chyby počas učenia. Ako chyba bola zvolená binárna krížová entropia (z angl. binary cross entropy) v kombinácii s adadelta optimizérom a algoritmom spätného šírenia chyby. Učenie končilo v momente, keď sa za posledných \textit{n} epoch nezlepšila validačná chyba.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.415]{vgg16_nontrainable_loss.png}
 		\includegraphics[scale=0.415]{vgg16_trainable_loss.png}
 		\caption[Porovnanie vývoja chyby predikcie počas trénovania kombinácie autoenkóderu s VGG16 sieťou]{
-			Porovnanie vývoja chyby počas trénovania, oranžová reprezentuje chybu na trénovacích dátach, modrá na validačných
+			Porovnanie vývoja chyby počas trénovania, oranžová reprezentuje chybu na trénovacích dátach, modrá na validačných. Vľavo graf pre vypnuté učenie na vrstvách detekcie objektov, vpravo pre zapnuté.
 		}\label{vgg16_loss_trainable_vs_nontrainable}
 	\end{center}
 \end{figure}
+
+Ako je vidieť, pri zapnutom učení aj na vrstvách pre detekciu objektov (na obrázku \ref{vgg16_loss_trainable_vs_nontrainable} vpravo) bol priebeh učenia stabilnejší, kratší a aj samotná chyba bola nižšia. Jej hodnoty boli na trénovacích dátach \textit{0.125} a na validačných \textit{0.1332}, pre vypnuté učenie na vrstvách detekcie objektov (obrázok \ref{vgg16_loss_trainable_vs_nontrainable} vľavo) bola trénovacia chyba na úrovni \textit{0.1344} a validačná \textit{0.1385}. Podobne na tom bola aj chyba na testovacích dátach, a to \textit{0.1391} oproti \textit{0.1442} (so zapnutým učením menšia), čo je vzhľadom aj na takmer o polovicu menší počet epoch lepší výsledok. Na obrázkoch nižšie sú zobrazené predikcie pre jednotlivé konfigurácia spolu s porovnaním voči reálnym mapám vizuálnej pozornosti. 
 
 % koncové hodnoty chyby: 
 % nontrainable: train - 0.1344, val - 0.1382 -> 81 epoch
