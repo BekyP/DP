@@ -170,19 +170,40 @@ Ako je vidieť, pri zapnutom učení aj na vrstvách pre detekciu objektov (na o
 	\begin{center}
 		\includegraphics[scale=0.6]{vgg16_predictions_nontrainable.png}
 		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania voči reálnym mapám výraznosti]{
-			Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+			Porovnanie predikcií autoenkóderu s VGG16 sieťou bez zapnutého učenia, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
 		}\label{vgg16_predictions_nontrainable}
 	\end{center}
 \end{figure}
+
+Ako je vidieť na obrázku \ref{vgg16_predictions_nontrainable}, v predikovaných mapách s vypnutým učením na vrstvách VGG16 siete cítiť vplyv detekcie objektov. Sieť vedela relatívne dobre odhadnúť salientné miesta v prípade, že na obrázku nebolo príliš veľa objektov. Problém je ale v intenzite týchto označených miest (tá býva vyššia ako v originálnych mapách) a v situáciách, kedy je na obrázku väčšie množstvo objektov. Vtedy sú v predikovanej mape vizuálnej pozornosti  označené za salientné  aj objekty, ktoré reálne nie sú (napríklad osoby v pozadí, atď.)
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.6]{vgg16_predictions_trainable.png}
 		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou s dodatočným trénovaním voči reálnym mapám výraznosti]{
-			Porovnanie predikcií autoenkóderu s VGG16 sieťou s dodatočným trénovaním, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+			Porovnanie predikcií autoenkóderu s VGG16 sieťou so zapnutým učením, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
 		}\label{vgg_predictions_trainable}
 	\end{center}
 \end{figure}
+
+Pri zapnutí učenia na vrstvách pre detekciu objektov sa predikcie o niečo zlepšili, sieť pri väčšom počte objektov v scéne už neoznačila tak veľké množstvo za salientné, pri čom aj predikcia intenzity v mapách je miernejšia a viac sa blíži reálnym mapám vizuálnej pozornosti. Zlepšenie koniec koncov potvrdzujú aj metriky vizuálnej pozornosti (popísané v kapitole \ref{metric}), ktorými sme ohodnotili obe konfigurácie modelu. Výsledky sú v tabuľke \ref{vgg16_trainable_vs_nontrainable_metrics}.
+
+\begin{table}[H]
+	%\begin{minipage}{\textwidth}
+	\centering
+	\caption[Porovnanie konfigurácií autoenkóderu s VGG16 sieťou pomocou metrík]{Porovnanie hodnôt metrík pre obe testované konfigurácie}
+	\label{vgg16_trainable_vs_nontrainable_metrics}
+	\begin{tabular}{{ | p{2cm} |  p{3cm} |  p{3cm} |  p{3cm} |  }}
+		\hline
+		& \textbf{Model s vypnutým učením pre VGG16 sieť} &  \textbf{Model so zapnutím učením pre VGG16 sieť} \\ \hline
+		CC & 0.6863 & 0.8065  \\ \hline
+		SIM & 0.6043 & 0.6958  \\ \hline
+		AUC & 0.7678 & 0.7832  \\ \hline
+		sAUC & 0.7154 & 0.7227 \\ \hline
+		NSS & 1.1630 & 1.2381  \\ \hline
+	\end{tabular}
+	
+\end{table}
 
 \subsection{Vedená a upravená vizuálna pozornosť pri modeloch na detekciu objektov}
 
