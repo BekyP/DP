@@ -107,7 +107,7 @@ final.summary()
 images = np.array(load_data(args.images, (n, n), last=args.samples, read_flag=cv2.IMREAD_COLOR))
 maps = np.array(load_data(args.maps, (n, n), last=args.samples))
 
-split = int(0.85 * len(images))
+split = int(0.87 * len(images))
 
 train_images = images[:split]
 train_maps = maps[:split]
