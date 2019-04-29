@@ -60,7 +60,7 @@ def AUC_Judd(saliency_map, fixation_map, jitter=True):
     # If there are no fixation to predict, return NaN
     if not np.any(fixation_map):
         print('no fixation to predict')
-        return np.nan
+        return 0
     # Make the saliency_map the size of the fixation_map
     if saliency_map.shape != fixation_map.shape:
         saliency_map = resize(saliency_map, fixation_map.shape, order=3, mode='edge')
@@ -124,7 +124,7 @@ def AUC_Borji(saliency_map, fixation_map, n_rep=100, step_size=0.1, rand_sampler
     # If there are no fixation to predict, return NaN
     if not np.any(fixation_map):
         print('no fixation to predict')
-        return np.nan
+        return 0
     # Make the saliency_map the size of the fixation_map
     if saliency_map.shape != fixation_map.shape:
         saliency_map = resize(saliency_map, fixation_map.shape, order=3, mode='edge')
@@ -224,6 +224,9 @@ def NSS(saliency_map, fixation_map):
     # Normalize saliency map to have zero mean and unit std
     s_map = normalize(s_map, method='standard')
     # Mean saliency value at fixation locations
+    if np.isnan(np.mean(s_map[f_map])):
+        return 0
+
     return np.mean(s_map[f_map])
 
 
