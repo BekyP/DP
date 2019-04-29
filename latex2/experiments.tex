@@ -249,7 +249,7 @@ Pri vedenej vizuálnej pozornosti v zásade pretrvávajú podobné problémy, na
 	
 \end{table}
 
-
+\newpage
 \subsection{Porovnanie výsledkov experimentov}
 \label{results}
 
@@ -279,7 +279,8 @@ Do výsledného porovnania sme nakoniec zobrali iba modely s najlepšími výsle
 Z vyššie uvedenej tabuľky jasne vyplýva, že najlepšie výsledky má autoenkóder, resp. jeho kombinácia s VGG16 sieťou. I keď hodnoty AUC majú dosť podobné, korelačný koeficient (CC) a podobnosť (SIM), ktoré validujú predikované mapy voči reálnym, nie voči fixáciám, sú výrazne vyššie. Preto sme sa ho rozhodli ako najlepší model, ktorý sa nám podarilo vytvoriť, ďalej porovnať s už existujúcimi modelmi na viacerých datasetoch.
 
 \section{Porovanie s existujúcimi riešeniami}
-%TODO Porovanie najlepšieho modelu s existujúcimi
+
+Náš najlepší model (autoenkóder kombinovaný s VGG16 sieťou pre detekciu objektov) sme porovnali s existujúcimi riešeniami - s modelom pre redukciu sémantických medzier (kapitola \ref{semantic_gap}) a s modelom SAM (Saliency Attentive Model, kapitola \ref{sam}). Porovanie prebiehalo pomocou metrík vizuálnej pozornosti na viacerých datasetoch (popísané v kapitole \ref{datasets}). Ich výsledné hodnoty sú v tabuľke \ref{compare_solutions}.
 
 \begin{table}[H]
 	
@@ -311,6 +312,10 @@ Z vyššie uvedenej tabuľky jasne vyplýva, že najlepšie výsledky má autoen
 	
 	%\end{minipage}
 \end{table}
+
+Pre výpočet metrík nášho riešenia sme ako základný model použili ten natrénovaný na SALICON datasete, pre ďalšie datasety (MIT1003, CAT2000) sme ho už len postupne dotrénovali. Počas trénovania aj dotrénovávania boli dáta pre každý dataset rozdelené v pomere 80 : 10 : 10 (trénovanie : validácia : test). Výsledné hodnoty metrík boli vypočítané na testovacích dátach pre jednotlivé datasety.
+
+Ako je vidieť v predošlej tabuľke, hodnoty nášho modelu sa vo väčšine prípadov blížia hodnotám uvedených riešení, len zriedkavo sú lepšie. Naše predikcie sú teda konkurencie schopné, nie sú ale ani zďaleko najlepšie možné. 
 
 \iffalse
 MIT1003

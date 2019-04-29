@@ -504,6 +504,7 @@ Za veľkú výhodu tohto riešenia by sa dala pokladať kombinácia viacerých f
 
 
 \subsubsection{SAM}
+\label{sam}
 SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší z modelov schopných aj predikcie pozornosti zhora nadol (top-down). Založený je na architektúre nazvanej ML-Net (Multi-Level Network\cite{cornia2016deep}), ktorá miesto klasických konvolučných vrstiev využíva dilatované konvolučné vrstvy, ktoré limitujú efekt zmenšovania. Táto architekúra použitá pre spracovanie vstupného obrázka je nasledovaná konvolučnými LSTM vrstvami, ich naučené výstupy potom spracováva už klasická konvolučná vrstva, výstupom ktorej je mapa výraznosti. Popisovaný postup je zobrazený na obrázku \ref{dilated_model_image}.
 
 \begin{figure}[H]
