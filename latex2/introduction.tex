@@ -1,15 +1,12 @@
 \newpage
-\null
-\thispagestyle{empty}
-\newpage
 \section{Úvod}
 \setcounter{page}{1}
 
 Vizuálna výraznosť zhora nadol (z angl. top-down) je veľmi dôležitou súčasťou vizuálnej pozornosti (popísaná v kapitole \ref{saliency}), nakoľko sa pri nej berie do úvahy sémantický kontext pozorovanej scény. To je niečo, čo zohráva kľúčovú úlohu pri snahe výskumníkov umožniť počítačom vnímať a porozumieť obrázkom rovnakým spôsobom ako ľudia. V posledných rokoch sa ako prelomovým v tejto doméne javí nevídaný pokrok v oblasti umelej inteligencie, konkrétne neurónových sietí, ktorých popis spolu s niekoľkými typmi je spomenutý v kapitole \ref{nn}. Ich charakteristickým znakom je využitie veľkého množstva hierarchických vrstiev pre spracovanie nelineárnych informácií. Vďaka tomu sa objavili nové možnosti detekcie salientných častí skúmanej scény na základe jej sémantického kontextu.
 
-Spomedzi riešení berúcich do úvahy spomínaný sémantický kontext a teda predikujúcich pozornosť zhora nadol (top-down), si v kapitole \ref{saliency_models} predstavíme niekoľko zaujímavých príkladov spolu so zaužívanejšími modelmi k predikcii pozornosti zdola nahor (z angl. bottom-up). K ich evaluácii sa používa značné množstvo metrík, z ktorých napoužívanejšie sú vysvetlené v kapitole \ref{metric}.
+Spomedzi riešení berúcich do úvahy spomínaný sémantický kontext a teda predikujúcich pozornosť zhora nadol (top-down), si v kapitole \ref{saliency_models} predstavíme niekoľko zaujímavých príkladov spolu so zaužívanejšími modelmi k predikcii pozornosti zdola nahor (z angl. bottom-up). Pre ich natrénovanie je nutné mať čo najlepšie spracovaný dataset, najlepšie voľne dostupné sú popísané v kapitole \ref{datasets}. K ohodnoteniu kvality modelov po natrénovaní sa používa značné množstvo metrík, z ktorých napoužívanejšie sú vysvetlené v kapitole \ref{metric}.
 
-Za cieľ na druhý semester sme si  zvolili nájsť čo najlepší model neurónovej siete k predikcii pozornosti zdola nahor, ktorému by sme mohli neskôr postupne dodávať ďalšie informácie o pozornosti zhora nadol. Na to sme teda po rozanalyzovaní problémovej oblasti nadviazali v kapitole \ref{design}, kde uvádzame navrhnuté 2 neurónové siete a to klasickú konvolučnú (kapitola \ref{nn_popis}) a autoenkóder (kapitola \ref{autoencoder_design}). Experimentovaniu nie len s nimi sa venuje kapitola \ref{experiments}, v ktorej závere sa nachádza zhrnutie a výsledky experimentov, rovnako ako výber najlepšieho modelu, s ktorým budeme pracovať aj ďalej. 
+Na základe preštudovanej problémovej oblasti sme postupne navrhli niekoľko architektúr neurónových sietí (kapitola \ref{design}), od jednoduchších konvolučných až po zložitejšie kombinujúce niekoľko modelov (aj natrénovaných) určených pre riešenie rôznych úloh do jednej komplexnejšie siete. Na jednotlivé návrhy sme nadviazali experimentami v kapitole \ref{experiments}, kde sú postupne popísané priebehy a dosiahnuté výsledky počas hľadania najlepšieho modelu. Ten sme potom porovnávali s už existujúcimi riešeniami (kapitola \ref{compare_section}) na viacerých datasetoch (kapitola \ref{compare_section}) - náš model bol postupne dotrénovávaný na jednotlivé vybrané datasety, aby sa výsledky čo najviac zlepšili. V závere práce sme už len zhrnuli dosiahnuté výsledky. 
 
 \newpage
 \null
