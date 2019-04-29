@@ -278,8 +278,57 @@ Do výsledného porovnania sme nakoniec zobrali iba modely s najlepšími výsle
 
 Z vyššie uvedenej tabuľky jasne vyplýva, že najlepšie výsledky má autoenkóder, resp. jeho kombinácia s VGG16 sieťou. I keď hodnoty AUC majú dosť podobné, korelačný koeficient (CC) a podobnosť (SIM), ktoré validujú predikované mapy voči reálnym, nie voči fixáciám, sú výrazne vyššie. Preto sme sa ho rozhodli ako najlepší model, ktorý sa nám podarilo vytvoriť, ďalej porovnať s už existujúcimi modelmi na viacerých datasetoch.
 
-\section{Porovanie najlepšieho modelu s existujúcimi}
+\section{Porovanie s existujúcimi riešeniami}
 %TODO Porovanie najlepšieho modelu s existujúcimi
+
+\begin{table}[H]
+	
+	\centering
+	\caption[Porovnanie nášho najlepšieho modelu s existujúcimi riešeniami]{Porovnanie nášho najlepšieho modelu s existujúcimi riešeniami na rôznych datasetoch pomocou metrík}
+	\label{compare_solutions}
+	\begin{tabular}{{ | p{1.7cm} |  p{2.5cm} |  p{2.5cm} |  p{2.5cm} | p{2.5cm} | }}
+		\hline
+		& \textbf{Kombinácia autoenkóderu s VGG16 sieťou} &  \textbf{Model pre redukciu sémantických medzier} &  \textbf{SAM (Saliency Attentive Model)} \\ \hline
+		\textbf{Salicon} &  &  &  \\ \hline
+		CC & 0.8065 & - & 0.811 \\ \hline
+		SIM &  0.6958 & - & - \\ \hline
+		AUC & 0.7832 & - & 0.878 \\ \hline
+		sAUC & 0.7227 & - & 0.782 \\ \hline
+		NSS & 1.2381 & -  & 3.15 \\ \hline
+		\textbf{MIT1003} &  &  &  \\ \hline
+		CC & 0.6161 & 0.74 & 0.738 \\ \hline
+		SIM &  0.5075 & 0.60 & - \\ \hline
+		AUC & 0.8193 & 0.85 & 0.908 \\ \hline
+		sAUC & 0.7369 & 0.74 & 0.613 \\ \hline
+		NSS & 1.7388 & 2.12  & 2.231 \\ \hline
+		\textbf{CAT2000} &  &  &  \\ \hline
+		CC & 0.7157 & - & 0.845 \\ \hline
+		SIM &  0.6169 & - & - \\ \hline
+		AUC & 0.8768 & - & 0.874 \\ \hline
+		sAUC & 0.8237 & - & 0.539 \\ \hline
+		NSS & 2.1150 & -  & 2.233 \\ \hline
+	\end{tabular}
+	
+	%\end{minipage}
+\end{table}
+
+\iffalse
+MIT1003
+final correlation coeficient: 0.6161522189830408
+final SIM: 0.507501539429815
+final NSS: 1.7388561018606992
+final judd AUC: 0.8193171082796084
+final shuffled AUC: 0.7369328732828082
+final borji AUC: 0.7369328732828082
+
+CAT2000
+final correlation coeficient: 0.71578752863242
+final SIM: 0.6169893727935132
+final NSS: 2.1150046837329866
+final judd AUC: 0.8768191933449266
+final shuffled AUC: 0.8237329292507087
+final borji AUC: 0.8237329292507087
+\fi
 
 \iffalse
 cnn:
