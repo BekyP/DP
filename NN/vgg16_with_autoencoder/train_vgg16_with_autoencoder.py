@@ -137,9 +137,6 @@ valid_img_map_ds = load_images_and_maps(valid_imgs_paths, valid_maps_paths, (n, 
 train_ds = setup_ds(train_img_map_ds, "train")
 valid_ds = setup_ds(valid_img_map_ds, "valid")
 
-#train_image_batch, train_map_batch = next(iter(train_ds))
-#valid_image_batch, valid_map_batch = next(iter(valid_ds))
-
 steps_per_epoch=ceil(len(train_imgs_paths)/args.batch_size)
 
 print("steps_per_epoch: " + str(steps_per_epoch))

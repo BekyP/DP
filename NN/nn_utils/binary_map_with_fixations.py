@@ -2,6 +2,7 @@ import argparse
 import os
 import numpy as np
 
+import scipy.io
 from scipy.io import loadmat
 from scipy.misc import toimage
 from cv2 import GaussianBlur
@@ -49,3 +50,23 @@ def get_binary_fixation_maps(folder, size=256, first=0, last=None):
         ret_maps.append(final_map)
 
     return ret_maps
+
+
+def load_fixation_locs(folder, size=(224, 224)):
+    maps = []
+    
+    for fix_map_name in listdir_fullpath(folder):
+
+        fix_map = np.array(scipy.io.loadmat(fix_map_name)['fixLocs'])
+        y_size, x_size = fix_map.shape
+        ones = np.where(fix_map>0)
+        resized_map = np.zeros(size)
+
+        for y, x in zip(ones[0], ones[1]):
+            
+            resized_map[int(y/y_size*size[0]), int(x/x_size*size[1])] = 1
+
+        maps.append(resized_map)
+
+    return np.array(maps)
+

@@ -15,7 +15,7 @@ sys.path.append('../')
 from nn_utils.metrics import count_metrics # source codes of metrics from: https://github.com/herrlich10/saliency
 from nn_utils.utils import listdir_fullpath
 from nn_utils.load_data import load_data
-from nn_utils.binary_map_with_fixations import get_binary_fixation_maps
+from nn_utils.binary_map_with_fixations import load_fixation_locs
 
 import matplotlib
 matplotlib.use('Agg')
@@ -64,9 +64,16 @@ for p, img in zip(predicted, img_names):
 
 original = np.array(load_data(args.maps, (n, n)))
 
+print(str(len(original)))
+
 if args.binary_format == 'mat':
-    binary_maps = np.array(get_binary_fixation_maps(args.binary_maps, size=n))
+    binary_maps = np.array(load_fixation_locs(args.binary_maps, size=(n, n)))
 else:
     binary_maps = np.array(load_data(args.binary_maps, (n, n)))
+
+if binary_maps.any()>0:
+    print("good")
+else:
+    print("bad")
 
 count_metrics(predicted, original, binary_maps)
