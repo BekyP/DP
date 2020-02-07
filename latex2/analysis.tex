@@ -92,7 +92,7 @@ Aktivačná funkcia predstavuje matematické vyjadrenie použité k aproximácii
 		
 		\(vec \) - konkrétny vector
 		
-		Keď si ako príklad vezmeme jednoduchý vektor [1, 2, 3], výsledok po aplikovaní softmaxu bude [0.09, 0.24, 0.67]. Ako môžeme vidieť, funkcia sa väčšinou používa na zvýraznenie väčších hodnôt a zárove\ potlačenie hodnôt, ktoré sú výrazne menšie ako maximálna hodnota. 
+		Keď si ako príklad vezmeme jednoduchý vektor [1, 2, 3], výsledok po aplikovaní softmaxu bude [0.09, 0.24, 0.67]. Ako môžeme vidieť, funkcia sa väčšinou používa na zvýraznenie väčších hodnôt a zároveň potlačenie hodnôt, ktoré sú výrazne menšie ako maximálna hodnota. 
 		
 		\item {\textbf{ReLU}}
 		
@@ -146,7 +146,7 @@ MIL\cite{minhas2012multiple} - skratka pre anglický výraz Multiple Instance Le
 		X = \{X_1, ..., X_N\}
 	\end{equation}
 
-$X_{i}$ reprezentuje vektor čŕt (inštanciu) extrahové z prislúchajúceho i-teho regiónu obrázku a \textit{N} je celkový počet regiónov (inštancií) v obrázku. Vrecko je označené pozitívne  (\textit{"pláž"})  v prípade, že obsahuje oba regióny (inštancie) \textit{"piesok"} a \textit{"voda"}.
+$X_{i}$ reprezentuje vektor čŕt (inštanciu) extrahované z prislúchajúceho i-teho regiónu obrázku a \textit{N} je celkový počet regiónov (inštancií) v obrázku. Vrecko je označené pozitívne  (\textit{"pláž"})  v prípade, že obsahuje oba regióny (inštancie) \textit{"piesok"} a \textit{"voda"}.
 
 \subsubsection{Učenie sa bez učiteľa}
 Základný popis o učení bez učiteľa hovorí, že sa jedná o odvodenie funkcie k popisu skrytej vnútornej štruktúry z neoštítkovaných dát. Dalo by sa teda tvrdiť, že tu nie sú žiadne signály, chyba či ukazovatele, ktoré by nám napovedali alebo ohodnocovali to, ako dobré je potenciálne riešenie (predikcia). Tento typ učenia je široko používaným napr. v oblasti dátových analýz.
@@ -155,12 +155,23 @@ Základný popis o učení bez učiteľa hovorí, že sa jedná o odvodenie funk
 Tento typ učenia má podobne ako učenie s učiteľom k dispozícii istú spätnú väzbu o kvalite predikcií počas trénovania, nie je to však tak konkrétna informácia ako chyba predikcie voči správnym výstupom. Spätná väzba predstavuje ohodnotenie predikcie buď odmenou alebo trestom, v závislosti od toho aká dobrá bola. Hlavným cieľom je, ako by sa dalo očakávať, maximalizovanie získanej odmeny. Tú neurónová sieť získava metódou pokus- omyl pri upravovaní váh počas trénovania. Tento postup do značnej miery simuluje učenie sa v reálnom svete. Najčastejšie sa používa pri algoritmoch, ktoré sú stavané na hranie doskových alebo počítačových hier. 
 
 
+\subsubsection{Prenos učenia}
+\label{transfer_learning}
+Z angl. transfer learning \cite{transfer_learning}, týmto pojmom sa označuje zaujímavý problém pri strojovom učení - ako uložiť vedomosti naučené pri riešení danej úlohy a následne ich uplatniť pri riešení ďalšej odlišnej, ale súvisiacej úlohy. Najľahšie sa dá vysvetliť na príklade rozpoznávania objektov, kedy máme natrénovaný model napríklad na detekciu osobných áut a chceme vytvoriť ďalší, ktorý by detekoval  kamióny. Pri klasickom postupe by sme potrebovali dostatočné veľký dataset kamiónov, na ktorom by sme model trénovali. To je však značne náročné čo sa týka zdrojov a času, preto môžeme použiť predtrénovaný model pre osobné autá a dotrénovať ho pre detekciu kamiónov. Takto môžeme výrazne znížiť čas nutný na trénovanie a zvýšiť presnosť detekcie. 
+
+Prenos učenia má 2 základné prístupy \cite{transfer_learning_approaches}:
+\begin{itemize}
+	\item použitie predtrénovaného modelu - jedná sa o prípad uvedený ako príklad vyššie. Zvolíme si natrénovaný model pre podobnú úlohu ako chceme riešiť a ten následne znovupoužijeme (môže sa jednať o celý model, ale aj jednotlivé časti) a dotrénujeme ho pre náš problém. Znižuje čas potrebný na učenie, nevyžaduje tak veľký dataset a môže výrazne zvýšiť presnosť. 
+	\item použitie základného modelu - v prípade, že nemáme k dispozícii predtrénovaný model, môžeme si zvoliť ako zdrojovú úlohu pre základný model podobnú, ako chceme riešiť my, avšak s hojným počtom dát. Tento model natrénujeme a podobne ako pri predošlom prístupe ho potom znovupoužijeme a dotrénujeme na riešenie inej úlohy. Dobrým zvykom býva porovnanie výsledkov základného modelu napr. s naivnými Bayes-ovskými modelmi, aby sa zistilo, či sa model naučil aspoň nejaké relevantné črty. Tento prístup môže byť užitočný v prípade, že pre špecifickú úlohu máme málo dát. 
+\end{itemize}
+
+
 \subsubsection{Optimizačné algoritmy}
 \label{optimizers}
 V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, ktorých cieľom je nájdenie minima funkcie medzi váhami. Medzi základné optimizéry patria:
 
 \begin{itemize}
-	\item \textbf{Gradient descent optimizer \cite{gradient_descent}:}
+	\item \textbf{Gradient descent optimizér \cite{gradient_descent}:}
 	
 	Je to iteratívny algoritmus používaný k nájdeniu lokálneho minima funkcie, kedy podniká kroky k nájdeniu záporného gradientu\footnote{ zmena veličiny v závislosti od inej premennej} funkcie v aktuálnom bode. To je využívané pri určovaní rýchlosti učenia sa neurónovej siete. Existujú 3 hlavné varianty gradient descent optimizéru, ktoré počítajú sklon (gradient) funkcie. Delia sa hlavne podľa množstva dát určenému k spracovaniu, kedy sa robí kompromis medzi presnosťou aktualizácie parametra a časom, ktorý je potrebný na vykonanie tejto aktualizácie. Týmito typmi sú:
 	\begin{itemize}
@@ -174,15 +185,15 @@ V kombinácii s algoritmami učenia sa používajú optimizačné algoritmy, kto
 		
 		Je kompromisom medzi predošlými dvomi typmi. Aktualizácia prebieha pre malú dávku (batch) z datasetu o veľkosti \textit{n} vzoriek.
 	\end{itemize} 
-	\item \textbf{Adam optimizer \cite{adam}:}
+	\item \textbf{Adam optimizér \cite{adam}:}
 	
 	V podstate vychádza priamo zo Stochaistického gradient descent optimizéru, resp. jeho modifikácie RMSProp algoritmu\cite{rms}. Rozdiel oproti Gradient descent optimizéru je ale v tom, že je schopný variabilne určovať rýchlosť učenia neurónovej siete.
 	
-	\item \textbf{Adadelta optimizer \cite{adadelta}:}
+	\item \textbf{Adadelta optimizér \cite{adadelta}:}
 	
 	Jedná sa o rozšírenie Adagrad optimizéru\cite{adagrad}, ktoré sa snaží zredukovať jeho agresívnu, monotónne klesajúcu rýchlosť učenia. Je robustnejší, prispôsobovanie spomínanej rýchlosti učenia je založené na pohyblivom okne aktualizácií gradientu namiesto akumulácie všetkých minulých gradientov, ako je to pri Adagrad optimizéri. Vďaka tomu je Adadelta schopný pokračovať v učení aj po veľkom množstve epoch a aktualizácií gradientu.\footnote{https://keras.io/optimizers/} 
 	
-	\item \textbf{Ftrl optimizer:}
+	\item \textbf{Ftrl optimizér:}
 	
 	Vychádza z algoritmu učenia FTRL-Proximal\cite{ftrl}, celým názvom Nasleduj regularizovaného vodcu (z angl. Follow The (Proximal) Regularized Leader). Tento algoritmus je bez regularizácie v podstate identický s gradient descentom, avšak používa alternatívnu reprezentáciu koeficientov váh a tak môže byť regularizácia implementovaná efektívnejšie.
 \end{itemize}
@@ -376,7 +387,7 @@ Za jedinú nevýhodu može byť považovaná nemožnosť použitia ako nezávisl
 
 \subsubsection{Spark MLlib}
 
-Škálovateľná knižnica pre strojové učenie, široko využívaná najmä v distribuovaných systémoch hlavne kvôli svojej efektivite. Veľmi jednoducho je ju môžné pripojiť do Hadoop workflow-u, poskytuje množstvo algoritmov pre strojové učenie optimalizovaných pre výpočty v už spomínaných distribuovaných systémoch na dátach vo veľkom meradle\footnote{https://spark.apache.org/mllib/}.
+Škálovateľná knižnica pre strojové učenie, široko využívaná najmä v distribuovaných systémoch hlavne kvôli svojej efektivite. Veľmi jednoducho je ju možné pripojiť do Hadoop workflow-u, poskytuje množstvo algoritmov pre strojové učenie optimalizovaných pre výpočty v už spomínaných distribuovaných systémoch na dátach vo veľkom meradle\footnote{https://spark.apache.org/mllib/}.
 
 Momentálne poskytuje podporu pre jazyky Python, Java, Scala a R.
 
@@ -394,14 +405,12 @@ Za nevýhody možno pokladať:
 
 Nevýhodou v porovnaní s vyššie uvedenými framework-ami môže byť nižšie množstvo implementovaných algoritmov, avšak vývoj rozhodne nezaháľa a pridávanej funcionality je stále viac a viac.
 
-\newpage
-\null
-\thispagestyle{empty}
+
 \newpage
 
 \section{Existujúce modely vizuálnej pozornosti}
 \label{saliency_models}
-Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných máp výraznosti rozdeliť na modely k predikcii pozornosti zdola nahor \ (kapitola \ref{bottom-up_modely}) a modely k predikcii pozornosti zhora nadol (kapitola \ref{top-down_modely}). Ďalším zaujímavým rozdelením však je rozdelenie podľa použitých princípov a technológií \cite{polatsek}, na modely:
+Existujúce modely vizuálnej pozornosti možno z pohľadu typu predikovaných máp výraznosti rozdeliť na modely k predikcii pozornosti zdola nahor \ (kapitola \ref{bottom-up_modely}) a modely k predikcii pozornosti zhora nadol (kapitola \ref{top-down_modely}). Ako prínosná sa ale javí aj detekcia objektov (kapitola \ref{object_detection}) a modely postavené práve na nej. Ďalším zaujímavým rozdelením však je rozdelenie podľa použitých princípov a technológií \cite{polatsek}, na modely:
 
 \begin{itemize}
 	\item hierarchické - využívajú hierarchické rozkladanie príznakov
@@ -491,9 +500,9 @@ Treťou časťou bolo spracovanie výstupov z predošlých dvoch častí lineár
 
 Za veľkú výhodu tohto riešenia by sa dala pokladať kombinácia viacerých faktorov (aj pozornosti zdola nahor (bottom-up) aj pozornosti zhora nadol (top-down emočné faktory)  do výslednej mapy, vďaka čomu sa viac priblíži k reálnej pozornosti. Ako vieme tú neovplyvňujú čisto len jedny alebo druhé faktory, ale vždy je to ich kombinácia. Ako mierna nevýhoda by sa mohlo javiť rozdelenie emócií iba na 8 typov a určenie ako dominantný typ len jeden z nich, pričom ostatné sa ďalej neberú do úvahy.  
 
-% TODO maybe \subsubsection{CRF}
 
 \subsubsection{SAM}
+\label{sam}
 SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší z modelov schopných aj predikcie pozornosti zhora nadol (top-down). Založený je na architektúre nazvanej ML-Net (Multi-Level Network\cite{cornia2016deep}), ktorá miesto klasických konvolučných vrstiev využíva dilatované konvolučné vrstvy, ktoré limitujú efekt zmenšovania. Táto architekúra použitá pre spracovanie vstupného obrázka je nasledovaná konvolučnými LSTM vrstvami, ich naučené výstupy potom spracováva už klasická konvolučná vrstva, výstupom ktorej je mapa výraznosti. Popisovaný postup je zobrazený na obrázku \ref{dilated_model_image}.
 
 \begin{figure}[H]
@@ -505,7 +514,7 @@ SAM - skratka pre Saliency Attentive Model\cite{cornia2016predicting}, ďalší 
 
 Vďaka architektúre zobrazenej na obrázku vyššie je možné nezávisle na sebe trénovať dilatovanú konvolučnú sieť (alebo použiť predtrénovanú, či o niečo inú) a konvolučnú LSTM sieť. Veľkou výhodou dilatovanej konvolučnej siete je stratégia zväčšenia výstupného rozlíšenia obrázka, zatiaľ čo sa zachováva mierka, na ktorej operujú konvolučné filtre a počet parametrov. To je rozdiel oproti klasickej konvolučnej sieti, kedy je vstupný obrázok po extrakcii čŕt obvykle zmenšený, čo môže značne zhoršiť presnosť predikcie máp výraznosti.
 
-Spomínané LSTM vrstvy (podrobnejšie zobrazené aj na obrázku \ref{dilated_model_image}) využívajú kombináciu aktivačných funkcií \textit{softmax}, \textit{tanh} a \textit{sigmoid}, kedy pri spracúvaní sekvenčne aktualizujú svoj interný stav. Ako vstup dostanú vektor extrahovaných čŕt z dilatovaných konvolučných vrstiev (\textit{X}), ktoré spracúvajú vstupné obrázky, a generovanú mapu výraznosti z predošlej LSTM vrstvy (s výnimkou prvej). Táto generovaná mapa je ešte upravená mechanizmami pozornosti, ktoré sa selektívne zameriavajú na rôzne časti obrázku. Vo výsledku je potom vektor extrahovaných čŕt (\textit{X}) a upravená generovaná mapa (\textit{$X_t$}) z predošlej vrstvy ešte ďalej spracovávaná aktovačnými funkciami \textit{tanh}.
+Spomínané LSTM vrstvy (podrobnejšie zobrazené aj na obrázku \ref{dilated_model_image}) využívajú kombináciu aktivačných funkcií \textit{softmax}, \textit{tanh} a \textit{sigmoid}, kedy pri spracúvaní sekvenčne aktualizujú svoj interný stav. Ako vstup dostanú vektor extrahovaných čŕt z dilatovaných konvolučných vrstiev (\textit{X}), ktoré spracúvajú vstupné obrázky, a generovanú mapu výraznosti z predošlej LSTM vrstvy (s výnimkou prvej). Táto generovaná mapa je ešte upravená mechanizmami pozornosti, ktoré sa selektívne zameriavajú na rôzne časti obrázku. Vo výsledku je potom vektor extrahovaných čŕt (\textit{X}) a upravená generovaná mapa (\textit{$X_t$}) z predošlej vrstvy ešte ďalej spracovávaná aktivačnými funkciami \textit{tanh}.
 
 Výstup z týchto vrstiev je ďalej upravený štandardnými konvolučnými vrstvami do výsledných máp výraznosti.
 
@@ -551,18 +560,39 @@ Autori použili prístup nazvaný titulkami vedená vizuálna pozornosť (z angl
 
 Popisované riešenie je ukážkovým modelom pre predikciu pozornosti počas hľadania objektov v scéne. Veľkou výhodou je použitie LSTM vrstiev pre zachytenie predošlého kontextu ako aj možnosť predikcie pre video aj obrázky iba s minimálnymi zmenami.
 
+\subsubsection{Redukcia sémantických medzier pri predikcii vizuálnej pozornosti}
+
+\label{semantic_gap}
+
+Riešenie od Huang a spol. \cite{salicon_semantic_gap} sa zaoberalo zachytením sémantického kontextu scény ako prvku pozornosti zhora nadol, keďže práve to chýba v starších modeloch pre predikciu vizuálnej pozornosti. Pristúpili k tomu za použitia dvoch neurónových sietí (obrázok \ref{semantic_gap_nn}), ktorých predikcie na konci spojili pomocou spojovacej vrstvy do výslednej mapy vizuálnej pozornosti.  
+
+\begin{figure}[H]
+	\includegraphics[scale=0.7]{semantic_gap_nn.PNG}
+	\caption[Model redukcie sémantických medzier pri predikcii pozornosti]{Náčrt architektúri pri predikcii dvoch sietí so spojením výsledku do jednej mapy vizuálnej pozornosti}\label{semantic_gap_nn}
+\end{figure}
+
+Riešenie sa prakticky skladá z 2 častí a to z:
+\begin{itemize}
+	\item tzv. "hrubozrnnej" (z angl. coarse) - je zameraná na detekciu centier výrazných veľkých regiónov pozornosti, vstupom je menší obrázok
+	\item tzv. "jemnozrnnej" (z angl. fine) - je zameraná na detekciu salientných oblastí menšej veľkosti, vstupom je vačší obrázok
+\end{itemize}
+
+Autori experimentovali s architektúrami sietí pre detekciu objektov (s časti popisované v kapitole \ref{object_detection}) ako napríklad AlexNet \cite{alexnet}, VGG-16 \cite{vgg16} a GoogLeNet \cite{googlenet}). Najlepšie predikcie mala kombinácia VGG-16 siete, čím sme sa neskôr pri experimentovaní inšpirovali. 
+
 \subsection{Detekcia objektov}
 \label{object_detection}
-Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre detekciu objektov a ich klasifikáciu, ktorých je dostupné značné množstvo aj predtrénovaných. Ako príklad si môžeme uviesť konvolučnú sieť VGG-Net\cite{vgg_net} určenú práve pre klasifikáciu objektov na obrázku. Skladá sa z 16 konvolučných vrstiev a veľkého množstva filtrov, ako možno vidieť na obrázku \ref{vgg_net_model}. Spracováva obrázky o veľkosti \textit{224x224}, bola trénovaná na 4 GPU 2-3 týždne a skladá sa zhruba zo 138 miliónov parametrov\footnote{https://medium.com/@sidereal/cnns-architectures-lenet-alexnet-vgg-googlenet-resnet-and-more-666091488df5}.  Je častou voľbou pre ďalšie experimentovanie v oblasti pre svoju presnosť a dostupnosť už natrénovaného modelu.
+Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre detekciu objektov a ich klasifikáciu, ktorých je dostupné značné množstvo aj predtrénovaných. Ako príklad si môžeme uviesť konvolučnú sieť VGG16\cite{vgg_net} určenú práve pre klasifikáciu objektov na obrázku. Skladá sa z 16 konvolučných vrstiev a veľkého množstva filtrov, ako možno vidieť na obrázku \ref{vgg_net_model}. Spracováva obrázky o veľkosti \textit{224x224}, bola trénovaná na 4 GPU 2-3 týždne a skladá sa zhruba zo 138 miliónov parametrov\footnote{https://medium.com/@sidereal/cnns-architectures-lenet-alexnet-vgg-googlenet-resnet-and-more-666091488df5}.  Je častou voľbou pre ďalšie experimentovanie v oblasti pre svoju presnosť a dostupnosť už natrénovaného modelu.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.8]{vgg_net.png}
-	\caption[VGG-Net]{Štruktúra neurónovej siete VGG-Net\footnotemark}\label{vgg_net_model}
+	\caption[VGG16]{Štruktúra neurónovej siete VGG-Net\footnotemark}\label{vgg_net_model}
 \end{figure}
 
 \footnotetext{https://www.quora.com/What-is-the-VGG-neural-network}
 
-Ďalším zaujímavým riešením detekcie objektov v obrázku je autoenkóder od A. Meyer-a\cite{autoencoder_artur}, ktorý využíva aj vyššie popisovanú sieť VGG-Net. Využil princíp konvolúcie-dekonvolúcie kedy práve VGG-Net funguje ako enkóder a jej v podstate zrkadlová podoba s dekonvolučnými vrstvami funguje ako dekóder (zobrazené na obrázku \ref{autoencoder_artur_graph})
+\subsubsection{Autoenkóder s VGG16 sieťou}
+
+Ďalším zaujímavým riešením detekcie objektov v obrázku je autoenkóder od A. Meyer-a\cite{autoencoder_artur}, ktorý využíva aj vyššie popisovanú sieť VGG16. Využil princíp konvolúcie-dekonvolúcie kedy práve VGG16 funguje ako enkóder a jej v podstate zrkadlová podoba s dekonvolučnými vrstvami funguje ako dekóder (zobrazené na obrázku \ref{autoencoder_artur_graph})
 
 \begin{figure}[H]
 \centering	\includegraphics[scale=0.12]{autoencoder_artur.jpg}
@@ -571,7 +601,18 @@ Z pohľadu modelov vizuálnej pozornosti môžu za zmienku stáť aj modely pre 
 
 \footnotetext{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder}
 
-Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vrstiev a predikuje v podstate binárny obrázok, kde hodnota 1 reprezentuje pixel nájdeného objektu. Veľkou výhodou pri takejto sieti je možnosť použitia predtrénované modelu VGG-Net-u pre enkóder. 
+Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vrstiev a predikuje v podstate binárny obrázok, kde hodnota 1 reprezentuje pixel nájdeného objektu. Veľkou výhodou pri takejto sieti je možnosť použitia predtrénované modelu VGG16 pre enkóder. 
+
+\subsubsection{Vedená a upravená vizuálna pozornosť}
+\label{relu_and_guided_saliency}
+Pri natrénovaných modeloch k detekcii objektov vieme pár jednoduchými zmenami docieliť, aby sme z nich dostali salientné mapy. Ako ukázali Springenberg a spol. \cite{springenberg2014striving}, stačí zmeniť aktivačné funkcie a upraviť algoritmus spätného šírenia chyby. K tomu môžeme použiť dva spôsoby, vďaka ktorým dostaneme dva typy vizuálnej pozornosti:
+
+\begin{itemize}
+	\item upravená alebo dekonvolučná (z angl.  rectified or deconv saliency \cite{zeiler2014visualizing}) - v algoritme spätného šírenia chyby sa odsekávajú negatívne gradienty a propaguje sa len pozitívny gradient pri zvýšení výstupných hodnôt
+	\item vedená vizuálna pozornosť (z angl. guided saliency) - podobne ako pri predošlom type sa odsekávajú negatívne gradienty, propaguje sa však pozitívny gradient zodpovedný za pozitívne aktivácie
+\end{itemize}
+
+Po týchto zmenách vieme z vybraných konvolučných vrstiev dostať rôzne aktivácie a črty určitých filtrov, z ktorých potom po ďalších úpravách a spojeniach získame salientné mapy. Hoci celkovo tieto mapy nemusia byť veľmi presné, toto riešenie je vhodné ako začiatok pri kritickom nedostatku dát, keďže využíva už natrénované modely detekcie objektov. Tie sú voľne dostupné pre najrôznejšie experimentovanie. 
 
 
 \newpage
@@ -579,11 +620,49 @@ Sieť je schopná aj priamych prepojení z konvolučných do dekonvolučných vr
 \thispagestyle{empty}
 \newpage
 
+\section{Datasety vizuálnej pozornosti}
+\label{datasets}
+Pre problém predikcie vizuálnej pozornosti existuje niekoľko voľne dostupných datasetov, ktoré sa líšia kvalitou, veľkosťou obrázkov, počtom fixácií či experimentami, pri ktorých boli zozbierané. Medzi najpoužívanejšie patria:
 
-\section{Metriky používané na ohodnotenie modelov vizuálnej pozornosti}
+\begin{itemize}
+	\item CAT2000\cite{cat2000}:
+		\begin{itemize}
+			\item obsahuje 4000 obrázkov z 20 rôznych kategórií
+			\item obsahuje pohľady 24 ľudí počas 5 sekúnd
+			\item obrázky sú naozaj rôznorodé, sú medzi nimi aj rôzne fraktály a obstraktné umenie
+			\item veľkosť obrázkov je \textit{1920x1080}
+		\end{itemize} 
+	\item MIT1003\cite{mit1003}:
+		\begin{itemize}
+			\item 1003 obrázkov prírodných a vonkajších scén (779 krajina, 228 portrét)
+			\item obsahuje pohľady 15 ľudí počas 3 sekúnd
+			\item veľkosť obrázkov je rôznorodá, od menších až po HD obrázky
+		\end{itemize} 
+	\item SALICON\cite{salicon}
+		\begin{itemize}
+			\item vizuálna pozornosť v kontexte (z angl. Saliency in Context)
+			\item obsahuje obrázky z datasetu MS COCO\footnote{http://cocodataset.org}, tie obsahujú neikonické pohľady a objekty v kontexte
+			\item pozostáva z 10 000 trénovacích, 5 000 validačných a 5 000 testovacích obrázkov 
+			\item veľkosť obrázkov je \textit{1920x1080}
+		\end{itemize} 
+	\item DUT-OMRON\cite{dut-omron}:
+		\begin{itemize}
+			\item obsahuje viac než 5000 obrázkov
+			\item obsahuje pohľady 5 ľudí za prvé 2 sekundy
+			\item má odstránené extrémy v dátach (z angl. outliers)
+			\item viac ako 95\% obrázkov má viac než 50 fixácií
+			\item všetky obrázky nemajú iba jeden veľký objekt v strede - t.j. fixácie nie sú stále koncentrované v tej istej oblasti
+			\item veľkosť obrázkov je \textit{400x300}
+			\item má dobre štruktúrovane spracované dáta
+		\end{itemize} 
+\end{itemize}
+
+Z vyššie uvedených sa ako najlepšie javia posledné dva datasety, SALICON a DUT-OMRON, najmä z dôvodu spracovania a obsahu.
+\newpage
+\section{Metriky pre modely vizuálnej pozornosti}
 \label{metric}
 
-Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to buď vzhľadom na pohyb očí (resp. fixácie) alebo vzhľadom na originálnu mapu výraznosti. K tomu slúži veľké množstvo metrík\cite{metriky}, medzi tie najčastejšie používané patria:
+Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to buď vzhľadom na pohyb očí (resp. fixácie) alebo vzhľadom na originálnu mapu výraznosti. K tomu slúži veľké množstvo metrík \cite{metriky}\cite{bylinskii2016different}, medzi tie najčastejšie používané patria:
 
 \begin{itemize}
 	
@@ -594,7 +673,7 @@ Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to 
 	\end{equation}
 	
 	\item AUC - Oblasť pod ROC krivkou (z angl. Area Under the ROC Curve).
-	Ľudské fixácie sú považované za pozitívnu sadu a niektoré body na obrázku sú vybrané ako negatívna sada. K mape výraznosti je potom pristupované ako k binárnemu klasifikátoru na separáciu pozitívnych vzorkov od negatívnych. Presnosť podľa tejto metriky je daná nasledovne: 
+	Ľudské fixácie sú považované za pozitívnu sadu a niektoré body na obrázku sú vybrané ako negatívna sada. K mape výraznosti je potom pristupované ako k binárnemu klasifikátoru na separáciu pozitívnych vzoriek od negatívnych. Presnosť podľa tejto metriky je daná nasledovne: 
 	
 	\begin{itemize}
 		
@@ -614,11 +693,29 @@ Obvykle sa modely k predikcii vizuálnej pozornosti evaluujú 2 spôsobmi, a to 
 	CC (s, h) = \frac{cov(s, h)}{\sigma_{s} \sigma _{h}}
 	\end{equation}
 	
-	\item KL-Div - Kullback-Leiblerova divergencia\cite{bylinskii2016different}, všeobecné teoretické meranie rozdielu medzi dvoma pravdepodobnostými distribúciami. V oblasti predikcií vizuálnej pozornosti sa často nazýva aj AUC-Judd. Ako vstup berie mapu výraznosti \textit{P} a mapu fixácií (z angl.  ground  truth  fixation map) \textit{$Q^{D}$}, evaluuje stratu informáciie keď je \textit{P} použité k aproximácii \textit{$Q^{D}$}.
+	\item KL-Div - Kullback-Leiblerova divergencia\cite{bylinskii2016different}, všeobecné teoretické meranie rozdielu medzi dvoma pravdepodobnostými distribúciami. V oblasti predikcií vizuálnej pozornosti sa často nazýva aj AUC-Judd. Ako vstup berie mapu výraznosti \textit{P} a mapu fixácií (z angl.  ground  truth  fixation map) \textit{$Q^{D}$}, evaluuje stratu informácie keď je \textit{P} použité k aproximácii \textit{$Q^{D}$}.
 	
 	\begin{equation}
 		KL (P, Q^D) =  \sum_{i} Q_{i}^{D} log \left ( \epsilon + \frac{Q_{i}^{D}}{\epsilon + P_i} \right )
 	\end{equation}
+	
+	\item SIM - podobnosť (z angl. similarity), meria resp. vyjadruje podobnosť medzi dvoma distribúciami zobrazenými ako histogram. Počíta sa ako suma minimálnych hodnôt v každom pixeli po normalizácii. 
+	
+	\begin{equation}
+		\begin{aligned}
+			SIM (P, Q^{D}) = \sum_{i} min (P_{i}, Q_{i}^{D})
+			\\
+			\\
+			kde \ \sum_{i} P_{i} = \sum_{i} Q_{i}^{D} = 1 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+		\end{aligned}
+	\end{equation}
+	
+	%\begin{equation}
+		%SIM (P, Q^{D}) = \sum_{i} min (P_{i}, Q_{i}^{D})
+		
+		%kde %\sum_{i} P_{i} = \sum_{i} Q_{i}^{D} = 1
+	%\end{equation}
+	
 	
 \end{itemize}
  

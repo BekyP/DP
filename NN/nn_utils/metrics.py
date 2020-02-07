@@ -24,6 +24,31 @@ except ImportError:
 
 from nn_utils.utils import normalize, match_hist
 
+def count_metrics(predicted_heatmaps, orig, binary_maps, n=224):  # computes metrics
+    cc = 0
+    auc = 0
+    sim = 0
+    nss = 0
+    auc_s = 0
+    auc_b = 0
+
+    for map, original_map, fix in zip(predicted_heatmaps, orig, binary_maps):
+        auc += AUC_Judd(map, fix, True)
+        #auc_b += AUC_Borji(map, fix)
+        nss += NSS(map, fix)
+        auc_s += AUC_shuffled(map, fix, np.zeros([n,n]))
+        cc += CC(map, original_map)
+        sim += SIM(map, original_map)
+
+    num=len(orig)
+    print("final correlation coeficient: " + str(cc / num))
+    print("final SIM: " + str(sim / num))
+    print("final NSS: " + str(nss / num))
+    print("final judd AUC: " + str(auc / num))
+    print("final shuffled AUC: " + str(auc_s / num))
+    print("final borji AUC: " + str(auc_s / num))
+
+    return cc, sim, nss, auc, auc_s, auc_b
 
 def AUC_Judd(saliency_map, fixation_map, jitter=True):
     '''

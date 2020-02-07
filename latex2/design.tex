@@ -3,18 +3,16 @@
 \section{Návrh}
 \label{design}
 
-%TODO spomenut autoencoder
-
 Na základe analýzy problémovej oblasti a existujúcich riešení sme sa rozhodli najprv použiť konvolučnú neurónovú sieť (jej popis a architektúra v kapitole \ref{nn_popis}), čo sa pretavilo aj do prvotných experimentov (kapitola \ref{first_experiments}).
 
-Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG-Net siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete.
+Ďalej sme navrhli autoenkóder k predikcii vizuálnej pozornosti (kapitola \ref{autoencoder_design}) a pokúsili sa použiť už predtrénovaný model VGG16 siete s autoenkóderom od A. Meyer-a (oba popisované v \ref{object_detection}) na našom predpripravenom datasete. 
 
-V závislosti od toho, ktorý model, resp. varianta, sa ukáže byť najpresnejšia sa potom budeme venovať ďalšiemu experimentovaniu s pridávaním dodatočných (top-down) informácií o scéne, akými sú napr. poloha objektov konkrétnych objektov.
+Neskôr sme v rámci pridávania dodatočných (top-down) informácií o scéne, akými sú napr. poloha konkrétnych objektov, vytvorili model, ktorý kombinuje VGG16 sieť s autoenkóderom. Jeho architektúra a princípy sú popísané v kapitole \ref{vgg16_combination_with_autoencoder}.
 
 \subsection{Dataset}
 \label{dataset_description}
 Podarilo sa nám nájsť veľké množstvo datasetov, ktoré by sa potencionálne dali použiť pre našu neurónovú sieť, ako napr. 
-CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, či DUT-OMRON\cite{dut-omron}. Pôvodná myšlienka bola vytiahnuť z každého čo najlepšie vzorky (odstrániť rôzne abstraktné umenie, fraktály, atď.) a dať tak dokopy jeden veľký dataset, na ktorom by bolo možné experimentovať. To sme aj naozaj zrealizovali a takýto dataset použili pri prvotných experimentoch popísaných v kapitole \ref{first_experiments}.
+CAT2000\cite{borji2015cat2000}, NUSEF\footnote{http://mmas.comp.nus.edu.sg/NUSEF.html}, či DUT-OMRON\cite{dut-omron} (popísané aj v kapitole \ref{datasets}) Pôvodná myšlienka bola vytiahnuť z každého čo najlepšie vzorky (odstrániť rôzne abstraktné umenie, fraktály, atď.) a dať tak dokopy jeden veľký dataset, na ktorom by bolo možné experimentovať. To sme aj naozaj zrealizovali a takýto dataset použili pri prvotných experimentoch popísaných v kapitole \ref{first_experiments}.
 
 Neskôr sa ale postupne ukázalo, že takto zostrojený dataset zložený z viacerých menších má značné nedostatky. Najväčšími problémami boli:
 \begin{itemize}
@@ -25,18 +23,7 @@ Neskôr sa ale postupne ukázalo, že takto zostrojený dataset zložený z viac
 	\item rozdielne zariadenia pre zachytenie fixácií s rôznou vzorkovacou frekvenciou 
 \end{itemize}
 
-Z vyššie uvedených dôvodov sme sa preto rozhodli vybrať iba jeden dataset. Voľba padla na DUT-OMRON\cite{dut-omron}, pretože:
-\begin{itemize}
-	\item obsahuje viac než 5000 obrázkov
-	\item obsahuje pohľady 5 ľudí za prvé 2 sekundy
-	\item má odstránené extrémy v dátach (z angl. outliers)
-	\item viac ako 95\% obrázkov má viac než 50 fixácií
-	\item všetky obrázky nemajú iba jeden veľký objekt v strede - t.j. fixácie nie sú stále centrované v tej istej oblasti
-	\item veľkosť obrázkov je \textit{400x300}
-	\item má dobre štruktúrovane spracované dáta
-\end{itemize} 
-
-Z vybraných dát sme si potom predpočítali mapy výraznosti (z angl. saliency maps) použitím fixácií a Gauss-ovho filtra. Mapy výrazností jednotlivých ľudí pre obrázky sme potom spojili dokopy. Takouto úpravou sme potom získali viac než 5000 vzoriek, na ktorých sme ďalej trénovali navrhnuté modely.
+Z vyššie uvedených dôvodov sme sa preto rozhodli vybrať iba jeden dataset. Voľba padla na SALICON, pretože je dosť rozsiahly, dobre spracovaný a hlavne obsahuje rôznorodé scény s kontextom. Z datasetu sme teda vybrali iba anotovanú vzorku dát (15 000 obrázkov) aby sme boli schopní vyhodnotiť predikcie metrikami vizuálnej pozornosti. Pre experimentovanie bol dataset rozdelený tradične v pomere 80 : 10 : 10 (trénovanie : validácia : testovanie).
 
 \subsection{Konvolučná neurónová sieť}
 \label{nn_popis}
@@ -62,19 +49,37 @@ Aktivačná funkcia sigmoid je použitá najmä preto, že mapa výraznosti je p
 Autoenkóder sa klasicky skladá z dvoch častí, prehľadná štruktúra je zobrazená na obrázku \ref{autoencoder_structure}. Prvou je enkóder, ktorý tvoria 3 konvolučné vrstvy, každá so svojou vlastnou vrstvou združovania, nasledované normalizačnou vrstvou a jednou plne prepojenou vrstvou (z angl. fully-connected layer). Konvolučné vrstvy majú každá filter o veľkosti \textit{3x3} a aktivačnú funkciu ReLU (popísaná v kapitole \ref{activation_functions}), vrstvy združovania podobne ako pri predchádzajúcom type siete používajú operáciu MAX s filtrom o veľkosti \textit{2x2} a krokom rovnako s veľkosťou \textit{2}. Cieľom týchto vrstiev je prakticky extrahovať relevantné črty a vstupný obrázok zmenšiť, resp. komprimovať, čo ďalej zabezpečuje spomínaná normalizačná a plne prepojená vrstva (bez aktivačných funkcií), ktorá už ale vstupný obrázok reprezentuje len ako komprimované jednorozmerné pole. 
 
 Druhou časťou spomínaného autoenkóderu je tzv. dekodér, ktorý sa snaží prakticky zrkadlovými operáciami získať informácie z komprimovaných dát, vďaka čomu je schopný predikovať mapy vizuálnej pozornosti. Jeho vstupnou vrstvou je v podstate výstupná vrstva z enkóderu, ktorej tvar ale musí byť najprv zmenený pre nasledujúce konvolučné vrstvy. Tie sú dokopy štyri, prvé tri konvolučné vrstvy obsahujú filter s veľkosťou \textit{3x3} a aktivačnú funkciu ReLU. Každá z nich je ešte navyše nasledovaná vlastnou vrstvou
-prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukcia do tvaru vstupného obrázku. Obsahujú vzorkovací faktor 2, na rozdiel od vrstiev združovania v enkóderi však miesto operácie MAX (ktorá dáta, resp. obrázok zmenší) duplikujú riadky a stĺpce poskytnutých dát (obrázka), vďaka čomu sa zväčší o vzorkovací faktor. Posledná výstupná konvolučná vrstva obsahuje filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid. Dátam na nej je ale ešte nutné predtransformovať na 2D maticu, reprezentujúce nami požadované mapy výraznosti. Spomínané trénovanie pomocu algoritmu spätného šírenia chyby využíva Adadelta optimizér (popísaný v časti \ref{optimizers}).
+prevzorkovania (z angl. upsampling layer), ich cieľom je postupná rekonštrukcia do tvaru vstupného obrázku. Obsahujú vzorkovací faktor 2, na rozdiel od vrstiev združovania v enkóderi však miesto operácie MAX (ktorá dáta, resp. obrázok zmenší) duplikujú riadky a stĺpce poskytnutých dát (obrázka), vďaka čomu sa zväčší o vzorkovací faktor. Posledná výstupná konvolučná vrstva obsahuje filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid. Dáta na nej je ale ešte nutné pretransformovať na 2D maticu, reprezentujúcu nami požadovanú mapu výraznosti. Spomínané trénovanie pomocu algoritmu spätného šírenia chyby využíva Adadelta optimizér (popísaný v časti \ref{optimizers}).
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{enkoder-dekoder.png}
+		\includegraphics[scale=0.26]{enkoder-dekoder.png}
 		\caption[Diagram navrhnutého autoenkóderu]{
 			Diagram zobrazujúci architektúru autoenkóderu skladajúceho sa z dvoch častí - enkóderu a dekóderu. Postupne zdola prvá vstupná konvolučná vrstva nasledovaná ostatnými vyššie popísanými vrstvami enkóderu, potom dekóder so svojimi vrstami s konvolúciou a prevzorkovaním až napokon úplne hore výstupná vrstva s predikciou mapy vizuálnej výraznosti. 
 		}\label{autoencoder_structure}
 	\end{center}
 \end{figure}
 
-%TODO autoencoder obrázok
+\subsection{Kombinácia VGG16 siete s autoenkóderom}
+\label{vgg16_combination_with_autoencoder}
+Pre experimentovanie so zapojením faktorov pozornosti zhora nadol sme navrhli sieť, ktorá kombinuje predikcie vyššie navrhnutého autoenkóderu s detekciou objektov VGG16 siete. Náčrt architektúry je na obrázku \ref{vgg_16_with_autoencoder}, podrobný diagram sa nachádza v prílohe \ref{vgg16_autoencoder_architecture_detailed}. 
 
-%TODO popisat poriadne transfer learning s autoencoderom s vgg netom
+Celá sieť je prakticky zložená z 3 častí:
+\begin{itemize}
+	\item enkóder - časť siete zodpovedná za detekciu salientných častí, je totožná s enkóderom v \ref{autoencoder_design} na obrázku \ref{autoencoder_structure}.
+	\item VGG16 konvolučná časť - obsahuje prvých 10 konvolučný vrstiev VGG16 siete (diagram na obrázku \ref{vgg_net_model}) spolu s príslušnými vrstvami združovania (z angl. max pooling). Je zodpovedná za detekciu objektov. 
+	\item dekóder - časť, v kt. sa postupne spájajú a upravujú predikcie z predošlých dvoch častí. Rovnako ako v návrhu z kapitoly \ref{autoencoder_design}, obsahuje štyri konvolučné vrstvy, prvá však nie je nasledovaná vrstvou prevzorkovania, ale vrstvou spájania - tá zabezpečuje spojenie predikcií z enkóderu a VGG16 konvolučnej časti. Po nej sú ďalej upravované pomocou ďalších dvoch konvolučných vrstiev nasledovaných vrstvou prevzorkovania, rovnako ako pri spomínanom predošlom návrhu. Tiež obsahujú aktivačnú funkciu ReLU a filter o veľkosti \textit{3x3}. Posledná výstupná konvolučná vrstva využíva filter s veľkosťou \textit{5x5} a aktivačnú funkciu sigmoid, nasledovaná je už len vrstvou, na ktorej sa dáta pretransformujú na 2D maticu reprezentujúcu predikovanú mapu výraznosti.
+\end{itemize}
 
-%TODO zhrnutie experimentov s metrikami
+Pri trénovaní sme využili prenos učenia (popísaný v kapitole \ref{transfer_learning}), kedy vrstvy VGG16 konvolučnej časti boli už predtrénované k detekcii objektov. Počas trénovania celej siete sme potom experimentovali s vypnutím učenia pre spomínanú časť siete, keďže sme chceli zachovať kontext detekcie objektov. Samotné trénovanie prebiehalo pomocou algoritmu spätného šírenia chyby s použítím Adadelta optimizéru. 
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{vgg16_with_autoencoder.png}
+		\caption[Náčrt architektúry VGG16 siete s autoenkóderom]{
+			Náčrt architektúry VGG16 siete s autoenkóderom, VGG16 konvolučná časť obsahuje 10 konvolučných vrstiev pre detekciu objektov, enkóder je identický s enkóderom použitým v \ref{autoencoder_design}, podrobná architektúra je v prílohe \ref{vgg16_autoencoder_architecture_detailed}
+		}\label{vgg_16_with_autoencoder}
+	\end{center}
+\end{figure}
+

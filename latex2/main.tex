@@ -9,9 +9,10 @@
 %% !!!! select one for BACHELOR THESIS
 %%
 %\documentclass[a4paper,english,12pt,appendix]{article}
-\documentclass[a4paper,slovak,12pt,appendix]{article}
-%\documentclass[a4paper,slovak,12pt,appendix,twoside]{article}
+%\documentclass[a4paper,slovak,12pt,appendix]{article}
+\documentclass[a4paper,slovak,12pt,appendix,twoside]{article}
 
+%\usepackage[inner=3.5cm,outer=3.5cm]{geometry}
 \let\tmp\oddsidemargin
 \let\oddsidemargin\evensidemargin
 \let\evensidemargin\tmp
@@ -25,6 +26,7 @@
 \usepackage{indentfirst}
 \usepackage{ifthen}
 \usepackage{fancyhdr}
+\usepackage{amsmath}
 
 \newboolean{english}
 \newboolean{bachelor}
@@ -39,7 +41,6 @@
 %%
 \setboolean{english}{false}
 
-%TODO checknut hlavicku v 4.2 napr.
 
 %%
 %% Formats and Defs
@@ -56,9 +57,9 @@
 	Modelovanie ľudskej vizuálnej pozornosti metódami počítačového videnia a umelej inteligencie}
 \newcommand{\Supervisor}{doc. Ing. Vanda Benešová, PhD.}
 \newcommand{\Place}{Ústav počítačového inžinierstva a aplikovanej informatiky, FIIT STU, Bratislava}
-\newcommand{\Year}{2018}
-\newcommand{\Month}{December}
-\newcommand{\FIIT}{tmp} %{FIIT-5212-73665}
+\newcommand{\Year}{2019}
+\newcommand{\Month}{Apríl}
+\newcommand{\FIIT}{FIIT-182905-73665} %{FIIT-5212-73665}
 \newcommand{\Field}{Inteligentné softvérové systémy}
 \newcommand{\Program}{Inteligentné softvérové systémy}
 
@@ -112,7 +113,6 @@ pdfkeywords={key words},%
 % List of Tables
  %\listoftables
  \cleardoublepage
- \newpage
 % List of Listings
  %\lstlistoflistings
 
@@ -166,7 +166,7 @@ pdfkeywords={key words},%
 %%
 %% Conclusion
 %%
-% TODO zvazit ci nedat do pice
+
 \input{conclusions.tex}
 
 %%

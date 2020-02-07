@@ -1,6 +1,6 @@
 import tensorflow as tf
-from keras import backend as K
-from keras.models import load_model
+from tensorflow.keras import backend as K
+from tensorflow.keras.models import load_model
 
 import argparse
 import matplotlib.pyplot as plt
@@ -12,7 +12,7 @@ import cv2
 import sys
 sys.path.append('../') 
 
-import nn_utils.metrics as metrics # source codes of metrics from: https://github.com/herrlich10/saliency
+from nn_utils.metrics import count_metrics # source codes of metrics from: https://github.com/herrlich10/saliency
 from nn_utils.utils import listdir_fullpath
 from nn_utils.load_data import load_data
 from nn_utils.binary_map_with_fixations import load_fixation_locs
@@ -61,34 +61,6 @@ for p, img in zip(predicted, img_names):
     plt.savefig("predicted_maps/plot_"+str(img.rsplit('/', 1)[1]))
     if i == 50:
         break
-
-def count_metrics(predicted_heatmaps, orig, binary_maps):  # computes metrics
-    cc = 0
-    auc = 0
-    similarity = 0
-    nss = 0
-    auc_s = 0
-    auc_b = 0
-
-    for map, original_map, fix in zip(predicted_heatmaps, orig, binary_maps):
-        if not fix.any() > 0:
-            print("empty fixation map")
-            continue
-        
-        auc += metrics.AUC_Judd(map, fix, True)
-        #auc_b += metrics.AUC_Borji(map, fix)
-        nss += metrics.NSS(map, fix)
-        auc_s += metrics.AUC_shuffled(map, fix, np.zeros([n,n]))
-        cc += metrics.CC(map, original_map)
-        similarity += metrics.SIM(map, original_map)
-
-    num=len(orig)
-    print("final correlation coeficient: " + str(cc / num))
-    print("final SIM: " + str(similarity / num))
-    print("final NSS: " + str(nss / num))
-    print("final judd AUC: " + str(auc / num))
-    print("final shuffled AUC: " + str(auc_s / num))
-    print("final borji AUC: " + str(auc_s / num))
 
 original = np.array(load_data(args.maps, (n, n)))
 

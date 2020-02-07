@@ -1,7 +1,10 @@
 import os
+import sys
+
 import numpy as np
 from skimage import img_as_float
 from skimage import exposure
+
 
 def get_model_memory_usage(batch_size, model):
     import numpy as np

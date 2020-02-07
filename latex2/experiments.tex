@@ -1,16 +1,15 @@
-\newpage
-\null
-\thispagestyle{empty}
+
 \newpage
 \section{Experimenty}
+
 \label{experiments}
 V priebehu práce bolo nutné experimentovať v naozaj veľkom množstve s najrôznejším počtom vecí od typov neurónových sietí, datasetov až po rôzne prístupy k riešeniu zadaného problému.
 
-Prvotné experimenty vykonávané vrámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/} sú zachytené v kapitole \ref{first_experiments}. Ďalšie experimenty potom prebiehali postupne s konvolučnou neurónovou sieťou (kapitola \ref{experiments_cnn}), konvolučným autoenkóderom (kapitola \ref{experiments_autoencoder}) a autoenkóderom s predtrénovanou sieťou VGG-Net (kapitola \ref{experiments_vgg_net}). Pri každom modeli sme odskúšali nespočetné množstvo rôznych konfigurácií, pre popis sme ale vybrali len tie s najlepšími výsledkami pre jednotlivé časti. 
+Prvotné experimenty vykonávané v rámci predmetu Počítačové videnie\footnote{http://vgg.fiit.stuba.sk/teaching/computer-vision/} sú zachytené v kapitole \ref{first_experiments}. Ďalšie experimenty potom prebiehali postupne s konvolučnou neurónovou sieťou (kapitola \ref{experiments_cnn}), konvolučným autoenkóderom (kapitola \ref{experiments_autoencoder}), autoenkóderom s predtrénovanou sieťou VGG16 (kapitola \ref{experiments_vgg_net}) a autoenkóderom v kombinácii s VGG16 sieťou (kapitola \ref{vgg_autoencoder_experiments}). Rozdiel pri modeloch s VGG16 sieťou je ten, že prvý spomínaný využíva VGG16 ako enkóder, v druhom je zapojená nezávisle ako samostatná časť.  Pri každom modeli sme odskúšali nespočetné množstvo rôznych konfigurácií, pre popis sme ale vybrali len tie s najlepšími výsledkami pre jednotlivé časti. V závere v kapitole \ref{results} uvádzame porovnanie modelov použitých pri experimentoch pomocou metrík a výber toho najlepšieho. 
 
 \subsection{Implementačné prostredie}
 
-Všetky nižšie popisované experimenty boli naimplementované v jazyku Python za použitia najrôznejších knižníc, hlavne pre prácu s obrázkami a neurónovými sieťami. Najdôležitejšími knižnicami sú:
+Všetky nižšie popisované experimenty boli naimplementované v jazyku Python za použitia najrôznejších knižníc, hlavne pre prácu s obrázkami a neurónovými sieťami (bližšie popísané v prílohe \ref{technical_doc}). Najdôležitejšími knižnicami sú:
 \begin{itemize}
 	\item TensorFlow\footnote{https://www.tensorflow.org/} - open-source knižnica pre prácu s neurónovými sieťami a strojovým učením
 	\item Keras\footnote{https://keras.io/} - vysoko úrovňová knižnica pre prácu s neurónovými sieťami, beží na nižšie úrovňovými knižnicami ako Theano či TensorFlow
@@ -61,7 +60,7 @@ Pri snahe vypočítať metriky pre predikcie sme narazili na problém, ktorý sm
 \subsection{Konvolučná neurónová sieť}
 \label{experiments_cnn}
 
-Ďalším experimentom bolo použitie klasickej konvolučnej neurónovej siete rovnako ako v predchádzajúcom prípade, tentokrát ale na celých obrázkoch. Ako dataset bol použitý spracovaný DUT-OMRON dataset (popísaný v kapitole \ref{dataset_description}) rozdelený podobne v pomere 80:10:10 (80 - trénovanie, 10 - validácia, 10 - testovanie), validácia bola tiež po každej epoche, trénovanie ale končilo v momente keď validačná chyba začala stúpať. Na obrázku nižšie možno vidieť vývoj jednotlivých chýb počas trénovania. Chyba bola počítaná ako priemier chýb predikcií v jednotlivých bodoch obrázka.
+Ďalším experimentom bolo použitie klasickej konvolučnej neurónovej siete rovnako ako v predchádzajúcom prípade, tentokrát ale na celých obrázkoch. Ako dataset bol použitý spracovaný DUT-OMRON dataset (popísaný v kapitole \ref{datasets}) rozdelený podobne v pomere 80:10:10 (80 - trénovanie, 10 - validácia, 10 - testovanie), validácia bola tiež po každej epoche, trénovanie ale končilo v momente keď validačná chyba začala stúpať. Na obrázku nižšie možno vidieť vývoj jednotlivých chýb počas trénovania. Chyba bola počítaná ako priemier chýb predikcií v jednotlivých bodoch obrázka.
 
 \begin{figure}[H]
 	\begin{center}
@@ -96,7 +95,7 @@ Vyššie zobrazené správanie môže byť spôsobené napríklad relatívne mal
 \subsection{Konvolučný autoenkóder}
 \label{experiments_autoencoder}
 
-Ďalšou architektúrou, ktorú sme sa rozhodli vyskúšať, bol konvolučný autoenkóder (navrhnutý v kapitole \ref{autoencoder_design}. Použitý dataset a jeho rozdelenie bolo rovnaké ako v predošlom experimente, trénovanie ale končilo až keď validačná chyba za posledných \textit{n} epoch neklesla. Ako funkcia chyby bola použitá priemerná absolútna chyba (z angl. mean absolute error, MAE), ktorá meria rozdiel medzi dvomi spojitými premennými, v našom prípade medzi reálnou a predikovanou mapou výraznosti, resp. ich pixelmi. Priebeh učenia možno vidieť na obrázku \ref{autoencoder_loss}. 
+Ďalšou architektúrou, ktorú sme sa rozhodli vyskúšať, bol konvolučný autoenkóder (navrhnutý v kapitole \ref{autoencoder_design}). Použitý dataset bol tento krát SALICON a jeho rozdelenie bolo rovnaké ako v predošlom experimente. Trénovanie ale končilo až keď validačná chyba za posledných \textit{n} epoch neklesla. Ako funkcia chyby bola použitá priemerná absolútna chyba (z angl. mean absolute error, MAE), ktorá meria rozdiel medzi dvomi spojitými premennými, v našom prípade medzi reálnou a predikovanou mapou výraznosti, resp. ich pixelmi. Priebeh učenia možno vidieť na obrázku \ref{autoencoder_loss}. 
 
 \begin{figure}[H]
 	\begin{center}\includegraphics[scale=0.2]{autoencoder_loss.png}
@@ -107,7 +106,7 @@ Vyššie zobrazené správanie môže byť spôsobené napríklad relatívne mal
 \end{figure}
 
 Z obrázku je vidieť, že učenie prebiehalo počas 45 epoch, chyba najvýraznejšie klesla počas prvých šiestich epoch. Z počiatočnej hodnoty \textit{0.2336} (trénovacie dáta) a \textit{0.2219} (validačné dáta) bola schopná klesnúť až na hodnotu \textit{0.00874} (trénovacie dáta) a \textit{0.01245} (validačné dáta). Priemerná hodnota chyby pri testovaní na dátach, ktoré sieť nikdy nevidela, bola na úrovni \textit{0.01301}. Vizualizácie porovnanie predikcií sú zobrazené na obrázku \ref{autoencoder_results}.
-
+\newpage
 \begin{figure}[H]
 	\begin{center}\includegraphics[scale=0.6]{autoencoder_results.png}
 		\caption[Porovnanie predikcií autoenkóderu voči reálnym mapám výraznosti]{
@@ -118,50 +117,223 @@ Z obrázku je vidieť, že učenie prebiehalo počas 45 epoch, chyba najvýrazne
 
 Z vyššie uvedených vizualizácií jasne vidieť, že sieť bola schopná naučiť sa isté výrazné súvislosti z dát, predikcie však nie sú úplne presné. Na rozdiel od siete z predošlého experimentu už nepredikuje všetko do stredu, ale je schopná označiť aj viacero výrazných objektov. To môže byť spôsobené napríklad väčšou veľkosťou vstupných obrázkov. Nakoľko autoenkóder si interne vstupné dáta zkomprimuje a zníži ich dimezionalitu, je v porovnaní zo spomínanou sieťou z predchádzajúceho experimentu pri rovnako veľkých vstupných obrázkoch menej pamäťovo náročný.
 
-Zaujímavým javom, ktorý sme si všimli pri experimentovaní s týmto typom siete je, že hodnota chyby predikcie siete pri našom probléme nie je úplne smerodajná informácia. Pri použití napr. priemernej štvorcovej chyby (z angl. mean square error, MSE) bola výsledná chyba \textit{0.0000431}, ale predikcie boli v podstate len prázdne mapy bez akýchkoľvek výrazných častí. Tiež pri použití ešte väčšieho množstva konvlučných vrstiev sa použitá priemerná absolútna chyba zmenšila počas trénovania viac, avšak sieť sa v tomto prípade naučila predikovať najviac výrazné časti obrázkov vždy len do stredu, podobne ako pri konvolučnej neurónovej sieti z predošlého experimentu. Práve preto sme kvalitu modelov a predikcií vyhodnocovali metrikami vizuálnej pozornosti (kapitola \ref{metric}), ktorých prehľadné porovnanie aj so závermi je uvedené v \ref{results}.
+Zaujímavým javom, ktorý sme si všimli pri experimentovaní s týmto typom siete je, že hodnota chyby predikcie siete pri našom probléme nie je úplne smerodajná informácia. Pri použití napr. priemernej štvorcovej chyby (z angl. mean square error, MSE) bola výsledná chyba \textit{0.0000431}, ale predikcie boli v podstate len prázdne mapy bez akýchkoľvek výrazných častí. Tiež pri použití ešte väčšieho množstva konvolučných vrstiev sa použitá priemerná absolútna chyba zmenšila počas trénovania viac, avšak sieť sa v tomto prípade naučila predikovať najviac výrazné časti obrázkov vždy len do stredu, podobne ako pri konvolučnej neurónovej sieti z predošlého experimentu. Práve preto sme kvalitu modelov a predikcií vyhodnocovali metrikami vizuálnej pozornosti (kapitola \ref{metric}), ktorých prehľadné porovnanie aj so závermi je uvedené v \ref{results}.
 
-\subsection{Autoenkóder s predtrénovaným modelom VGG-Net}
+\subsection{Autoenkóder s predtrénovaným modelom VGG16}
 \label{experiments_vgg_net}
 
-Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho VGG-Net sieť k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG-Net pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. Po menších úpravách siete sme pristúpili k trénovaniu na našom datasete, postupný vývoj chyby počas trénovania možno vidieť na obrázku \ref{vgg_pretrained_loss}. Validácia prebiehala každých 100 epoch, trénovanie končilo v momente keď minimálna hodnota chyby za posledných \textit{n} epoch neklesla. 
+Pre tento experiment sme si vybrali sieť od A. Meyer-a\footnote{https://github.com/arthurmeyer/Saliency\_Detection\_Convolutional\_Autoencoder} popisovanú v kapitole \ref{object_detection}, ktorá je voľne dostupná. Jedná sa o variáciu autoenkóderu využívajúceho sieť VGG16 ako enkóder k predikcii binárnej mapy zobrazujúcej dominantné objekty v scéne. Pôvodná hypotéza bola, že vďaka použitému predtrénovanému modelu VGG16 pre detekciu objektov bude sieť lepšie rozumieť vstupný obrázkom a preto pri dodatočnom dotrénovaní k predikcii máp vizuálnej pozornosti bude dávať lepšie výsledky. Po menších úpravách siete sme pristúpili k trénovaniu na našom datasete, postupný vývoj chyby počas trénovania možno vidieť na obrázku \ref{vgg_pretrained_loss}. Validácia prebiehala každých 100 epoch, trénovanie končilo v momente keď minimálna hodnota chyby za posledných \textit{n} epoch neklesla. 
  
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.3]{vgg_pretrained.png}
-		\caption[Vývoj chyby počas trénovanie siete s predtrénovaným modelom VGG-Net]{
-			Graf zobrazujúci vývoj chyby po odstránení extrémov pri použití predtrénovaného modelu VGG-Net 
+		\caption[Vývoj chyby počas trénovanie siete s predtrénovaným modelom VGG16]{
+			Graf zobrazujúci vývoj chyby po odstránení extrémov pri použití predtrénovaného modelu VGG16 
 		}\label{vgg_pretrained_loss}
 	\end{center}
 \end{figure}
 
 Na prvý pohľad sa môže zdať, že sieť sa bola schopná naučiť aspoň nejaké závislosti z dát. Po vizualizovaní dát sme ale zistili, že sme sa veľmi mýlili a snaha o dotrénovanie nepriniesla žiadne ovocie. Vizualizované výsledné dáta, ktoré mali reprezentovať mapy výraznosti, rozhodne ako mapy výraznosti nevyzerali a sieť sa nenaučila nič užitočné. Výsledkom boli len úplne náhodné hodnoty, ktoré sa ani zďaleko neblížili realite. Preto možno považovať tento experiment za nepríjemnú slepú uličku.
 
-\subsection{Porovnanie výsledkov experimentov}
-\label{results}
+\subsection{Kombinácia autoenkóderu s VGG16 sieťou}
+\label{vgg_autoencoder_experiments}
 
-Do výsledného porovnania sme nakoniec zobrali iba modely so zmysluplnými výsledkami - konvolučnú neurónovú sieť a autoenkóder. Konvolučná neurónová sieť pri rovnakej vstupnej veľkosti obrázkov zaberá značne väčšie množstvo pamäte ako autoenkóder, jeho trénovanie ale trvá o niečo dlhšie kvôli viacerým konvolučným vrstvám. Pri porovnaní sme sa riadili najmä metrikami vizuálnej pozornosti (kapitola \ref{metric}), prehľadné zhrnutie ich hodnôt je v tabuľke \ref{cnn_vs_autoencoder}.
+Hoci experiment s VGG16 sieťou použitou ako enkóder v autoenkóderi nevyšiel, stále sa nám zdalo ako dobrý nápad zapojiť do predikcií detekciu objektov. Preto sme sa pri ďalšej architektúre (kapitola \ref{vgg16_combination_with_autoencoder}) inšpirovali riešením riešením  zachytávajúcim sémantickú medzeru pri predikcii vizuálnej pozornosti (kapitola \ref{semantic_gap}). Podľa tohto návrhu sme zostrojili neurónovú sieť kombinujúcu detekciu objektov pomocou konvolučných vrstiev predtrénovanej siete VGG16 a predikciu vizuálnej pozornosti pomocou autoenkóderu. 
+
+Sieť sme potom postupne trénovali v 2 dvoch konfiguráciach:
+\begin{itemize}
+	\item s vypnutím učenia pre vrstvy VGG16 siete - išlo nám o snahu zachovať kontext detekcie objektov.
+	\item so zapnutím učenia pre vrstvy VGG16 siete - po odskúšaní vyššie uvedenej konfigurácie sme zistili, že mapy vizuálnej pozornosti nemajú až tak vysokú mieru granularity a chceli sme to zmeniť dotrénovaním vrstiev pre detekciu objektov. 
+\end{itemize}
+
+Na obrázku \ref{vgg16_loss_trainable_vs_nontrainable} je zobrazený vývoj  trénovacej a validačnej chyby počas učenia. Ako chyba bola zvolená binárna krížová entropia (z angl. binary cross entropy) v kombinácii s adadelta optimizérom a algoritmom spätného šírenia chyby. Učenie končilo v momente, keď sa za posledných \textit{n} epoch nezlepšila validačná chyba.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.415]{vgg16_nontrainable_loss.png}
+		\includegraphics[scale=0.415]{vgg16_trainable_loss.png}
+		\caption[Porovnanie vývoja chyby predikcie počas trénovania kombinácie autoenkóderu s VGG16 sieťou]{
+			Porovnanie vývoja chyby počas trénovania, oranžová reprezentuje chybu na trénovacích dátach, modrá na validačných. Vľavo graf pre vypnuté učenie na vrstvách detekcie objektov, vpravo pre zapnuté.
+		}\label{vgg16_loss_trainable_vs_nontrainable}
+	\end{center}
+\end{figure}
+
+Ako je vidieť, pri zapnutom učení aj na vrstvách pre detekciu objektov (na obrázku \ref{vgg16_loss_trainable_vs_nontrainable} vpravo) bol priebeh učenia stabilnejší, kratší a aj samotná chyba bola nižšia. Jej hodnoty boli na trénovacích dátach \textit{0.125} a na validačných \textit{0.1332}, pre vypnuté učenie na vrstvách detekcie objektov (obrázok \ref{vgg16_loss_trainable_vs_nontrainable} vľavo) bola trénovacia chyba na úrovni \textit{0.1344} a validačná \textit{0.1385}. Podobne na tom bola aj chyba na testovacích dátach, a to \textit{0.1391} oproti \textit{0.1442} (so zapnutým učením menšia), čo je vzhľadom aj na takmer o polovicu menší počet epoch lepší výsledok. Na obrázkoch nižšie sú zobrazené predikcie pre jednotlivé konfigurácia spolu s porovnaním voči reálnym mapám vizuálnej pozornosti. 
+
+% koncové hodnoty chyby: 
+% nontrainable: train - 0.1344, val - 0.1382 -> 81 epoch
+% trainable: train - 0.125, val - 0.1332 -> 41 epoch
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{vgg16_predictions_nontrainable.png}
+		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou bez dodatočného trénovania voči reálnym mapám výraznosti]{
+			Porovnanie predikcií autoenkóderu s VGG16 sieťou bez zapnutého učenia, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{vgg16_predictions_nontrainable}
+	\end{center}
+\end{figure}
+
+Ako je vidieť na obrázku \ref{vgg16_predictions_nontrainable}, v predikovaných mapách s vypnutým učením na vrstvách VGG16 siete cítiť vplyv detekcie objektov. Sieť vedela relatívne dobre odhadnúť salientné miesta v prípade, že na obrázku nebolo príliš veľa objektov. Problém je ale v intenzite týchto označených miest (tá býva vyššia ako v originálnych mapách) a v situáciách, kedy je na obrázku väčšie množstvo objektov. Vtedy sú v predikovanej mape vizuálnej pozornosti  označené za salientné  aj objekty, ktoré reálne nie sú (napríklad osoby v pozadí, atď.)
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{vgg16_predictions_trainable.png}
+		\caption[Porovnanie predikcií autoenkóderu s VGG16 sieťou s dodatočným trénovaním voči reálnym mapám výraznosti]{
+			Porovnanie predikcií autoenkóderu s VGG16 sieťou so zapnutým učením, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{vgg_predictions_trainable}
+	\end{center}
+\end{figure}
+
+Pri zapnutí učenia na vrstvách pre detekciu objektov sa predikcie o niečo zlepšili, sieť pri väčšom počte objektov v scéne už neoznačila tak veľké množstvo za salientné, pri čom aj predikcia intenzity v mapách je miernejšia a viac sa blíži reálnym mapám vizuálnej pozornosti. Zlepšenie koniec koncov potvrdzujú aj metriky vizuálnej pozornosti (popísané v kapitole \ref{metric}), ktorými sme ohodnotili obe konfigurácie modelu. Výsledky sú v tabuľke \ref{vgg16_trainable_vs_nontrainable_metrics}.
 
 \begin{table}[H]
 	%\begin{minipage}{\textwidth}
 	\centering
-	\caption[Porovnanie konvolučnej neurónovej siete a autoenkóderu]{Porovnanie konvolučnej neurónovej siete a autoenkóderu spolu s hodnotami metrík vizuálnej pozornosti}
-	\label{cnn_vs_autoencoder}
+	\caption[Porovnanie konfigurácií autoenkóderu s VGG16 sieťou pomocou metrík]{Porovnanie hodnôt metrík pre obe testované konfigurácie}
+	\label{vgg16_trainable_vs_nontrainable_metrics}
 	\begin{tabular}{{ | p{2cm} |  p{3cm} |  p{3cm} |  p{3cm} |  }}
 		\hline
-		& \textbf{Konvolučná neurónová sieť} &  \textbf{Autoenkóder} \\ \hline
-		Veľkosť vstupných obrázkov & 64x64 & 256x256  \\ \hline
-		Chyba na testovacích dátach & 0.1459 & 0.01301  \\ \hline
-		\textbf{Metriky} &  &   \\ \hline
-		CC & 0.3891 & 0.4634  \\ \hline
-		AUC & 0.6892 & 0.7967  \\ \hline
-		sAUC & 0.6631 & 0.7245 \\ \hline
-		NSS & 0.7334 & 1.1588  \\ \hline
+		& \textbf{Model s vypnutým učením pre VGG16 sieť} &  \textbf{Model so zapnutím učením pre VGG16 sieť} \\ \hline
+		CC & 0.6863 & 0.8065  \\ \hline
+		SIM & 0.6043 & 0.6958  \\ \hline
+		AUC & 0.7678 & 0.7832  \\ \hline
+		sAUC & 0.7154 & 0.7227 \\ \hline
+		NSS & 1.1630 & 1.2381  \\ \hline
+	\end{tabular}
+	
+\end{table}
+
+\subsection{Vedená a upravená vizuálna pozornosť pri modeloch na detekciu objektov}
+
+Ako sme popisovali v kapitole \ref{relu_and_guided_saliency}, pri natrénovaných modeloch k detekcii objektov vieme pár jednoduchými zmenami docieliť, aby sme z nich dostali salientné mapy. V rámci jedného experimentu experimentu sme teda zobrali natrénovanú VGG16 sieť, zmenili sme \textit{softmax} aktivačnú funkciu na lineárnu a postupne použili obe popísané úpravy algoritmu spätného šírenia chyby. Vizualizácie predikcií sú zobrazené na obrázkoch \ref{relu_saliency_predictions} (pre upravenú vizuálnu pozornosť) a \ref{guided_saliency_predictions} (pre vedenú vizuálnu pozornosť). 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{relu_saliency_predictions.png}
+		\caption[Porovnanie predikcií upravenej vizuálnej pozornosti voči reálnym mapám výraznosti]{
+			Predikcie upravenej vizuálnej pozornosti, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{relu_saliency_predictions}
+	\end{center}
+\end{figure}
+
+Vyššie zobrazené vizualizácie ukazujú, že v niektorých prípadoch sa predikcia dokázala zhruba trafiť do salientných miest, tie sú však oveľa rozsiahlejšie ako v originálnych mapách a celkovo majú predikované mapy dosť nízku granularitu. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.6]{guided_saliency_predictions.png}
+		\caption[Porovnanie predikcií vedenej vizuálnej pozornosti voči reálnym mapám výraznosti]{
+			Predikcie vedenej vizuálnej pozornosti, zľava vstupný obrázok, potom originálna mapa výraznosti, predikovaná mapa výraznosti a nakoniec predikcia zobrazená na obrázku.
+		}\label{guided_saliency_predictions}
+	\end{center}
+\end{figure}
+
+Pri vedenej vizuálnej pozornosti v zásade pretrvávajú podobné problémy, navyše sa však dosť často stávalo, že sme z modelu neboli schopní dostať žiadne mapy vizuálnej pozornosti. To môže súvisieť s tým, že po úprave algoritmu spätného šírenia chyby sa propaguje iba pozitívny gradient zodpovedný za pozitívne aktivácie. Celkovo predikcie nie sú veľmi presné, presnejšie ale boli mapy práve prvého typu, čo dokázali aj hodnoty metrík vizuálnej pozornosti (kapitola \ref{metric}). Ako je vidieť v tabuľke \ref{relu_vs_guided}, hodnoty metrík nedosahujú veľké čísla, rozdiely medzi dvomi typmi predikcií nie sú až tak veľké.
+
+
+\begin{table}[H]
+	%\begin{minipage}{\textwidth}
+	\centering
+	\caption[Porovnanie vedenej a upravenej vizuálnej pozornosti]{Porovnanie hodnôt metrík pre predikcie vedenej a upravnej vizuálnej pozornosti}
+	\label{relu_vs_guided}
+	\begin{tabular}{{ | p{2cm} |  p{3cm} |  p{3cm} |  p{3cm} |  }}
+		\hline
+		& \textbf{Predikcie vedenej vizuálnej pozornosti (z angl. guided saliency)} &  \textbf{Predikcie upravenej vizuálnej pozornosti (z angl. rectified saliency)} \\ \hline
+		CC & 0.0259 & 0.0707  \\ \hline
+		SIM & 0.2805 & 0.3040  \\ \hline
+		AUC & 0.4973 & 0.5183  \\ \hline
+		sAUC & 0.5018 & 0.5155 \\ \hline
+		NSS & 0.0204 & 0.0763  \\ \hline
+	\end{tabular}
+	
+\end{table}
+
+\newpage
+\subsection{Porovnanie výsledkov experimentov}
+\label{results}
+
+Do výsledného porovnania sme nakoniec zobrali iba modely s najlepšími výsledkami, pri porovnaní sme sa riadili najmä metrikami vizuálnej pozornosti, prehľadné zhrnutie ich hodnôt spolu s chybou na testovacích dátach a veľkosťou vstupných obrázkov je v tabuľke \ref{cnn_vs_autoencoder}
+
+\begin{table}[H]
+
+	\centering
+	\caption[Porovnanie konvolučnej neurónovej siete a autoenkóderu]{Porovnanie konvolučnej neurónovej siete a autoenkóderu spolu s hodnotami metrík vizuálnej pozornosti}
+	\label{cnn_vs_autoencoder}
+	\begin{tabular}{{ | p{1.5cm} |  p{2.5cm} |  p{2.5cm} |  p{2.5cm} | p{2.5cm} | }}
+		\hline
+		& \textbf{Konvolučná neurónová sieť} &  \textbf{Autoenkóder}  &  \textbf{Kombinácia autoenkóderu s VGG16 sieťou} &  \textbf{Upravená vizuálna pozornosť} \\ \hline
+		Veľkosť vstupných obrázkov & 64x64 & 256x256 & 224x224 & 224x224 \\ \hline
+		Chyba na testovacích dátach & 0.1459 & 0.01301  & 0.1391 & - \\ \hline
+		\textbf{Metriky} &  &  &  &  \\ \hline
+		CC & 0.3891 & 0.4634 & 0.8065 & 0.0707\\ \hline
+		SIM &  0.3058 & 0.3989 & 0.6958 & 0.3040\\ \hline
+		AUC & 0.6892 & 0.7767 & 0.7832 & 0.5183\\ \hline
+		sAUC & 0.6631 & 0.7245 & 0.7227 & 0.5155\\ \hline
+		NSS & 0.7334 & 1.1288  & 1.2381 & 0.0763\\ \hline
 	\end{tabular}
 	
 	%\end{minipage}
 \end{table}
 
-Z vyššie uvedenej tabuľky jasne vyplýva, že lepšie výsledky jednoznačne podáva práve autoenkóder, čo je koniec koncov pozorovateľné pri vizualizáciách predikcií. Predpokladáme, že to bude spôsobené najmä veľkosťou vstupných obrázkov. Keďže autoenkóder zaberá menšie množstvou pamäte, boli sme ním schopní spracovať väčšie vstupné obrázky. Pri ďalších experimentoch bude vychádzať práve z neho.
+Z vyššie uvedenej tabuľky jasne vyplýva, že najlepšie výsledky má autoenkóder, resp. jeho kombinácia s VGG16 sieťou. I keď hodnoty AUC majú dosť podobné, korelačný koeficient (CC) a podobnosť (SIM), ktoré validujú predikované mapy voči reálnym, nie voči fixáciám, sú výrazne vyššie. Preto sme sa ho rozhodli ako najlepší model, ktorý sa nám podarilo vytvoriť, ďalej porovnať s už existujúcimi modelmi na viacerých datasetoch.
+
+\section{Porovanie s existujúcimi riešeniami}
+\label{compare_section}
+
+Náš najlepší model (autoenkóder kombinovaný s VGG16 sieťou pre detekciu objektov) sme porovnali s existujúcimi riešeniami - s modelom pre redukciu sémantických medzier (kapitola \ref{semantic_gap}) a s modelom SAM (Saliency Attentive Model, kapitola \ref{sam}). Porovanie prebiehalo pomocou metrík vizuálnej pozornosti na viacerých datasetoch (popísané v kapitole \ref{datasets}). Ich výsledné hodnoty sú v tabuľke \ref{compare_solutions}.
+
+\begin{table}[H]
+	
+	\centering
+	\caption[Porovnanie nášho najlepšieho modelu s existujúcimi riešeniami]{Porovnanie nášho najlepšieho modelu s existujúcimi riešeniami na rôznych datasetoch pomocou metrík}
+	\label{compare_solutions}
+	\begin{tabular}{{ | p{1.7cm} |  p{2.5cm} |  p{2.5cm} |  p{2.5cm} | p{2.5cm} | }}
+		\hline
+		& \textbf{Kombinácia autoenkóderu s VGG16 sieťou} &  \textbf{Model pre redukciu sémantických medzier} &  \textbf{SAM (Saliency Attentive Model)} \\ \hline
+		\textbf{Salicon} &  &  &  \\ \hline
+		CC & 0.8065 & - & 0.811 \\ \hline
+		SIM &  0.6958 & - & - \\ \hline
+		AUC & 0.7832 & - & 0.878 \\ \hline
+		sAUC & 0.7227 & - & 0.782 \\ \hline
+		NSS & 1.2381 & -  & 3.15 \\ \hline
+		\textbf{MIT1003} &  &  &  \\ \hline
+		CC & 0.6161 & 0.74 & 0.738 \\ \hline
+		SIM &  0.5075 & 0.60 & - \\ \hline
+		AUC & 0.8193 & 0.85 & 0.908 \\ \hline
+		sAUC & 0.7369 & 0.74 & 0.613 \\ \hline
+		NSS & 1.7388 & 2.12  & 2.231 \\ \hline
+		\textbf{CAT2000} &  &  &  \\ \hline
+		CC & 0.7157 & - & 0.845 \\ \hline
+		SIM &  0.6169 & - & - \\ \hline
+		AUC & 0.8768 & - & 0.874 \\ \hline
+		sAUC & 0.8237 & - & 0.539 \\ \hline
+		NSS & 2.1150 & -  & 2.233 \\ \hline
+	\end{tabular}
+	
+	%\end{minipage}
+\end{table}
+
+Pre výpočet metrík nášho riešenia sme ako základný model použili ten natrénovaný na SALICON datasete, pre ďalšie datasety (MIT1003, CAT2000) sme ho už len postupne dotrénovali. Počas trénovania aj dotrénovávania boli dáta pre každý dataset rozdelené v pomere 80 : 10 : 10 (trénovanie : validácia : test). Výsledné hodnoty metrík boli vypočítané na testovacích dátach pre jednotlivé datasety.
+
+Ako je vidieť v predošlej tabuľke, hodnoty nášho modelu sa vo väčšine prípadov blížia hodnotám uvedených riešení, len zriedkavo sú lepšie. Naše predikcie sú teda konkurencie schopné, nie sú ale ani zďaleko najlepšie možné. 
+
+\iffalse
+MIT1003
+final correlation coeficient: 0.6161522189830408
+final SIM: 0.507501539429815
+final NSS: 1.7388561018606992
+final judd AUC: 0.8193171082796084
+final shuffled AUC: 0.7369328732828082
+final borji AUC: 0.7369328732828082
+
+CAT2000
+final correlation coeficient: 0.71578752863242
+final SIM: 0.6169893727935132
+final NSS: 2.1150046837329866
+final judd AUC: 0.8768191933449266
+final shuffled AUC: 0.8237329292507087
+final borji AUC: 0.8237329292507087
+\fi
 
 \iffalse
 cnn:
